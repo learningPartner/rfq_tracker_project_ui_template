@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RFQ Marketplace — Clickable Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RFQ MARKETPLACE — DESIGN SYSTEM
+   ============================================================ */
+:root{
+  /* Brand */
+  --primary:#2563EB; --primary-dark:#1D4ED8; --primary-darker:#1E40AF; --primary-light:#EFF6FF; --primary-100:#DBEAFE;
+  --success:#059669; --success-light:#ECFDF5; --success-100:#D1FAE5;
+  --warning:#D97706; --warning-light:#FFFBEB; --warning-100:#FEF3C7;
+  --danger:#DC2626; --danger-light:#FEF2F2; --danger-100:#FEE2E2;
+  --info:#0891B2; --info-light:#ECFEFF;
+  /* Neutrals */
+  --gray-25:#FCFCFD; --gray-50:#F9FAFB; --gray-100:#F3F4F6; --gray-200:#E5E7EB; --gray-300:#D1D5DB;
+  --gray-400:#9CA3AF; --gray-500:#6B7280; --gray-600:#4B5563; --gray-700:#374151; --gray-800:#1F2937; --gray-900:#111827;
+  --white:#FFFFFF;
+  /* Spacing (8px grid) */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px;
+  /* Radius */
+  --r-sm:6px; --r-md:8px; --r-lg:12px; --r-xl:16px; --r-full:999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(16,24,40,.06);
+  --shadow-md:0 2px 8px rgba(16,24,40,.08);
+  --shadow-lg:0 8px 24px rgba(16,24,40,.12);
+  --shadow-xl:0 16px 48px rgba(16,24,40,.18);
+  --sidebar-w:260px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--gray-800); background:var(--gray-50); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{margin:0; font-weight:700; color:var(--gray-900); letter-spacing:-0.01em;}
+p{margin:0;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none; margin:0; padding:0;}
+button{font-family:inherit; cursor:pointer;}
+input,select,textarea{font-family:inherit; font-size:14px;}
+::-webkit-scrollbar{width:8px; height:8px;}
+::-webkit-scrollbar-thumb{background:var(--gray-300); border-radius:99px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+.hidden{display:none !important;}
+
+/* ---------- Typography helpers ---------- */
+.text-xs{font-size:12px;} .text-sm{font-size:13px;} .text-md{font-size:14px;} .text-lg{font-size:16px;} .text-xl{font-size:20px;} .text-2xl{font-size:24px;} .text-3xl{font-size:30px;}
+.fw-400{font-weight:400;} .fw-500{font-weight:500;} .fw-600{font-weight:600;} .fw-700{font-weight:700;}
+.text-muted{color:var(--gray-500);} .text-subtle{color:var(--gray-400);}
+.text-primary{color:var(--primary);} .text-success{color:var(--success);} .text-warning{color:var(--warning);} .text-danger{color:var(--danger);}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  padding:9px 16px; border-radius:var(--r-md); font-size:13.5px; font-weight:600;
+  border:1px solid transparent; transition:all .15s ease; white-space:nowrap; line-height:1.2;
+}
+.btn svg{width:16px; height:16px; flex-shrink:0;}
+.btn-primary{background:var(--primary); color:#fff; box-shadow:var(--shadow-sm);}
+.btn-primary:hover{background:var(--primary-dark);}
+.btn-secondary{background:#fff; color:var(--gray-700); border-color:var(--gray-300);}
+.btn-secondary:hover{background:var(--gray-50); border-color:var(--gray-400);}
+.btn-ghost{background:transparent; color:var(--gray-600);}
+.btn-ghost:hover{background:var(--gray-100);}
+.btn-danger{background:var(--danger); color:#fff;}
+.btn-danger:hover{background:#B91C1C;}
+.btn-success{background:var(--success); color:#fff;}
+.btn-success:hover{background:#047857;}
+.btn-outline-primary{background:var(--primary-light); color:var(--primary); border-color:var(--primary-100);}
+.btn-outline-primary:hover{background:var(--primary-100);}
+.btn-sm{padding:6px 12px; font-size:12.5px;}
+.btn-lg{padding:12px 22px; font-size:15px;}
+.btn-block{width:100%;}
+.btn-icon{padding:8px; width:34px; height:34px;}
+.btn:disabled{opacity:.5; cursor:not-allowed;}
+.btn-link{background:none;border:none;color:var(--primary);font-weight:600;padding:0;}
+
+/* ---------- Chips / Badges ---------- */
+.chip{display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:var(--r-full); font-size:12px; font-weight:600; white-space:nowrap;}
+.chip::before{content:''; width:6px; height:6px; border-radius:50%; background:currentColor;}
+.chip-draft{background:var(--gray-100); color:var(--gray-600);}
+.chip-published{background:var(--primary-light); color:var(--primary);}
+.chip-closed{background:var(--warning-light); color:var(--warning);}
+.chip-awarded{background:var(--success-light); color:var(--success);}
+.chip-cancelled{background:var(--danger-light); color:var(--danger);}
+.chip-submitted{background:var(--primary-light); color:var(--primary);}
+.chip-rejected{background:var(--danger-light); color:var(--danger);}
+.chip-withdrawn{background:var(--gray-100); color:var(--gray-600);}
+.chip-active{background:var(--success-light); color:var(--success);}
+.chip-disabled{background:var(--gray-100); color:var(--gray-500);}
+.tag{display:inline-flex; align-items:center; padding:3px 9px; border-radius:var(--r-sm); font-size:11.5px; font-weight:600; background:var(--gray-100); color:var(--gray-600);}
+
+/* ---------- Cards ---------- */
+.card{background:#fff; border:1px solid var(--gray-200); border-radius:var(--r-lg); box-shadow:var(--shadow-sm);}
+.card-pad{padding:var(--sp-6);}
+.card-header{display:flex; align-items:center; justify-content:space-between; padding:var(--sp-5) var(--sp-6); border-bottom:1px solid var(--gray-100);}
+.card-header h3{font-size:15px;}
+
+/* ---------- App Shell ---------- */
+.app-shell{display:grid; grid-template-columns:var(--sidebar-w) 1fr; min-height:100vh;}
+.sidebar{background:#101828; color:#fff; display:flex; flex-direction:column; position:sticky; top:0; height:100vh;}
+.sidebar-logo{display:flex; align-items:center; gap:10px; padding:20px 22px; border-bottom:1px solid rgba(255,255,255,.08);}
+.sidebar-logo .mark{width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--primary),#60A5FA); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;}
+.sidebar-logo .name{font-weight:700; font-size:15px; color:#fff;}
+.sidebar-logo .sub{font-size:10.5px; color:#8B96AB; letter-spacing:.04em; text-transform:uppercase;}
+.org-pill{margin:14px 18px 6px; padding:10px 12px; background:rgba(255,255,255,.06); border-radius:var(--r-md); font-size:12px; color:#B7C0D1;}
+.org-pill b{display:block; color:#fff; font-size:13px; font-weight:600; margin-bottom:2px;}
+.nav-section{padding:10px 14px;}
+.nav-label{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#5C6B85; padding:14px 10px 6px;}
+.nav-item{display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:var(--r-md); color:#AEB8CC; font-size:13.5px; font-weight:500; margin-bottom:2px; transition:all .12s;}
+.nav-item svg{width:18px; height:18px; flex-shrink:0; opacity:.85;}
+.nav-item:hover{background:rgba(255,255,255,.06); color:#fff;}
+.nav-item.active{background:var(--primary); color:#fff;}
+.nav-item.active svg{opacity:1;}
+.sidebar-footer{margin-top:auto; padding:14px; border-top:1px solid rgba(255,255,255,.08);}
+.sidebar-user{display:flex; align-items:center; gap:10px; padding:8px; border-radius:var(--r-md);}
+.sidebar-user:hover{background:rgba(255,255,255,.06);}
+.avatar{width:34px; height:34px; border-radius:50%; background:var(--primary-100); color:var(--primary-darker); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;}
+.avatar-dark{background:#2A3550; color:#C9D3E8;}
+.sidebar-user .u-name{color:#fff; font-size:13px; font-weight:600;}
+.sidebar-user .u-role{color:#8B96AB; font-size:11.5px;}
+
+.main-col{display:flex; flex-direction:column; min-width:0;}
+.topbar{height:64px; background:#fff; border-bottom:1px solid var(--gray-200); display:flex; align-items:center; justify-content:space-between; padding:0 var(--sp-6); position:sticky; top:0; z-index:30;}
+.topbar-search{display:flex; align-items:center; gap:8px; background:var(--gray-100); border-radius:var(--r-md); padding:8px 12px; width:360px; color:var(--gray-500);}
+.topbar-search input{border:none; background:transparent; outline:none; width:100%; font-size:13.5px; color:var(--gray-800);}
+.topbar-right{display:flex; align-items:center; gap:6px;}
+.icon-btn{position:relative; width:38px; height:38px; border-radius:50%; border:none; background:transparent; display:flex; align-items:center; justify-content:center; color:var(--gray-500);}
+.icon-btn:hover{background:var(--gray-100); color:var(--gray-800);}
+.icon-btn svg{width:19px; height:19px;}
+.notif-dot{position:absolute; top:8px; right:8px; width:8px; height:8px; border-radius:50%; background:var(--danger); border:2px solid #fff;}
+.role-switch{display:flex; align-items:center; gap:6px; background:var(--gray-100); padding:3px; border-radius:var(--r-full); margin-right:6px;}
+.role-switch button{border:none; background:transparent; padding:6px 12px; border-radius:var(--r-full); font-size:12px; font-weight:600; color:var(--gray-500);}
+.role-switch button.active{background:#fff; color:var(--primary); box-shadow:var(--shadow-sm);}
+
+.page{padding:var(--sp-6) var(--sp-8) var(--sp-12); max-width:1440px;}
+.breadcrumb{display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--gray-500); margin-bottom:10px;}
+.breadcrumb a:hover{color:var(--primary);}
+.page-header{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:var(--sp-6); gap:16px;}
+.page-header .desc{color:var(--gray-500); font-size:13.5px; margin-top:4px;}
+.page-actions{display:flex; gap:10px; flex-shrink:0;}
+
+/* ---------- KPI stat cards ---------- */
+.kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-5); margin-bottom:var(--sp-6);}
+.kpi-card{background:#fff; border:1px solid var(--gray-200); border-radius:var(--r-lg); padding:var(--sp-5) var(--sp-6); box-shadow:var(--shadow-sm);}
+.kpi-top{display:flex; align-items:center; justify-content:space-between;}
+.kpi-icon{width:38px; height:38px; border-radius:var(--r-md); display:flex; align-items:center; justify-content:center;}
+.kpi-icon svg{width:19px; height:19px;}
+.kpi-val{font-size:28px; font-weight:800; color:var(--gray-900); margin-top:14px; letter-spacing:-0.02em;}
+.kpi-label{font-size:12.5px; color:var(--gray-500); margin-top:2px; font-weight:500;}
+.kpi-delta{font-size:11.5px; font-weight:600; display:inline-flex; align-items:center; gap:3px; margin-top:8px;}
+
+/* ---------- Tables ---------- */
+.table-wrap{overflow-x:auto;}
+table.dtable{width:100%; border-collapse:collapse; font-size:13px;}
+.dtable thead th{text-align:left; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--gray-500); padding:12px 16px; background:var(--gray-50); border-bottom:1px solid var(--gray-200); white-space:nowrap;}
+.dtable tbody td{padding:14px 16px; border-bottom:1px solid var(--gray-100); color:var(--gray-700); vertical-align:middle;}
+.dtable tbody tr:hover{background:var(--gray-50);}
+.dtable tbody tr:last-child td{border-bottom:none;}
+.dtable .cell-strong{font-weight:600; color:var(--gray-900);}
+.dtable .cell-sub{font-size:12px; color:var(--gray-500); margin-top:2px;}
+.dtable th.sortable{cursor:pointer; user-select:none;}
+.dtable th.sortable:hover{color:var(--gray-700);}
+.row-check{width:16px; height:16px; accent-color:var(--primary);}
+.table-toolbar{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid var(--gray-100); gap:12px; flex-wrap:wrap;}
+.table-footer{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-top:1px solid var(--gray-100);}
+.pagination{display:flex; align-items:center; gap:4px;}
+.page-btn{width:30px; height:30px; border-radius:var(--r-sm); border:1px solid var(--gray-200); background:#fff; font-size:12.5px; font-weight:600; color:var(--gray-600); display:flex; align-items:center; justify-content:center;}
+.page-btn.active{background:var(--primary); border-color:var(--primary); color:#fff;}
+.page-btn:hover:not(.active){background:var(--gray-50);}
+
+/* ---------- Filters ---------- */
+.filter-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.search-input{display:flex; align-items:center; gap:8px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--r-md); padding:8px 12px; min-width:240px; color:var(--gray-400);}
+.search-input input{border:none; background:transparent; outline:none; font-size:13px; width:100%; color:var(--gray-800);}
+.select-filter{display:flex; align-items:center; gap:6px; padding:8px 12px; border:1px solid var(--gray-200); border-radius:var(--r-md); background:#fff; font-size:13px; color:var(--gray-600); font-weight:500;}
+.select-filter:hover{border-color:var(--gray-300);}
+.select-filter svg{width:14px; height:14px; color:var(--gray-400);}
+
+/* ---------- Forms ---------- */
+.form-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-5);}
+.form-group{display:flex; flex-direction:column; gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:12.5px; font-weight:600; color:var(--gray-700);}
+.form-label .opt{color:var(--gray-400); font-weight:400;}
+.form-label .req{color:var(--danger);}
+.form-control{padding:9px 12px; border:1px solid var(--gray-300); border-radius:var(--r-md); font-size:13.5px; color:var(--gray-800); background:#fff; outline:none; width:100%;}
+.form-control:focus{border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-light);}
+textarea.form-control{resize:vertical; min-height:80px;}
+.form-hint{font-size:11.5px; color:var(--gray-400);}
+select.form-control{appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;}
+
+/* ---------- Stepper ---------- */
+.stepper{display:flex; align-items:center; margin-bottom:var(--sp-8);}
+.step{display:flex; align-items:center; gap:10px; flex:1; position:relative;}
+.step-circle{width:32px; height:32px; border-radius:50%; background:var(--gray-100); color:var(--gray-400); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; border:2px solid var(--gray-100); flex-shrink:0; z-index:1;}
+.step-text{display:flex; flex-direction:column;}
+.step-num{font-size:11px; color:var(--gray-400); font-weight:600; text-transform:uppercase;}
+.step-title{font-size:13px; font-weight:600; color:var(--gray-400);}
+.step-line{flex:1; height:2px; background:var(--gray-200); margin:0 6px;}
+.step.done .step-circle{background:var(--success); border-color:var(--success); color:#fff;}
+.step.done .step-title{color:var(--gray-700);}
+.step.active .step-circle{background:var(--primary); border-color:var(--primary-100); box-shadow:0 0 0 4px var(--primary-light); color:#fff;}
+.step.active .step-title{color:var(--gray-900);}
+.step.active .step-num{color:var(--primary);}
+
+/* ---------- Wizard products table ---------- */
+.wizard-table input, .wizard-table select{width:100%; min-width:92px; border:1px solid var(--gray-200); border-radius:6px; padding:7px 9px; font-size:12.5px;}
+.wizard-table td:nth-child(2) input{min-width:150px;}
+.wizard-table td:nth-child(8) input{min-width:160px;}
+.wizard-table input:focus, .wizard-table select:focus{outline:none; border-color:var(--primary);}
+.icon-del{width:28px; height:28px; border-radius:6px; border:1px solid var(--gray-200); background:#fff; color:var(--danger); display:flex; align-items:center; justify-content:center;}
+.icon-del:hover{background:var(--danger-light); border-color:var(--danger-100);}
+.icon-del svg{width:14px; height:14px;}
+
+/* ---------- Upload dropzone ---------- */
+.dropzone{border:2px dashed var(--gray-300); border-radius:var(--r-lg); padding:var(--sp-10); text-align:center; background:var(--gray-25); transition:all .15s;}
+.dropzone:hover, .dropzone.drag{border-color:var(--primary); background:var(--primary-light);}
+.dropzone .dz-icon{width:52px; height:52px; border-radius:50%; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+.dropzone .dz-icon svg{width:24px; height:24px;}
+.file-list{display:flex; flex-direction:column; gap:8px; margin-top:var(--sp-5);}
+.file-item{display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--gray-200); border-radius:var(--r-md); background:#fff;}
+.file-ico{width:36px; height:36px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; font-weight:800; color:#fff;}
+.file-meta{flex:1; min-width:0;}
+.file-name{font-size:13px; font-weight:600; color:var(--gray-800); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.file-size{font-size:11.5px; color:var(--gray-400);}
+
+/* ---------- Timeline ---------- */
+.timeline{position:relative; padding-left:28px;}
+.timeline::before{content:''; position:absolute; left:9px; top:4px; bottom:4px; width:2px; background:var(--gray-200);}
+.tl-item{position:relative; padding-bottom:24px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute; left:-28px; top:2px; width:20px; height:20px; border-radius:50%; background:#fff; border:2px solid var(--primary); display:flex; align-items:center; justify-content:center;}
+.tl-dot::after{content:''; width:8px; height:8px; border-radius:50%; background:var(--primary);}
+.tl-title{font-size:13px; font-weight:600; color:var(--gray-800);}
+.tl-meta{font-size:12px; color:var(--gray-400); margin-top:2px;}
+
+/* ---------- Modal ---------- */
+.modal-overlay{position:fixed; inset:0; background:rgba(16,24,40,.55); display:flex; align-items:center; justify-content:center; z-index:100; backdrop-filter:blur(2px);}
+.modal{background:#fff; border-radius:var(--r-lg); width:480px; max-width:92vw; box-shadow:var(--shadow-xl); max-height:88vh; overflow-y:auto;}
+.modal-header{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--gray-100);}
+.modal-body{padding:24px;}
+.modal-footer{display:flex; justify-content:flex-end; gap:10px; padding:16px 24px; border-top:1px solid var(--gray-100);}
+
+/* ---------- Empty state ---------- */
+.empty-state{text-align:center; padding:var(--sp-16) var(--sp-6);}
+.empty-state .es-icon{width:64px; height:64px; border-radius:50%; background:var(--gray-100); color:var(--gray-400); display:flex; align-items:center; justify-content:center; margin:0 auto 16px;}
+.empty-state .es-icon svg{width:28px; height:28px;}
+.empty-state h4{font-size:15px; margin-bottom:6px;}
+.empty-state p{color:var(--gray-500); font-size:13px; max-width:340px; margin:0 auto 16px;}
+
+/* ---------- Notification panel ---------- */
+.notif-panel{position:absolute; top:56px; right:88px; width:360px; background:#fff; border-radius:var(--r-lg); box-shadow:var(--shadow-xl); border:1px solid var(--gray-200); z-index:60; overflow:hidden;}
+.notif-item{display:flex; gap:12px; padding:14px 18px; border-bottom:1px solid var(--gray-100);}
+.notif-item:hover{background:var(--gray-50);}
+.notif-ico{width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.notif-ico svg{width:16px; height:16px;}
+.notif-title{font-size:12.5px; font-weight:600; color:var(--gray-800);}
+.notif-desc{font-size:12px; color:var(--gray-500); margin-top:2px;}
+.notif-time{font-size:11px; color:var(--gray-400); margin-top:4px;}
+
+/* ---------- Compare table ---------- */
+.compare-wrap{overflow-x:auto; border-radius:var(--r-lg); border:1px solid var(--gray-200);}
+table.compare{width:100%; border-collapse:collapse; background:#fff;}
+.compare th, .compare td{padding:14px 20px; border-bottom:1px solid var(--gray-100); font-size:13px; text-align:left; white-space:nowrap;}
+.compare thead th{background:var(--gray-50); position:sticky; top:0;}
+.compare th:first-child, .compare td:first-child{position:sticky; left:0; background:#fff; z-index:2; border-right:1px solid var(--gray-100); font-weight:600; color:var(--gray-500); font-size:12px; text-transform:uppercase; letter-spacing:.03em;}
+.compare thead th:first-child{background:var(--gray-50); z-index:3;}
+.compare td.best{background:var(--success-light); color:var(--success); font-weight:700; position:relative;}
+.compare td.fastest{background:var(--info-light); color:var(--info); font-weight:700;}
+.mfg-col-head{display:flex; flex-direction:column; gap:4px;}
+.mfg-col-head .mname{font-size:13.5px; font-weight:700; color:var(--gray-900);}
+.badge-best{display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; color:var(--success); background:var(--success-light); padding:2px 8px; border-radius:99px; margin-top:2px; width:fit-content;}
+.badge-fast{display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; color:var(--info); background:var(--info-light); padding:2px 8px; border-radius:99px; margin-top:2px; width:fit-content;}
+
+/* ---------- Auth screens ---------- */
+.auth-screen{min-height:100vh; display:grid; grid-template-columns:1fr 1fr;}
+.auth-side{background:linear-gradient(160deg,#0F1B3C 0%, #1D2E63 55%, var(--primary-dark) 100%); color:#fff; padding:60px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;}
+.auth-side::after{content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(96,165,250,.25), transparent 70%); top:-120px; right:-160px;}
+.auth-form-col{display:flex; align-items:center; justify-content:center; padding:40px; background:#fff;}
+.auth-box{width:100%; max-width:380px;}
+.auth-stat{display:flex; gap:28px; margin-top:32px; position:relative; z-index:1;}
+.auth-stat .n{font-size:22px; font-weight:800;}
+.auth-stat .l{font-size:11.5px; color:#AEC0F5;}
+.auth-quote{font-size:15px; line-height:1.6; color:#DCE4FA; max-width:420px; position:relative; z-index:1;}
+
+/* ---------- Demo control bar (prototype navigation aid, not part of product UI) ---------- */
+.demo-bar{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:#111827; color:#fff; border-radius:999px; padding:8px 10px; display:flex; align-items:center; gap:6px; box-shadow:var(--shadow-xl); z-index:200; font-size:12px;}
+.demo-bar select{background:#1F2937; color:#fff; border:1px solid #374151; border-radius:999px; padding:6px 12px; font-size:12px; font-weight:600;}
+.demo-bar .demo-label{color:#9CA3AF; font-weight:600; padding:0 4px;}
+.demo-bar button{background:#1F2937; color:#fff; border:1px solid #374151; border-radius:999px; padding:6px 12px; font-size:11.5px; font-weight:600;}
+.demo-bar button:hover{background:#374151;}
+.demo-bar button.dprimary{background:var(--primary); border-color:var(--primary);}
+
+/* ---------- Misc ---------- */
+.divider{height:1px; background:var(--gray-100); margin:var(--sp-5) 0;}
+.flex{display:flex;} .items-center{align-items:center;} .justify-between{justify-content:space-between;} .gap-2{gap:8px;} .gap-3{gap:12px;} .gap-4{gap:16px;}
+.progress-track{height:6px; background:var(--gray-100); border-radius:99px; overflow:hidden;}
+.progress-fill{height:100%; background:var(--primary); border-radius:99px;}
+.summary-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--gray-100); font-size:13px;}
+.summary-row .k{color:var(--gray-500);}
+.summary-row .v{font-weight:600; color:var(--gray-800);}
+.grand-total-bar{display:flex; align-items:center; justify-content:space-between; background:var(--primary-light); border:1px solid var(--primary-100); border-radius:var(--r-lg); padding:18px 24px; margin-top:var(--sp-5);}
+.banner-success{display:flex; align-items:center; gap:12px; background:var(--success-light); border:1px solid var(--success-100); color:#065F46; padding:14px 18px; border-radius:var(--r-lg); margin-bottom:var(--sp-5);}
+.banner-success svg{width:20px;height:20px;flex-shrink:0;color:var(--success);}
+
+/* ---------- Toasts ---------- */
+.toast-container{position:fixed; top:20px; right:20px; z-index:300; display:flex; flex-direction:column; gap:10px; width:360px;}
+.toast{display:flex; align-items:flex-start; gap:12px; background:#fff; border:1px solid var(--gray-200); border-left:4px solid var(--gray-400); border-radius:var(--r-md); box-shadow:var(--shadow-lg); padding:14px 16px; animation:toastIn .2s ease-out;}
+.toast svg{width:18px; height:18px; flex-shrink:0; margin-top:1px;}
+.toast .t-msg{font-size:13px; font-weight:600; color:var(--gray-800); line-height:1.4;}
+.toast.toast-success{border-left-color:var(--success);} .toast.toast-success svg{color:var(--success);}
+.toast.toast-error{border-left-color:var(--danger);} .toast.toast-error svg{color:var(--danger);}
+.toast.toast-warning{border-left-color:var(--warning);} .toast.toast-warning svg{color:var(--warning);}
+.toast.toast-info{border-left-color:var(--primary);} .toast.toast-info svg{color:var(--primary);}
+.toast .t-close{margin-left:auto; background:none; border:none; color:var(--gray-400); flex-shrink:0;}
+@keyframes toastIn{from{opacity:0; transform:translateX(16px);} to{opacity:1; transform:translateX(0);}}
+
+/* ---------- Form validation error state ---------- */
+.form-control.error{border-color:var(--danger); background:var(--danger-light);}
+.field-error{display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--danger); font-weight:500;}
+.field-error svg{width:13px; height:13px;}
+</style>
+</head>
+<body>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ===================== AUTH SCREENS ===================== -->
+<div id="scr-login" class="screen auth-screen">
+  <div class="auth-side">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3B82F6,#93C5FD);display:flex;align-items:center;justify-content:center;font-weight:800;">RM</div>
+        <div style="font-size:17px; font-weight:700;">RFQ Marketplace</div>
+      </div>
+      <h1 style="color:#fff; font-size:34px; margin-top:56px; max-width:460px; line-height:1.25;">The B2B sourcing engine for India's manufacturing supply chain.</h1>
+      <p class="auth-quote" style="margin-top:18px;">Publish RFQs, receive competitive quotes from verified manufacturers, and award with confidence — all in one procurement workspace.</p>
+      <div class="auth-stat">
+        <div><div class="n">4,200+</div><div class="l">Verified Manufacturers</div></div>
+        <div><div class="n">18,500+</div><div class="l">RFQs Published</div></div>
+        <div><div class="n">₹840 Cr+</div><div class="l">Quotes Exchanged</div></div>
+      </div>
+    </div>
+    <p style="color:#8393C2; font-size:12px; position:relative; z-index:1;">© 2026 RFQ Marketplace. Enterprise Procurement Platform.</p>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box">
+      <h2 class="text-2xl">Welcome back</h2>
+      <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Sign in to your organization workspace</p>
+      <div style="margin-top:28px; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input type="text" class="form-control" value="rahul.sharma@abcautomation.in">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" value="••••••••••">
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2 text-sm text-muted"><input type="checkbox" checked> Remember me</label>
+          <a class="text-sm" style="color:var(--primary); font-weight:600;" onclick="nav('scr-forgot')">Forgot password?</a>
+        </div>
+        <button class="btn btn-primary btn-block btn-lg" onclick="doLogin('client')">Sign in as Client</button>
+        <button class="btn btn-secondary btn-block" onclick="doLogin('mfg')">Sign in as Manufacturer (demo)</button>
+      </div>
+      <div class="divider"></div>
+      <p class="text-sm text-muted" style="text-align:center;">Don't have an organization account? <a style="color:var(--primary); font-weight:600;">Request access</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="scr-forgot" class="screen auth-screen hidden">
+  <div class="auth-side">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3B82F6,#93C5FD);display:flex;align-items:center;justify-content:center;font-weight:800;">RM</div>
+        <div style="font-size:17px; font-weight:700;">RFQ Marketplace</div>
+      </div>
+      <h1 style="color:#fff; font-size:34px; margin-top:56px; max-width:460px; line-height:1.25;">Account recovery, secured for enterprise teams.</h1>
+      <p class="auth-quote" style="margin-top:18px;">We'll email a secure reset link to your registered work address. Links expire after 30 minutes for your organization's security.</p>
+    </div>
+    <p style="color:#8393C2; font-size:12px; position:relative; z-index:1;">© 2026 RFQ Marketplace. Enterprise Procurement Platform.</p>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box">
+      <a class="text-sm flex items-center gap-2" style="color:var(--gray-500); font-weight:600; margin-bottom:18px;" onclick="nav('scr-login')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M5 12h14"/></svg> Back to sign in
+      </a>
+      <h2 class="text-2xl">Forgot password?</h2>
+      <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Enter your work email and we'll send you a reset link.</p>
+      <div style="margin-top:28px; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input type="text" class="form-control" placeholder="you@company.com">
+        </div>
+        <button class="btn btn-primary btn-block btn-lg" onclick="showResetSent()">Send reset link</button>
+      </div>
+      <div id="reset-sent" class="banner-success hidden" style="margin-top:20px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+        <div><b>Reset link sent.</b><br>Check rahul.sharma@abcautomation.in for further instructions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app-shell" class="app-shell hidden">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="mark">RM</div>
+      <div>
+        <div class="name">RFQ Marketplace</div>
+        <div class="sub" id="sidebar-role-label">Client Workspace</div>
+      </div>
+    </div>
+    <div class="org-pill" id="org-pill-client">
+      <b>ABC Automation Pvt Ltd</b>Client Organization · Pune, MH
+    </div>
+    <div class="org-pill hidden" id="org-pill-mfg">
+      <b>XYZ Precision Ltd</b>Manufacturer Organization · Coimbatore, TN
+    </div>
+
+    <!-- CLIENT NAV -->
+    <nav class="nav-section" id="nav-client">
+      <div class="nav-item" data-nav="scr-c-dashboard" onclick="nav('scr-c-dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</div>
+      <div class="nav-item" data-nav="scr-c-rfq-list" onclick="nav('scr-c-rfq-list')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>RFQs</div>
+      <div class="nav-item" data-nav="scr-c-rfq-create" onclick="nav('scr-c-rfq-create')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>Create RFQ</div>
+      <div class="nav-item" data-nav="scr-c-marketplace" onclick="nav('scr-c-marketplace')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18l-1.5 9h-15z"/><path d="M3 3l.6 3M6.5 12L5 21h14l-1.5-9"/><circle cx="9" cy="21" r="0" /></svg>Marketplace</div>
+      <div class="nav-item" data-nav="scr-c-compare" onclick="nav('scr-c-compare')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Compare Quotes</div>
+      <div class="nav-item" data-nav="scr-c-awards" onclick="nav('scr-c-awards')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>Awards</div>
+      <div class="nav-label">Workspace</div>
+      <div class="nav-item" data-nav="scr-org" onclick="nav('scr-org')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 21v-6h4v6"/></svg>Organization</div>
+      <div class="nav-item" data-nav="scr-users" onclick="nav('scr-users')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</div>
+      <div class="nav-item" data-nav="scr-profile" onclick="nav('scr-profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</div>
+    </nav>
+
+    <!-- MANUFACTURER NAV -->
+    <nav class="nav-section hidden" id="nav-mfg">
+      <div class="nav-item" data-nav="scr-m-dashboard" onclick="nav('scr-m-dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</div>
+      <div class="nav-item" data-nav="scr-m-marketplace" onclick="nav('scr-m-marketplace')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18l-1.5 9h-15z"/><path d="M3 3l.6 3M6.5 12L5 21h14l-1.5-9"/></svg>Marketplace RFQs</div>
+      <div class="nav-item" data-nav="scr-m-my-quotes" onclick="nav('scr-m-my-quotes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>My Quotations</div>
+      <div class="nav-label">Workspace</div>
+      <div class="nav-item" data-nav="scr-org" onclick="nav('scr-org')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V8l6-4 6 4v13M10 21v-6h4v6"/></svg>Organization</div>
+      <div class="nav-item" data-nav="scr-users" onclick="nav('scr-users')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Users</div>
+      <div class="nav-item" data-nav="scr-profile" onclick="nav('scr-profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user" id="sidebar-user-client">
+        <div class="avatar avatar-dark">RS</div>
+        <div><div class="u-name">Rahul Sharma</div><div class="u-role">Purchase Manager</div></div>
+      </div>
+      <div class="sidebar-user hidden" id="sidebar-user-mfg">
+        <div class="avatar avatar-dark">AV</div>
+        <div><div class="u-name">Amit Verma</div><div class="u-role">Sales Executive</div></div>
+      </div>
+    </div>
+  </aside>
+  <div class="main-col">
+    <div class="topbar">
+      <div class="flex items-center gap-4">
+        <div class="breadcrumb" id="topbar-crumb" style="margin:0;">Dashboard</div>
+      </div>
+      <div class="flex items-center gap-4" style="flex:1; justify-content:center;">
+        <div class="topbar-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" placeholder="Search RFQs, quotes, manufacturers…">
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="role-switch">
+          <button id="rs-client" class="active" onclick="setRole('client')">Client</button>
+          <button id="rs-mfg" onclick="setRole('mfg')">Manufacturer</button>
+        </div>
+        <button class="icon-btn" onclick="toggleNotif()" title="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div id="notif-panel" class="notif-panel hidden">
+          <div class="card-header"><h3>Notifications</h3><a class="btn-link text-xs" onclick="toggleNotif()">Close</a></div>
+          <div class="notif-item"><div class="notif-ico" style="background:var(--primary-light); color:var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div><div class="notif-title">RFQ-2026-0142 published</div><div class="notif-desc">Your RFQ is now live on the marketplace.</div><div class="notif-time">10 min ago</div></div></div>
+          <div class="notif-item"><div class="notif-ico" style="background:var(--success-light); color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div><div><div class="notif-title">New quote received</div><div class="notif-desc">Suresh CNC Works submitted a quote for RFQ-2026-0142.</div><div class="notif-time">1 hr ago</div></div></div>
+          <div class="notif-item"><div class="notif-ico" style="background:var(--warning-light); color:var(--warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><div class="notif-title">Deadline tomorrow</div><div class="notif-desc">RFQ-2026-0141 response deadline is Aug 25, 2026.</div><div class="notif-time">3 hrs ago</div></div></div>
+          <div class="notif-item" style="border-bottom:none;"><div class="notif-ico" style="background:var(--success-light); color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 17l9 5 9-5M3 12l9 5 9-5"/></svg></div><div><div class="notif-title">RFQ-2026-0139 awarded</div><div class="notif-desc">Awarded to Precision Tools India for ₹6,85,000.</div><div class="notif-time">Yesterday</div></div></div>
+        </div>
+        <div class="icon-btn" style="border-radius:8px; width:auto; padding:4px 6px 4px 4px; gap:6px;" onclick="nav('scr-profile')">
+          <div class="avatar" style="width:30px;height:30px;font-size:12px;" id="topbar-avatar">RS</div>
+        </div>
+      </div>
+    </div>
+    <div class="page" id="page-content">
+<!-- ============ CLIENT DASHBOARD ============ -->
+<div id="scr-c-dashboard" class="screen">
+  <div class="page-header">
+    <div>
+      <h2 class="text-2xl">Good morning, Rahul 👋</h2>
+      <p class="desc">Here's what's happening with your RFQs today, Aug 20, 2026.</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="nav('scr-c-marketplace')">Browse Marketplace</button>
+      <button class="btn btn-primary" onclick="nav('scr-c-rfq-create')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Create RFQ</button>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--primary-light); color:var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><span class="tag">All time</span></div>
+      <div class="kpi-val">48</div><div class="kpi-label">Total RFQs</div>
+      <div class="kpi-delta text-success">▲ 12% vs last month</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--success-light); color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg></div><span class="tag">Live</span></div>
+      <div class="kpi-val">19</div><div class="kpi-label">Published RFQs</div>
+      <div class="kpi-delta text-success">▲ 3 this week</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--gray-100); color:var(--gray-500);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><span class="tag">Pending</span></div>
+      <div class="kpi-val">7</div><div class="kpi-label">Draft RFQs</div>
+      <div class="kpi-delta text-muted">Unpublished</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--warning-light); color:var(--warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></div><span class="tag">Closed</span></div>
+      <div class="kpi-val">22</div><div class="kpi-label">Awarded RFQs</div>
+      <div class="kpi-delta text-success">₹4.2 Cr awarded value</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1.6fr 1fr; gap:20px; align-items:start;">
+    <div class="card">
+      <div class="card-header">
+        <h3>Recent RFQs</h3>
+        <a class="btn-link text-sm" onclick="nav('scr-c-rfq-list')">View all →</a>
+      </div>
+      <div class="table-wrap">
+        <table class="dtable">
+          <thead><tr><th>RFQ</th><th>Industry / Category</th><th>Deadline</th><th>Status</th><th>Quotes</th></tr></thead>
+          <tbody>
+            <tr onclick="nav('scr-c-rfq-details')" style="cursor:pointer;">
+              <td><div class="cell-strong">RFQ-2026-0142</div><div class="cell-sub">CNC Machined Motor Housing Brackets</div></td>
+              <td>Automotive · CNC Machining</td><td>28 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>5</td>
+            </tr>
+            <tr onclick="nav('scr-c-rfq-details')" style="cursor:pointer;">
+              <td><div class="cell-strong">RFQ-2026-0141</div><div class="cell-sub">Sheet Metal Enclosures for Control Panels</div></td>
+              <td>Industrial Machinery · Sheet Metal</td><td>25 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>3</td>
+            </tr>
+            <tr onclick="nav('scr-c-rfq-details')" style="cursor:pointer;">
+              <td><div class="cell-strong">RFQ-2026-0140</div><div class="cell-sub">Precision Turned Shafts – Landing Gear</div></td>
+              <td>Aerospace · CNC Machining</td><td>05 Sep 2026</td><td><span class="chip chip-draft">Draft</span></td><td>0</td>
+            </tr>
+            <tr onclick="nav('scr-c-rfq-details')" style="cursor:pointer;">
+              <td><div class="cell-strong">RFQ-2026-0139</div><div class="cell-sub">Injection Molded Housing – Infusion Pump</div></td>
+              <td>Medical Devices · Injection Molding</td><td>10 Aug 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td>4</td>
+            </tr>
+            <tr onclick="nav('scr-c-rfq-details')" style="cursor:pointer;">
+              <td><div class="cell-strong">RFQ-2026-0138</div><div class="cell-sub">Structural Steel Fabrication – Conveyor Frame</div></td>
+              <td>Industrial Machinery · Fabrication</td><td>02 Aug 2026</td><td><span class="chip chip-closed">Closed</span></td><td>6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">RFQ Status Breakdown</h3>
+        <svg viewBox="0 0 42 42" width="140" height="140" style="display:block; margin:0 auto;">
+          <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#E5E7EB" stroke-width="6"></circle>
+          <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#2563EB" stroke-width="6" stroke-dasharray="40 60" stroke-dashoffset="25" transform="rotate(-90 21 21)"></circle>
+          <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#059669" stroke-width="6" stroke-dasharray="46 54" stroke-dashoffset="-15" transform="rotate(-90 21 21)"></circle>
+          <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#D97706" stroke-width="6" stroke-dasharray="14 86" stroke-dashoffset="-61" transform="rotate(-90 21 21)"></circle>
+          <text x="21" y="19" text-anchor="middle" font-size="6" font-weight="800" fill="#111827">48</text>
+          <text x="21" y="25" text-anchor="middle" font-size="3" fill="#9CA3AF">Total</text>
+        </svg>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px; font-size:12.5px;">
+          <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#2563EB;display:inline-block;"></span>Published</span><b>19</b></div>
+          <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#059669;display:inline-block;"></span>Awarded</span><b>22</b></div>
+          <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#D97706;display:inline-block;"></span>Closed</span><b>7</b></div>
+        </div>
+      </div>
+
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Upcoming Deadlines</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="flex items-center justify-between">
+            <div><div class="text-sm fw-600">RFQ-2026-0141</div><div class="text-xs text-muted">Sheet Metal Enclosures</div></div>
+            <span class="tag" style="background:var(--danger-light); color:var(--danger);">2 days</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div><div class="text-sm fw-600">RFQ-2026-0142</div><div class="text-xs text-muted">Motor Housing Brackets</div></div>
+            <span class="tag" style="background:var(--warning-light); color:var(--warning);">5 days</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div><div class="text-sm fw-600">RFQ-2026-0136</div><div class="text-xs text-muted">Aerospace Bracket Fabrication</div></div>
+            <span class="tag">9 days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============ CLIENT RFQ LISTING ============ -->
+<div id="scr-c-rfq-list" class="screen hidden">
+  <div class="page-header">
+    <div><h2 class="text-2xl">RFQs</h2><p class="desc">All requests for quotation raised by ABC Automation Pvt Ltd.</p></div>
+    <div class="page-actions">
+      <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export</button>
+      <button class="btn btn-primary" onclick="nav('scr-c-rfq-create')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Create RFQ</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-toolbar">
+      <div class="filter-bar">
+        <div class="search-input"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search RFQ number, title…"></div>
+        <div class="select-filter">Status: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Industry: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Category: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>More filters</button>
+      </div>
+      <div class="text-sm text-muted">48 results</div>
+    </div>
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr>
+          <th><input type="checkbox" class="row-check"></th>
+          <th class="sortable">RFQ Number ↕</th><th>Title</th><th>Industry</th><th>Category</th><th>Material</th>
+          <th class="sortable">Deadline ↕</th><th>Status</th><th>Quotes</th><th>Action</th>
+        </tr></thead>
+        <tbody id="rfq-list-body">
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0142</td><td>CNC Machined Motor Housing Brackets</td><td>Automotive</td><td>CNC Machining</td><td>Aluminum 6061</td><td>28 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>5</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0141</td><td>Sheet Metal Enclosures for Control Panels</td><td>Industrial Machinery</td><td>Sheet Metal</td><td>Mild Steel</td><td>25 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>3</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0140</td><td>Precision Turned Shafts – Landing Gear Assembly</td><td>Aerospace</td><td>CNC Machining</td><td>SS304</td><td>05 Sep 2026</td><td><span class="chip chip-draft">Draft</span></td><td>0</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-draft')">Edit</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0139</td><td>Injection Molded Housing – Infusion Pump</td><td>Medical Devices</td><td>Injection Molding</td><td>Polycarbonate</td><td>10 Aug 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td>4</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-awarded')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0138</td><td>Structural Steel Fabrication – Conveyor Frame</td><td>Industrial Machinery</td><td>Fabrication</td><td>Mild Steel</td><td>02 Aug 2026</td><td><span class="chip chip-closed">Closed</span></td><td>6</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-closed')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0137</td><td>Brass Hydraulic Fittings</td><td>Automotive</td><td>CNC Machining</td><td>Brass</td><td>18 Jul 2026</td><td><span class="chip chip-cancelled">Cancelled</span></td><td>1</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-cancelled')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0136</td><td>Aerospace Bracket Fabrication</td><td>Aerospace</td><td>Fabrication</td><td>Aluminum 6061</td><td>29 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>2</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0135</td><td>Sheet Metal Chassis – EV Battery Pack</td><td>Automotive</td><td>Sheet Metal</td><td>Aluminum 6061</td><td>31 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>7</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0134</td><td>Die Cast Aluminum Junction Box</td><td>Industrial Machinery</td><td>Injection Molding</td><td>Aluminum 6061</td><td>22 Aug 2026</td><td><span class="chip chip-published">Published</span></td><td>4</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0133</td><td>Precision Turned Hydraulic Spindles</td><td>Industrial Machinery</td><td>CNC Machining</td><td>SS304</td><td>04 Sep 2026</td><td><span class="chip chip-published">Published</span></td><td>2</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0132</td><td>Laser Cut Enclosure Panels</td><td>Industrial Machinery</td><td>Sheet Metal</td><td>Mild Steel</td><td>15 Aug 2026</td><td><span class="chip chip-closed">Closed</span></td><td>5</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-closed')">View</button></td></tr>
+          <tr><td><input type="checkbox" class="row-check"></td><td class="cell-strong">RFQ-2026-0131</td><td>CNC Turned Valve Bodies</td><td>Automotive</td><td>CNC Machining</td><td>Brass</td><td>08 Aug 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td>3</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-c-rfq-details-awarded')">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-footer">
+      <div class="text-sm text-muted">Showing 1–13 of 48 RFQs</div>
+      <div class="pagination">
+        <button class="page-btn">‹</button>
+        <button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><span class="text-muted" style="padding:0 4px;">…</span><button class="page-btn">6</button>
+        <button class="page-btn">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============ CREATE RFQ WIZARD ============ -->
+<div id="scr-c-rfq-create" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>Create RFQ</span></div>
+  <div class="page-header">
+    <div><h2 class="text-2xl">Create New RFQ</h2><p class="desc">Publish a request for quotation to the manufacturer marketplace.</p></div>
+    <div class="page-actions"><button class="btn btn-secondary" onclick="nav('scr-c-rfq-list')">Cancel</button></div>
+  </div>
+
+  <div class="card card-pad">
+    <div class="stepper">
+      <div class="step active" id="wstep-1"><div class="step-circle">1</div><div class="step-text"><span class="step-num">Step 1</span><span class="step-title">Basic Information</span></div></div>
+      <div class="step-line"></div>
+      <div class="step" id="wstep-2"><div class="step-circle">2</div><div class="step-text"><span class="step-num">Step 2</span><span class="step-title">Products</span></div></div>
+      <div class="step-line"></div>
+      <div class="step" id="wstep-3"><div class="step-circle">3</div><div class="step-text"><span class="step-num">Step 3</span><span class="step-title">Attachments</span></div></div>
+      <div class="step-line"></div>
+      <div class="step" id="wstep-4"><div class="step-circle">4</div><div class="step-text"><span class="step-num">Step 4</span><span class="step-title">Review & Publish</span></div></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="wpanel" id="wpanel-1">
+      <div class="form-grid">
+        <div class="form-group full"><label class="form-label">RFQ Title <span class="req">*</span></label><input class="form-control" value="CNC Machined Motor Housing Brackets"></div>
+        <div class="form-group full"><label class="form-label">Description <span class="req">*</span></label><textarea class="form-control" rows="3">Require precision CNC machined aluminum brackets for EV motor housing assembly. Tight tolerance ±0.05mm on mounting holes. Anodized finish required.</textarea></div>
+        <div class="form-group"><label class="form-label">Industry <span class="req">*</span></label><select class="form-control"><option>Automotive</option><option>Aerospace</option><option>Industrial Machinery</option><option>Medical Devices</option></select></div>
+        <div class="form-group"><label class="form-label">Category <span class="req">*</span></label><select class="form-control"><option>CNC Machining</option><option>Sheet Metal</option><option>Injection Molding</option><option>Fabrication</option></select></div>
+        <div class="form-group"><label class="form-label">Manufacturing Process</label><select class="form-control"><option>5-Axis CNC Milling</option><option>3-Axis CNC Milling</option><option>CNC Turning</option><option>Laser Cutting</option></select></div>
+        <div class="form-group"><label class="form-label">Material <span class="req">*</span></label><select class="form-control"><option>Aluminum 6061</option><option>SS304</option><option>Mild Steel</option><option>Brass</option></select></div>
+        <div class="form-group"><label class="form-label">Location <span class="req">*</span></label><input class="form-control" value="Pune, Maharashtra"></div>
+        <div class="form-group"><label class="form-label">Response Deadline <span class="req">*</span></label><input type="date" class="form-control" value="2026-08-28"></div>
+      </div>
+      <div class="flex justify-between" style="margin-top:28px;"><span></span><button class="btn btn-primary" onclick="wizardGo(2)">Next: Products →</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="wpanel hidden" id="wpanel-2">
+      <div class="table-wrap wizard-table">
+        <table class="dtable">
+          <thead><tr><th style="width:26px;"></th><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th><th>Required Date</th><th>Specification</th><th></th></tr></thead>
+          <tbody id="wizard-product-rows">
+            <tr>
+              <td class="text-muted">1</td>
+              <td><input value="Motor Mount Bracket"></td><td><input value="MB-2201"></td><td><input value="Aluminum 6061"></td><td><input value="500"></td>
+              <td><select><option>Pcs</option><option>Kg</option><option>Set</option><option>Meter</option></select></td>
+              <td><input type="date" value="2026-09-15"></td><td><input value="±0.05mm tolerance, anodized"></td>
+              <td><button class="icon-del" onclick="delProductRow(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button></td>
+            </tr>
+            <tr>
+              <td class="text-muted">2</td>
+              <td><input value="Housing Cover Plate"></td><td><input value="HC-2202"></td><td><input value="Aluminum 6061"></td><td><input value="500"></td>
+              <td><select><option>Pcs</option><option>Kg</option><option>Set</option><option>Meter</option></select></td>
+              <td><input type="date" value="2026-09-15"></td><td><input value="Powder coated, RAL 9005"></td>
+              <td><button class="icon-del" onclick="delProductRow(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button></td>
+            </tr>
+            <tr>
+              <td class="text-muted">3</td>
+              <td><input value="Support Bracket L-Type"></td><td><input value="SB-2203"></td><td><input value="Aluminum 6061"></td><td><input value="1000"></td>
+              <td><select><option>Pcs</option><option>Kg</option><option>Set</option><option>Meter</option></select></td>
+              <td><input type="date" value="2026-09-20"></td><td><input value="Deburred edges, no coating"></td>
+              <td><button class="icon-del" onclick="delProductRow(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-outline-primary btn-sm" style="margin-top:14px;" onclick="addProductRow()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add Row</button>
+      <div class="flex justify-between" style="margin-top:28px;"><button class="btn btn-secondary" onclick="wizardGo(1)">← Back</button><button class="btn btn-primary" onclick="wizardGo(3)">Next: Attachments →</button></div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="wpanel hidden" id="wpanel-3">
+      <div class="dropzone" id="dropzone" ondragover="event.preventDefault(); this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+        <div class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.98"/><path d="M12 12v9M9 15l3-3 3 3"/></svg></div>
+        <h4 style="font-size:14px; margin-bottom:4px;">Drag & drop files here, or <a style="color:var(--primary);" onclick="document.getElementById('fileInput').click()">browse</a></h4>
+        <p class="text-xs text-muted">Supported formats: PDF, DWG, DXF, STEP, JPG, PNG · Max 25MB per file</p>
+        <input type="file" id="fileInput" class="hidden" multiple onchange="handleFileInput(event)">
+      </div>
+      <div class="file-list" id="file-list">
+        <div class="file-item"><div class="file-ico" style="background:#DC2626;">PDF</div><div class="file-meta"><div class="file-name">RFQ-0142_Technical_Drawing.pdf</div><div class="file-size">2.4 MB</div></div><button class="icon-btn" onclick="this.closest('.file-item').remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+        <div class="file-item"><div class="file-ico" style="background:#2563EB;">DWG</div><div class="file-meta"><div class="file-name">MotorMount_Bracket_AssemblyRev3.dwg</div><div class="file-size">5.1 MB</div></div><button class="icon-btn" onclick="this.closest('.file-item').remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+        <div class="file-item"><div class="file-ico" style="background:#059669;">STP</div><div class="file-meta"><div class="file-name">HousingCoverPlate.step</div><div class="file-size">1.8 MB</div></div><button class="icon-btn" onclick="this.closest('.file-item').remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+      </div>
+      <div class="flex justify-between" style="margin-top:28px;"><button class="btn btn-secondary" onclick="wizardGo(2)">← Back</button><button class="btn btn-primary" onclick="wizardGo(4)">Next: Review →</button></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="wpanel hidden" id="wpanel-4">
+      <h3 style="margin-bottom:14px;">Basic Information</h3>
+      <div class="summary-row"><span class="k">RFQ Title</span><span class="v">CNC Machined Motor Housing Brackets</span></div>
+      <div class="summary-row"><span class="k">Industry / Category</span><span class="v">Automotive · CNC Machining</span></div>
+      <div class="summary-row"><span class="k">Material</span><span class="v">Aluminum 6061</span></div>
+      <div class="summary-row"><span class="k">Location</span><span class="v">Pune, Maharashtra</span></div>
+      <div class="summary-row"><span class="k">Response Deadline</span><span class="v">28 Aug 2026</span></div>
+
+      <h3 style="margin:22px 0 14px;">Products (3)</h3>
+      <div class="table-wrap">
+        <table class="dtable">
+          <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Required Date</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-strong">Motor Mount Bracket</td><td>MB-2201</td><td>Aluminum 6061</td><td>500 Pcs</td><td>15 Sep 2026</td></tr>
+            <tr><td class="cell-strong">Housing Cover Plate</td><td>HC-2202</td><td>Aluminum 6061</td><td>500 Pcs</td><td>15 Sep 2026</td></tr>
+            <tr><td class="cell-strong">Support Bracket L-Type</td><td>SB-2203</td><td>Aluminum 6061</td><td>1000 Pcs</td><td>20 Sep 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin:22px 0 14px;">Attachments (3)</h3>
+      <div class="flex gap-3" style="flex-wrap:wrap;">
+        <span class="tag" style="padding:6px 12px;">📄 RFQ-0142_Technical_Drawing.pdf</span>
+        <span class="tag" style="padding:6px 12px;">📐 MotorMount_Bracket_AssemblyRev3.dwg</span>
+        <span class="tag" style="padding:6px 12px;">📦 HousingCoverPlate.step</span>
+      </div>
+
+      <div class="flex justify-between" style="margin-top:32px;">
+        <button class="btn btn-secondary" onclick="wizardGo(3)">← Back</button>
+        <div class="flex gap-3">
+          <button class="btn btn-secondary" onclick="publishToast('draft')">Save Draft</button>
+          <button class="btn btn-primary" onclick="publishToast('publish')">Publish RFQ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============ CLIENT RFQ DETAILS ============ -->
+<div id="scr-c-rfq-details" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>RFQ-2026-0142</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">CNC Machined Motor Housing Brackets</h2><span class="chip chip-published">Published</span></div>
+      <p class="desc">RFQ-2026-0142 · Automotive · CNC Machining · Created by Rahul Sharma on 12 Aug 2026</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>Edit</button>
+      <button class="btn btn-outline-primary" onclick="nav('scr-c-compare')">View Quotes (5)</button>
+      <button class="btn btn-danger">Close RFQ</button>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">RFQ Information</h3>
+        <p class="text-sm text-muted" style="line-height:1.7; margin-bottom:18px;">Require precision CNC machined aluminum brackets for EV motor housing assembly. Tight tolerance ±0.05mm on mounting holes. Anodized finish required.</p>
+        <div class="form-grid" style="gap:16px;">
+          <div><div class="text-xs text-muted">Manufacturing Process</div><div class="text-sm fw-600">5-Axis CNC Milling</div></div>
+          <div><div class="text-xs text-muted">Material</div><div class="text-sm fw-600">Aluminum 6061</div></div>
+          <div><div class="text-xs text-muted">Location</div><div class="text-sm fw-600">Pune, Maharashtra</div></div>
+          <div><div class="text-xs text-muted">Response Deadline</div><div class="text-sm fw-600">28 Aug 2026</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>Products (3)</h3></div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th><th>Required Date</th><th>Specification</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-strong">Motor Mount Bracket</td><td>MB-2201</td><td>Aluminum 6061</td><td>500</td><td>Pcs</td><td>15 Sep 2026</td><td class="text-muted">±0.05mm tolerance, anodized</td></tr>
+              <tr><td class="cell-strong">Housing Cover Plate</td><td>HC-2202</td><td>Aluminum 6061</td><td>500</td><td>Pcs</td><td>15 Sep 2026</td><td class="text-muted">Powder coated, RAL 9005</td></tr>
+              <tr><td class="cell-strong">Support Bracket L-Type</td><td>SB-2203</td><td>Aluminum 6061</td><td>1000</td><td>Pcs</td><td>20 Sep 2026</td><td class="text-muted">Deburred edges, no coating</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Attachments (3)</h3>
+        <div class="file-list">
+          <div class="file-item"><div class="file-ico" style="background:#DC2626;">PDF</div><div class="file-meta"><div class="file-name">RFQ-0142_Technical_Drawing.pdf</div><div class="file-size">2.4 MB · Uploaded 12 Aug 2026</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+          <div class="file-item"><div class="file-ico" style="background:#2563EB;">DWG</div><div class="file-meta"><div class="file-name">MotorMount_Bracket_AssemblyRev3.dwg</div><div class="file-size">5.1 MB · Uploaded 12 Aug 2026</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+          <div class="file-item"><div class="file-ico" style="background:#059669;">STP</div><div class="file-meta"><div class="file-name">HousingCoverPlate.step</div><div class="file-size">1.8 MB · Uploaded 12 Aug 2026</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad">
+        <h3 style="margin-bottom:16px;">Activity Timeline</h3>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">Quote received from Om Sai Fabricators</div><div class="tl-meta">18 Aug 2026, 4:12 PM</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">Quote received from Suresh CNC Works</div><div class="tl-meta">17 Aug 2026, 11:05 AM</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">RFQ published to marketplace</div><div class="tl-meta">12 Aug 2026, 9:40 AM</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">RFQ created by Rahul Sharma</div><div class="tl-meta">12 Aug 2026, 9:22 AM</div></div>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Status History</h3>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="flex items-center justify-between"><span class="chip chip-draft">Draft</span><span class="text-xs text-muted">12 Aug, 9:15 AM</span></div>
+          <div class="flex items-center justify-between"><span class="chip chip-published">Published</span><span class="text-xs text-muted">12 Aug, 9:40 AM</span></div>
+        </div>
+      </div>
+      <div class="card card-pad" style="background:var(--primary-light); border-color:var(--primary-100);">
+        <div class="text-sm fw-600" style="color:var(--primary-darker);">5 quotes received</div>
+        <p class="text-xs" style="color:var(--primary-darker); margin:6px 0 12px;">Lowest quote ₹7,95,000 from Suresh CNC Works</p>
+        <button class="btn btn-primary btn-sm btn-block" onclick="nav('scr-c-compare')">Compare Quotes →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============ CLIENT MARKETPLACE (BROWSE) ============ -->
+<div id="scr-c-marketplace" class="screen hidden">
+  <div class="page-header">
+    <div><h2 class="text-2xl">Marketplace</h2><p class="desc">Browse all RFQs published across the platform for market visibility.</p></div>
+  </div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="table-toolbar">
+      <div class="filter-bar">
+        <div class="search-input"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search marketplace…"></div>
+        <div class="select-filter">Industry: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Category: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Material: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Location: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">5 quotes</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">CNC Machined Motor Housing Brackets</h4>
+      <p class="text-xs text-muted">RFQ-2026-0142 · ABC Automation Pvt Ltd</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600 text-dark" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">3 items</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">28 Aug 2026</span></div>
+      <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-c-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">7 quotes</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Chassis – EV Battery Pack</h4>
+      <p class="text-xs text-muted">RFQ-2026-0135 · Mahindra AutoParts</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">6 items</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">31 Aug 2026</span></div>
+      <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">2 quotes</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Aerospace Bracket Fabrication</h4>
+      <p class="text-xs text-muted">RFQ-2026-0136 · Tata Precision Systems</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">2 items</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">29 Aug 2026</span></div>
+      <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;">View RFQ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COMPARE QUOTES ============ -->
+<div id="scr-c-compare" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <a onclick="nav('scr-c-rfq-details')">RFQ-2026-0142</a> / <span>Compare Quotes</span></div>
+  <div class="page-header">
+    <div>
+      <h2 class="text-2xl">Compare Quotes</h2>
+      <p class="desc">RFQ-2026-0142 · CNC Machined Motor Housing Brackets · 4 of 5 invited manufacturers responded · Deadline 28 Aug 2026</p>
+    </div>
+    <div class="page-actions"><button class="btn btn-secondary" onclick="nav('scr-c-rfq-details')">← Back to RFQ</button></div>
+  </div>
+
+  <div id="award-success-banner" class="banner-success hidden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 17l9 5 9-5M3 12l9 5 9-5"/></svg>
+    <div><b>RFQ Awarded to Suresh CNC Works</b><br>Award amount ₹7,95,000 · Confirmed on 20 Aug 2026</div>
+  </div>
+
+  <div class="compare-wrap">
+    <table class="compare" id="compare-table">
+      <thead>
+        <tr>
+          <th>Manufacturer</th>
+          <th><div class="mfg-col-head"><span class="mname">XYZ Precision Ltd</span><span class="text-xs text-muted">Coimbatore, TN</span></div></th>
+          <th><div class="mfg-col-head"><span class="mname">Suresh CNC Works</span><span class="badge-best">★ Best Value</span><span class="badge-fast">⚡ Fastest</span></div></th>
+          <th><div class="mfg-col-head"><span class="mname">Precision Tools India</span><span class="text-xs text-muted">Faridabad, HR</span></div></th>
+          <th><div class="mfg-col-head"><span class="mname">Om Sai Fabricators</span><span class="text-xs text-muted">Pune, MH</span></div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Amount</td><td>₹8,42,500</td><td class="best">₹7,95,000</td><td>₹9,10,200</td><td>₹8,60,000</td></tr>
+        <tr><td>Delivery Date</td><td>10 Sep 2026</td><td class="fastest">08 Sep 2026</td><td>14 Sep 2026</td><td>12 Sep 2026</td></tr>
+        <tr><td>Lead Time</td><td>18 days</td><td class="fastest">15 days</td><td>20 days</td><td>17 days</td></tr>
+        <tr><td>Payment Terms</td><td>30% Adv / 70% Delivery</td><td>50% Advance</td><td>100% Advance</td><td>40% Adv / 60% Delivery</td></tr>
+        <tr><td>Delivery Terms</td><td>Ex-Works Coimbatore</td><td>FOR Destination</td><td>Ex-Works Faridabad</td><td>FOR Destination</td></tr>
+        <tr><td>Motor Mount Bracket (500 pcs)</td><td>₹285/pc</td><td class="best">₹268/pc</td><td>₹310/pc</td><td>₹292/pc</td></tr>
+        <tr><td>Housing Cover Plate (500 pcs)</td><td>₹320/pc</td><td class="best">₹298/pc</td><td>₹342/pc</td><td>₹315/pc</td></tr>
+        <tr><td>Support Bracket L-Type (1000 pcs)</td><td>₹198/pc</td><td class="best">₹186/pc</td><td>₹212/pc</td><td>₹201/pc</td></tr>
+        <tr><td>Quote Status</td><td><span class="chip chip-submitted">Submitted</span></td><td><span class="chip chip-submitted">Submitted</span></td><td><span class="chip chip-submitted">Submitted</span></td><td><span class="chip chip-submitted">Submitted</span></td></tr>
+        <tr>
+          <td>Action</td>
+          <td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View Quote</button></td>
+          <td><button class="btn btn-primary btn-sm" onclick="openAward('Suresh CNC Works','₹7,95,000','08 Sep 2026')">Award</button></td>
+          <td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View Quote</button></td>
+          <td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View Quote</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- AWARD DIALOG -->
+<div id="modal-award" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header"><h3>Confirm RFQ Award</h3><button class="icon-btn" onclick="closeModal('modal-award')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="banner-success" style="background:var(--primary-light); border-color:var(--primary-100); color:var(--primary-darker);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--primary);"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+        <div>You are about to award RFQ-2026-0142 to this manufacturer. This action notifies all bidders.</div>
+      </div>
+      <div class="form-group" style="margin-top:16px;"><label class="form-label">Selected Manufacturer</label><input class="form-control" id="award-mfg-name" value="Suresh CNC Works" disabled></div>
+      <div class="form-group" style="margin-top:14px;"><label class="form-label">Award Amount</label><input class="form-control" id="award-amount" value="₹7,95,000" disabled></div>
+      <div class="form-group" style="margin-top:14px;"><label class="form-label">Award Notes <span class="opt">(optional)</span></label><textarea class="form-control" rows="3" placeholder="e.g. Please confirm PO acceptance within 3 business days.">Best overall value with fastest delivery. Proceed with PO issuance.</textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-award')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmAward()">Confirm Award</button>
+    </div>
+  </div>
+</div>
+<!-- ============ AWARDS (CLIENT) ============ -->
+<div id="scr-c-awards" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Awards</h2><p class="desc">RFQs that have been awarded to a manufacturer.</p></div></div>
+  <div class="card">
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>RFQ</th><th>Awarded Manufacturer</th><th>Award Amount</th><th>Award Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><div class="cell-strong">RFQ-2026-0139</div><div class="cell-sub">Injection Molded Housing – Infusion Pump</div></td><td>Precision Tools India</td><td>₹6,85,000</td><td>10 Aug 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-award-details')">View</button></td></tr>
+          <tr><td><div class="cell-strong">RFQ-2026-0130</div><div class="cell-sub">Aluminum Die Cast Enclosure</div></td><td>Everest Sheet Metal</td><td>₹4,12,300</td><td>02 Aug 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-award-details')">View</button></td></tr>
+          <tr><td><div class="cell-strong">RFQ-2026-0121</div><div class="cell-sub">Precision Turned Hydraulic Spindles</div></td><td>XYZ Precision Ltd</td><td>₹11,40,000</td><td>28 Jul 2026</td><td><span class="chip chip-awarded">Awarded</span></td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-award-details')">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORGANIZATION (SHARED) ============ -->
+<div id="scr-org" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Organization</h2><p class="desc">Manage your company profile and business details.</p></div><div class="page-actions"><button class="btn btn-primary">Save Changes</button></div></div>
+  <div style="display:grid; grid-template-columns:1fr 2fr; gap:20px; align-items:start;">
+    <div class="card card-pad" style="text-align:center;">
+      <div class="avatar" style="width:84px; height:84px; font-size:26px; margin:0 auto 14px; background:var(--primary-light); color:var(--primary);" id="org-logo-avatar">ABC</div>
+      <button class="btn btn-secondary btn-sm btn-block">Upload Logo</button>
+      <div class="divider"></div>
+      <div class="text-sm fw-600" id="org-name-display">ABC Automation Pvt Ltd</div>
+      <span class="chip chip-active" style="margin-top:8px;">Active</span>
+    </div>
+    <div class="card card-pad">
+      <h3 style="margin-bottom:16px;">Company Details</h3>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Company Name</label><input class="form-control" value="ABC Automation Pvt Ltd"></div>
+        <div class="form-group"><label class="form-label">Company Type</label><input class="form-control" value="Client" disabled></div>
+        <div class="form-group"><label class="form-label">GST Number</label><input class="form-control" value="27AAFCA1234B1Z5"></div>
+        <div class="form-group"><label class="form-label">Contact Person</label><input class="form-control" value="Rahul Sharma"></div>
+        <div class="form-group full"><label class="form-label">Address</label><input class="form-control" value="Plot 42, MIDC Industrial Area, Bhosari"></div>
+        <div class="form-group"><label class="form-label">City</label><input class="form-control" value="Pune"></div>
+        <div class="form-group"><label class="form-label">State</label><input class="form-control" value="Maharashtra"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ USERS (SHARED) ============ -->
+<div id="scr-users" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Users</h2><p class="desc">Manage users within your organization.</p></div><div class="page-actions"><button class="btn btn-primary" onclick="openModal('modal-add-user')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add User</button></div></div>
+  <div class="card">
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>Name</th><th>Email</th><th>Designation</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="flex items-center gap-3"><div class="avatar" style="width:30px;height:30px;font-size:11px; background:var(--primary-light); color:var(--primary);">RS</div><span class="cell-strong">Rahul Sharma</span></td><td>rahul.sharma@abcautomation.in</td><td>Purchase Manager</td><td>Purchase</td><td><span class="chip chip-active">Active</span></td><td><button class="btn btn-ghost btn-sm">Edit</button><button class="btn btn-ghost btn-sm text-danger">Disable</button></td></tr>
+          <tr><td class="flex items-center gap-3"><div class="avatar" style="width:30px;height:30px;font-size:11px; background:var(--primary-light); color:var(--primary);">PI</div><span class="cell-strong">Priya Iyer</span></td><td>priya.iyer@abcautomation.in</td><td>Design Engineer</td><td>Engineer</td><td><span class="chip chip-active">Active</span></td><td><button class="btn btn-ghost btn-sm">Edit</button><button class="btn btn-ghost btn-sm text-danger">Disable</button></td></tr>
+          <tr><td class="flex items-center gap-3"><div class="avatar" style="width:30px;height:30px;font-size:11px; background:var(--gray-100); color:var(--gray-500);">SK</div><span class="cell-strong">Sanjay Kulkarni</span></td><td>sanjay.k@abcautomation.in</td><td>Plant Head</td><td>Admin</td><td><span class="chip chip-disabled">Disabled</span></td><td><button class="btn btn-ghost btn-sm">Edit</button><button class="btn btn-ghost btn-sm text-success">Enable</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="modal-add-user" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header"><h3>Add User</h3><button class="icon-btn" onclick="closeModal('modal-add-user')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-control" placeholder="Vikram"></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-control" placeholder="Rao"></div>
+        <div class="form-group full"><label class="form-label">Email</label><input class="form-control" placeholder="vikram.rao@abcautomation.in"></div>
+        <div class="form-group"><label class="form-label">Designation</label><input class="form-control" placeholder="Procurement Executive"></div>
+        <div class="form-group"><label class="form-label">Role</label><select class="form-control"><option>Purchase</option><option>Engineer</option><option>Admin</option></select></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('modal-add-user')">Cancel</button><button class="btn btn-primary" onclick="closeModal('modal-add-user'); toast('success','Invitation sent. The user will receive an email to set up their account.')">Send Invite</button></div>
+  </div>
+</div>
+
+<!-- ============ PROFILE (SHARED) ============ -->
+<div id="scr-profile" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Profile</h2><p class="desc">Your personal account settings.</p></div></div>
+  <div style="display:grid; grid-template-columns:1fr 2fr; gap:20px; align-items:start;">
+    <div class="card card-pad" style="text-align:center;">
+      <div class="avatar" style="width:84px; height:84px; font-size:26px; margin:0 auto 14px; background:var(--primary-light); color:var(--primary);" id="profile-avatar">RS</div>
+      <div class="text-sm fw-600" id="profile-name">Rahul Sharma</div>
+      <div class="text-xs text-muted" id="profile-role">Purchase Manager · ABC Automation Pvt Ltd</div>
+    </div>
+    <div class="card card-pad">
+      <h3 style="margin-bottom:16px;">Personal Information</h3>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">First Name</label><input class="form-control" value="Rahul" id="profile-fname"></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input class="form-control" value="Sharma" id="profile-lname"></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-control" value="rahul.sharma@abcautomation.in" id="profile-email"></div>
+        <div class="form-group"><label class="form-label">Designation</label><input class="form-control" value="Purchase Manager" id="profile-desig"></div>
+      </div>
+      <div class="divider"></div>
+      <h3 style="margin-bottom:16px;">Change Password</h3>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">New Password</label><input type="password" class="form-control" placeholder="••••••••"></div>
+        <div class="form-group"><label class="form-label">Confirm Password</label><input type="password" class="form-control" placeholder="••••••••"></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:16px;">Update Profile</button>
+    </div>
+  </div>
+</div>
+<!-- ============ MANUFACTURER DASHBOARD ============ -->
+<div id="scr-m-dashboard" class="screen hidden">
+  <div class="page-header">
+    <div><h2 class="text-2xl">Good morning, Amit 👋</h2><p class="desc">Here's your quotation activity for XYZ Precision Ltd, Aug 20, 2026.</p></div>
+    <div class="page-actions"><button class="btn btn-primary" onclick="nav('scr-m-marketplace')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Browse RFQs</button></div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--primary-light); color:var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18l-1.5 9h-15z"/><path d="M6.5 12L5 21h14l-1.5-9"/></svg></div><span class="tag">Live</span></div>
+      <div class="kpi-val">36</div><div class="kpi-label">Available RFQs</div>
+      <div class="kpi-delta text-success">▲ 6 new today</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--success-light); color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><span class="tag">All time</span></div>
+      <div class="kpi-val">64</div><div class="kpi-label">Submitted Quotes</div>
+      <div class="kpi-delta text-success">₹3.6 Cr quoted value</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--gray-100); color:var(--gray-500);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><span class="tag">Pending</span></div>
+      <div class="kpi-val">5</div><div class="kpi-label">Draft Quotes</div>
+      <div class="kpi-delta text-muted">Not yet submitted</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top"><div class="kpi-icon" style="background:var(--warning-light); color:var(--warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></div><span class="tag">Won</span></div>
+      <div class="kpi-val">14</div><div class="kpi-label">Won RFQs</div>
+      <div class="kpi-delta text-success">22% win rate</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Recently Available RFQs</h3><a class="btn-link text-sm" onclick="nav('scr-m-marketplace')">View all →</a></div>
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>RFQ</th><th>Client</th><th>Material</th><th>Deadline</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><div class="cell-strong">RFQ-2026-0142</div><div class="cell-sub">CNC Machined Motor Housing Brackets</div></td><td>ABC Automation Pvt Ltd</td><td>Aluminum 6061</td><td>28 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+          <tr><td><div class="cell-strong">RFQ-2026-0135</div><div class="cell-sub">Sheet Metal Chassis – EV Battery Pack</div></td><td>Mahindra AutoParts</td><td>Aluminum 6061</td><td>31 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+          <tr><td><div class="cell-strong">RFQ-2026-0136</div><div class="cell-sub">Aerospace Bracket Fabrication</div></td><td>Tata Precision Systems</td><td>Aluminum 6061</td><td>29 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MANUFACTURER MARKETPLACE ============ -->
+<div id="scr-m-marketplace" class="screen hidden">
+  <div class="page-header">
+    <div><h2 class="text-2xl">Marketplace RFQs</h2><p class="desc">Browse open RFQs matching your manufacturing capabilities.</p></div>
+    <div class="page-actions">
+      <div class="role-switch" style="margin:0;"><button class="active" id="mview-card" onclick="setMktView('card')">Cards</button><button id="mview-table" onclick="setMktView('table')">Table</button></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="table-toolbar">
+      <div class="filter-bar">
+        <div class="search-input"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search RFQs…"></div>
+        <div class="select-filter">Industry: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Category: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Material: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">City: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">State: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="select-filter">Deadline <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mkt-cards" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">3 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">CNC Machined Motor Housing Brackets</h4>
+      <p class="text-xs text-muted">RFQ-2026-0142 · ABC Automation Pvt Ltd · Pune, MH</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">CNC Machining</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--danger);">28 Aug 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">6 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Chassis – EV Battery Pack</h4>
+      <p class="text-xs text-muted">RFQ-2026-0135 · Mahindra AutoParts · Chennai, TN</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Sheet Metal</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">31 Aug 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">2 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Aerospace Bracket Fabrication</h4>
+      <p class="text-xs text-muted">RFQ-2026-0136 · Tata Precision Systems · Bengaluru, KA</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Fabrication</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">29 Aug 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">4 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Enclosures for Control Panels</h4>
+      <p class="text-xs text-muted">RFQ-2026-0141 · ABC Automation Pvt Ltd · Chennai, TN</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Sheet Metal</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Mild Steel</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--danger);">25 Aug 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">8 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Precision Turned Hydraulic Spindles</h4>
+      <p class="text-xs text-muted">RFQ-2026-0133 · Bharat Forge Components · Pune, MH</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">CNC Machining</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">SS304</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">04 Sep 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+    <div class="card card-pad">
+      <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">3 items</span></div>
+      <h4 style="margin:12px 0 4px; font-size:14.5px;">Injection Molded Enclosure – Sensor Unit</h4>
+      <p class="text-xs text-muted">RFQ-2026-0129 · Tata Precision Systems · Nashik, MH</p>
+      <div class="divider"></div>
+      <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Injection Molding</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Polycarbonate</span></div>
+      <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">06 Sep 2026</span></div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" onclick="nav('scr-m-rfq-details')">View RFQ</button>
+    </div>
+  </div>
+
+  <div id="mkt-table" class="card hidden">
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>RFQ</th><th>Client</th><th>Category</th><th>Material</th><th>City / State</th><th>Deadline</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-strong">RFQ-2026-0142</td><td>ABC Automation Pvt Ltd</td><td>CNC Machining</td><td>Aluminum 6061</td><td>Pune, MH</td><td>28 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+          <tr><td class="cell-strong">RFQ-2026-0135</td><td>Mahindra AutoParts</td><td>Sheet Metal</td><td>Aluminum 6061</td><td>Chennai, TN</td><td>31 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+          <tr><td class="cell-strong">RFQ-2026-0136</td><td>Tata Precision Systems</td><td>Fabrication</td><td>Aluminum 6061</td><td>Bengaluru, KA</td><td>29 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-rfq-details')">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- ============ MANUFACTURER RFQ DETAILS ============ -->
+<div id="scr-m-rfq-details" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-m-marketplace')">Marketplace RFQs</a> / <span>RFQ-2026-0142</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">CNC Machined Motor Housing Brackets</h2><span class="chip chip-published">Published</span></div>
+      <p class="desc">RFQ-2026-0142 · Client: ABC Automation Pvt Ltd · Pune, Maharashtra · Deadline 28 Aug 2026</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Save</button>
+      <button class="btn btn-primary" onclick="nav('scr-m-create-quote')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Create Quote</button>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">RFQ Information</h3>
+        <p class="text-sm text-muted" style="line-height:1.7; margin-bottom:18px;">Require precision CNC machined aluminum brackets for EV motor housing assembly. Tight tolerance ±0.05mm on mounting holes. Anodized finish required.</p>
+        <div class="form-grid" style="gap:16px;">
+          <div><div class="text-xs text-muted">Industry / Category</div><div class="text-sm fw-600">Automotive · CNC Machining</div></div>
+          <div><div class="text-xs text-muted">Manufacturing Process</div><div class="text-sm fw-600">5-Axis CNC Milling</div></div>
+          <div><div class="text-xs text-muted">Material</div><div class="text-sm fw-600">Aluminum 6061</div></div>
+          <div><div class="text-xs text-muted">Response Deadline</div><div class="text-sm fw-600">28 Aug 2026</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Products (3)</h3></div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th><th>Required Date</th><th>Specification</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-strong">Motor Mount Bracket</td><td>MB-2201</td><td>Aluminum 6061</td><td>500</td><td>Pcs</td><td>15 Sep 2026</td><td class="text-muted">±0.05mm tolerance, anodized</td></tr>
+              <tr><td class="cell-strong">Housing Cover Plate</td><td>HC-2202</td><td>Aluminum 6061</td><td>500</td><td>Pcs</td><td>15 Sep 2026</td><td class="text-muted">Powder coated, RAL 9005</td></tr>
+              <tr><td class="cell-strong">Support Bracket L-Type</td><td>SB-2203</td><td>Aluminum 6061</td><td>1000</td><td>Pcs</td><td>20 Sep 2026</td><td class="text-muted">Deburred edges, no coating</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Drawings & Specifications (3)</h3>
+        <div class="file-list">
+          <div class="file-item"><div class="file-ico" style="background:#DC2626;">PDF</div><div class="file-meta"><div class="file-name">RFQ-0142_Technical_Drawing.pdf</div><div class="file-size">2.4 MB</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+          <div class="file-item"><div class="file-ico" style="background:#2563EB;">DWG</div><div class="file-meta"><div class="file-name">MotorMount_Bracket_AssemblyRev3.dwg</div><div class="file-size">5.1 MB</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+          <div class="file-item"><div class="file-ico" style="background:#059669;">STP</div><div class="file-meta"><div class="file-name">HousingCoverPlate.step</div><div class="file-size">1.8 MB</div></div><button class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad" style="background:var(--primary-light); border-color:var(--primary-100);">
+        <div class="text-sm fw-600" style="color:var(--primary-darker);">Ready to bid?</div>
+        <p class="text-xs" style="color:var(--primary-darker); margin:6px 0 14px;">Submit your item-wise pricing before the deadline to be considered.</p>
+        <button class="btn btn-primary btn-block" onclick="nav('scr-m-create-quote')">Create Quote →</button>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Client</h3>
+        <div class="flex items-center gap-3"><div class="avatar" style="background:var(--gray-100); color:var(--gray-600);">AA</div><div><div class="text-sm fw-600">ABC Automation Pvt Ltd</div><div class="text-xs text-muted">Pune, Maharashtra</div></div></div>
+        <div class="divider"></div>
+        <div class="text-xs text-muted flex justify-between"><span>RFQs Published</span><span class="fw-600" style="color:var(--gray-700);">48</span></div>
+        <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Member since</span><span class="fw-600" style="color:var(--gray-700);">Jan 2023</span></div>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:12px;">Competing Quotes</h3>
+        <div class="text-2xl fw-700">5</div>
+        <p class="text-xs text-muted">manufacturers have submitted quotes for this RFQ.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CREATE QUOTE ============ -->
+<div id="scr-m-create-quote" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-m-marketplace')">Marketplace RFQs</a> / <a onclick="nav('scr-m-rfq-details')">RFQ-2026-0142</a> / <span>Create Quote</span></div>
+  <div class="page-header">
+    <div><h2 class="text-2xl">Create Quote</h2><p class="desc">RFQ-2026-0142 · CNC Machined Motor Housing Brackets · ABC Automation Pvt Ltd</p></div>
+    <div class="page-actions"><button class="btn btn-secondary" onclick="nav('scr-m-rfq-details')">Cancel</button></div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:14px;">RFQ Information</h3>
+    <div class="form-grid" style="gap:16px;">
+      <div><div class="text-xs text-muted">Material</div><div class="text-sm fw-600">Aluminum 6061</div></div>
+      <div><div class="text-xs text-muted">Process</div><div class="text-sm fw-600">5-Axis CNC Milling</div></div>
+      <div><div class="text-xs text-muted">Location</div><div class="text-sm fw-600">Pune, Maharashtra</div></div>
+      <div><div class="text-xs text-muted">Response Deadline</div><div class="text-sm fw-600">28 Aug 2026</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h3>Item-wise Pricing</h3></div>
+    <div class="table-wrap wizard-table">
+      <table class="dtable">
+        <thead><tr><th>Product</th><th>Quantity</th><th>Unit Price (₹)</th><th>Total (₹)</th><th>Lead Time (days)</th></tr></thead>
+        <tbody id="quote-rows">
+          <tr><td class="cell-strong">Motor Mount Bracket<div class="cell-sub">MB-2201 · Aluminum 6061</div></td><td>500 Pcs</td><td><input type="number" value="268" class="qi-price" oninput="calcQuoteTotal()"></td><td class="qi-total fw-600">₹1,34,000</td><td><input type="number" value="15" class="qi-lead"></td></tr>
+          <tr><td class="cell-strong">Housing Cover Plate<div class="cell-sub">HC-2202 · Aluminum 6061</div></td><td>500 Pcs</td><td><input type="number" value="298" class="qi-price" oninput="calcQuoteTotal()"></td><td class="qi-total fw-600">₹1,49,000</td><td><input type="number" value="15" class="qi-lead"></td></tr>
+          <tr><td class="cell-strong">Support Bracket L-Type<div class="cell-sub">SB-2203 · Aluminum 6061</div></td><td>1000 Pcs</td><td><input type="number" value="186" class="qi-price" oninput="calcQuoteTotal()"></td><td class="qi-total fw-600">₹1,86,000</td><td><input type="number" value="15" class="qi-lead"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card card-pad" style="margin-top:20px;">
+    <h3 style="margin-bottom:16px;">Delivery & Payment</h3>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Delivery Date <span class="req">*</span></label><input type="date" class="form-control" value="2026-09-08"></div>
+      <div class="form-group"><label class="form-label">Payment Terms <span class="req">*</span></label><select class="form-control"><option>50% Advance, 50% on Delivery</option><option>30% Advance, 70% on Delivery</option><option>100% Advance</option><option>Net 30 Days</option></select></div>
+      <div class="form-group"><label class="form-label">Delivery Terms <span class="req">*</span></label><select class="form-control"><option>FOR Destination</option><option>Ex-Works</option><option>CIF</option></select></div>
+      <div class="form-group"><label class="form-label">Quote Validity</label><input class="form-control" value="15 days from submission"></div>
+      <div class="form-group full"><label class="form-label">Notes <span class="opt">(optional)</span></label><textarea class="form-control" rows="3">Pricing valid for full order quantity. Tooling cost included in unit price. GST extra as applicable.</textarea></div>
+    </div>
+  </div>
+
+  <div class="grand-total-bar">
+    <div><div class="text-xs" style="color:var(--primary-darker);">Grand Total (3 items)</div><div class="text-2xl fw-700" style="color:var(--primary-darker);" id="grand-total">₹4,69,000</div></div>
+    <div class="flex gap-3">
+      <button class="btn btn-secondary" onclick="quoteToast('draft')">Save Draft</button>
+      <button class="btn btn-primary btn-lg" onclick="quoteToast('submit')">Submit Quote</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MY QUOTATIONS ============ -->
+<div id="scr-m-my-quotes" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">My Quotations</h2><p class="desc">All quotes submitted by XYZ Precision Ltd.</p></div></div>
+  <div class="card">
+    <div class="table-toolbar">
+      <div class="filter-bar">
+        <div class="search-input"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input placeholder="Search quote number, RFQ…"></div>
+        <div class="select-filter">Status: All <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      </div>
+      <div class="text-sm text-muted">64 results</div>
+    </div>
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>Quote Number</th><th>RFQ</th><th>Client</th><th>Amount</th><th>Status</th><th>Submitted Date</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-strong">QT-2026-3381</td><td>RFQ-2026-0142</td><td>ABC Automation Pvt Ltd</td><td>₹4,69,000</td><td><span class="chip chip-submitted">Submitted</span></td><td>17 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3376</td><td>RFQ-2026-0139</td><td>Bharat Forge Components</td><td>₹6,85,000</td><td><span class="chip chip-awarded">Awarded</span></td><td>05 Aug 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3364</td><td>RFQ-2026-0138</td><td>Mahindra AutoParts</td><td>₹9,20,000</td><td><span class="chip chip-rejected">Rejected</span></td><td>29 Jul 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3355</td><td>RFQ-2026-0133</td><td>Bharat Forge Components</td><td>₹2,10,500</td><td><span class="chip chip-draft">Draft</span></td><td>—</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-m-create-quote')">Continue Editing</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3349</td><td>RFQ-2026-0129</td><td>Tata Precision Systems</td><td>₹3,42,800</td><td><span class="chip chip-withdrawn">Withdrawn</span></td><td>18 Jul 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3341</td><td>RFQ-2026-0126</td><td>ABC Automation Pvt Ltd</td><td>₹5,58,200</td><td><span class="chip chip-awarded">Awarded</span></td><td>12 Jul 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3336</td><td>RFQ-2026-0124</td><td>Mahindra AutoParts</td><td>₹7,90,000</td><td><span class="chip chip-submitted">Submitted</span></td><td>08 Jul 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+          <tr><td class="cell-strong">QT-2026-3322</td><td>RFQ-2026-0119</td><td>Bharat Forge Components</td><td>₹2,75,600</td><td><span class="chip chip-rejected">Rejected</span></td><td>29 Jun 2026</td><td><button class="btn btn-secondary btn-sm" onclick="nav('scr-quote-details')">View</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-footer">
+      <div class="text-sm text-muted">Showing 1–9 of 64 quotes</div>
+      <div class="pagination"><button class="page-btn">‹</button><button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button><button class="page-btn">›</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EMPTY STATE EXAMPLE (used contextually) ============ -->
+<div id="scr-empty-example" class="screen hidden">
+  <div class="card">
+    <div class="empty-state">
+      <div class="es-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+      <h4>No RFQs found</h4>
+      <p>Try adjusting your filters or search terms, or create a new RFQ to get started.</p>
+      <button class="btn btn-primary" onclick="nav('scr-c-rfq-create')">Create RFQ</button>
+    </div>
+  </div>
+</div>
+<!-- ============ RFQ DETAILS — DRAFT VARIANT ============ -->
+<div id="scr-c-rfq-details-draft" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>RFQ-2026-0140</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">Precision Turned Shafts – Landing Gear Assembly</h2><span class="chip chip-draft">Draft</span></div>
+      <p class="desc">RFQ-2026-0140 · Aerospace · CNC Machining · Created by Priya Iyer on 18 Aug 2026 · Not yet visible to manufacturers</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>Edit</button>
+      <button class="btn btn-primary" onclick="toast('success','RFQ published! It is now visible to manufacturers on the marketplace.')">Publish RFQ</button>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">RFQ Information</h3>
+        <p class="text-sm text-muted" style="line-height:1.7; margin-bottom:18px;">Precision turned landing-gear shafts, SS304, tight concentricity tolerance. Requires material traceability certificates (AS9100 supplier preferred).</p>
+        <div class="form-grid" style="gap:16px;">
+          <div><div class="text-xs text-muted">Manufacturing Process</div><div class="text-sm fw-600">CNC Turning</div></div>
+          <div><div class="text-xs text-muted">Material</div><div class="text-sm fw-600">SS304</div></div>
+          <div><div class="text-xs text-muted">Location</div><div class="text-sm fw-600">Bengaluru, Karnataka</div></div>
+          <div><div class="text-xs text-muted">Response Deadline</div><div class="text-sm fw-600">05 Sep 2026</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Products (2)</h3></div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th><th>Required Date</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-strong">Landing Gear Shaft – Type A</td><td>LG-3301</td><td>SS304</td><td>120</td><td>Pcs</td><td>25 Sep 2026</td></tr>
+              <tr><td class="cell-strong">Landing Gear Shaft – Type B</td><td>LG-3302</td><td>SS304</td><td>80</td><td>Pcs</td><td>25 Sep 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad" style="background:var(--gray-50); border-style:dashed;">
+        <div class="text-sm fw-600" style="color:var(--gray-700);">This RFQ is a draft</div>
+        <p class="text-xs text-muted" style="margin:6px 0 12px;">Publish it to the marketplace so manufacturers can start quoting. You can keep editing until then.</p>
+        <button class="btn btn-primary btn-sm btn-block" onclick="toast('success','RFQ published! It is now visible to manufacturers on the marketplace.')">Publish Now</button>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Status History</h3>
+        <div class="flex items-center justify-between"><span class="chip chip-draft">Draft</span><span class="text-xs text-muted">18 Aug, 3:40 PM</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RFQ DETAILS — CLOSED VARIANT ============ -->
+<div id="scr-c-rfq-details-closed" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>RFQ-2026-0138</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">Structural Steel Fabrication – Conveyor Frame</h2><span class="chip chip-closed">Closed</span></div>
+      <p class="desc">RFQ-2026-0138 · Industrial Machinery · Fabrication · Response window closed on 02 Aug 2026</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-outline-primary" onclick="nav('scr-c-compare')">View Quotes (6)</button>
+      <button class="btn btn-secondary">Reopen RFQ</button>
+    </div>
+  </div>
+  <div class="banner-success" style="background:var(--warning-light); border-color:var(--warning-100); color:#92400E;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--warning);"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    <div><b>Response window closed.</b> No new quotes are being accepted. Review the 6 submitted quotes and award the RFQ, or reopen it to extend the deadline.</div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div class="card">
+      <div class="card-header"><h3>Products (4)</h3></div>
+      <div class="table-wrap">
+        <table class="dtable">
+          <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-strong">Conveyor Side Frame</td><td>CF-4401</td><td>Mild Steel</td><td>40</td><td>Pcs</td></tr>
+            <tr><td class="cell-strong">Cross Support Beam</td><td>CF-4402</td><td>Mild Steel</td><td>80</td><td>Pcs</td></tr>
+            <tr><td class="cell-strong">Base Mounting Plate</td><td>CF-4403</td><td>Mild Steel</td><td>40</td><td>Pcs</td></tr>
+            <tr><td class="cell-strong">Idler Bracket</td><td>CF-4404</td><td>Mild Steel</td><td>160</td><td>Pcs</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card card-pad" style="background:var(--primary-light); border-color:var(--primary-100);">
+      <div class="text-sm fw-600" style="color:var(--primary-darker);">6 quotes received</div>
+      <p class="text-xs" style="color:var(--primary-darker); margin:6px 0 12px;">Lowest quote ₹18,40,000 from Om Sai Fabricators</p>
+      <button class="btn btn-primary btn-sm btn-block" onclick="nav('scr-c-compare')">Compare & Award →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RFQ DETAILS — AWARDED VARIANT ============ -->
+<div id="scr-c-rfq-details-awarded" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>RFQ-2026-0139</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">Injection Molded Housing – Infusion Pump</h2><span class="chip chip-awarded">Awarded</span></div>
+      <p class="desc">RFQ-2026-0139 · Medical Devices · Injection Molding · Awarded on 10 Aug 2026</p>
+    </div>
+    <div class="page-actions"><button class="btn btn-outline-primary" onclick="nav('scr-award-details')">View Award →</button></div>
+  </div>
+  <div class="banner-success">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 17l9 5 9-5M3 12l9 5 9-5"/></svg>
+    <div><b>Awarded to Precision Tools India</b> for ₹6,85,000 · Delivery committed 05 Sep 2026 · PO issued 11 Aug 2026</div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div class="card">
+      <div class="card-header"><h3>Products (2)</h3></div>
+      <div class="table-wrap">
+        <table class="dtable">
+          <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-strong">Pump Housing Shell</td><td>IP-5501</td><td>Polycarbonate</td><td>2000</td><td>Pcs</td></tr>
+            <tr><td class="cell-strong">Pump Housing Lid</td><td>IP-5502</td><td>Polycarbonate</td><td>2000</td><td>Pcs</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card card-pad">
+      <h3 style="margin-bottom:14px;">Status History</h3>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="flex items-center justify-between"><span class="chip chip-draft">Draft</span><span class="text-xs text-muted">28 Jul, 10:02 AM</span></div>
+        <div class="flex items-center justify-between"><span class="chip chip-published">Published</span><span class="text-xs text-muted">28 Jul, 10:30 AM</span></div>
+        <div class="flex items-center justify-between"><span class="chip chip-closed">Closed</span><span class="text-xs text-muted">09 Aug, 6:00 PM</span></div>
+        <div class="flex items-center justify-between"><span class="chip chip-awarded">Awarded</span><span class="text-xs text-muted">10 Aug, 11:15 AM</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RFQ DETAILS — CANCELLED VARIANT ============ -->
+<div id="scr-c-rfq-details-cancelled" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-rfq-list')">RFQs</a> / <span>RFQ-2026-0137</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">Brass Hydraulic Fittings</h2><span class="chip chip-cancelled">Cancelled</span></div>
+      <p class="desc">RFQ-2026-0137 · Automotive · CNC Machining · Cancelled on 20 Jul 2026 by Rahul Sharma</p>
+    </div>
+    <div class="page-actions"><button class="btn btn-secondary" onclick="nav('scr-c-rfq-create')">Clone as New RFQ</button></div>
+  </div>
+  <div class="banner-success" style="background:var(--danger-light); border-color:var(--danger-100); color:#991B1B;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--danger);"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+    <div><b>This RFQ was cancelled.</b> Reason: Internal design change — specification revision required before re-sourcing. 1 manufacturer had already submitted a quote and was notified automatically.</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Products (1)</h3></div>
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead><tr><th>Product</th><th>Code</th><th>Material</th><th>Qty</th><th>Unit</th></tr></thead>
+        <tbody><tr><td class="cell-strong">Hydraulic Elbow Fitting</td><td>BH-1190</td><td>Brass</td><td>3000</td><td>Pcs</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- ============ QUOTE DETAILS (read-only, shared) ============ -->
+<div id="scr-quote-details" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-compare')">Compare Quotes</a> / <span>QT-2026-3381</span></div>
+  <div class="page-header">
+    <div>
+      <div class="flex items-center gap-3"><h2 class="text-2xl">Quote QT-2026-3381</h2><span class="chip chip-submitted">Submitted</span></div>
+      <p class="desc">Submitted by Suresh CNC Works for RFQ-2026-0142 · CNC Machined Motor Housing Brackets</p>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary" onclick="nav('scr-c-compare')">← Back to Compare</button>
+      <button class="btn btn-primary" onclick="openAward('Suresh CNC Works','₹7,95,000','08 Sep 2026')">Award This Quote</button>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card">
+        <div class="card-header"><h3>Item-wise Pricing</h3></div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th>Product</th><th>Quantity</th><th>Unit Price</th><th>Total</th><th>Lead Time</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-strong">Motor Mount Bracket</td><td>500 Pcs</td><td>₹268</td><td class="fw-600">₹1,34,000</td><td>15 days</td></tr>
+              <tr><td class="cell-strong">Housing Cover Plate</td><td>500 Pcs</td><td>₹298</td><td class="fw-600">₹1,49,000</td><td>15 days</td></tr>
+              <tr><td class="cell-strong">Support Bracket L-Type</td><td>1000 Pcs</td><td>₹186</td><td class="fw-600">₹1,86,000</td><td>15 days</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Delivery & Payment</h3>
+        <div class="summary-row"><span class="k">Delivery Date</span><span class="v">08 Sep 2026</span></div>
+        <div class="summary-row"><span class="k">Payment Terms</span><span class="v">50% Advance</span></div>
+        <div class="summary-row"><span class="k">Delivery Terms</span><span class="v">FOR Destination</span></div>
+        <div class="summary-row"><span class="k">Quote Validity</span><span class="v">15 days from submission</span></div>
+        <div class="summary-row" style="border-bottom:none;"><span class="k">Notes</span><span class="v" style="text-align:right; max-width:60%;">Pricing includes tooling. GST extra as applicable.</span></div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card card-pad" style="background:var(--success-light); border-color:var(--success-100);">
+        <div class="text-xs fw-600" style="color:var(--success);">GRAND TOTAL</div>
+        <div class="text-2xl fw-700" style="color:#065F46; margin-top:4px;">₹7,95,000</div>
+        <p class="text-xs" style="color:#065F46; margin-top:6px;">Lowest of 4 quotes received · Fastest delivery</p>
+      </div>
+      <div class="card card-pad">
+        <h3 style="margin-bottom:14px;">Manufacturer</h3>
+        <div class="flex items-center gap-3"><div class="avatar" style="background:var(--gray-100); color:var(--gray-600);">SC</div><div><div class="text-sm fw-600">Suresh CNC Works</div><div class="text-xs text-muted">Rajkot, Gujarat</div></div></div>
+        <div class="divider"></div>
+        <div class="text-xs text-muted flex justify-between"><span>Quotes Submitted</span><span class="fw-600" style="color:var(--gray-700);">112</span></div>
+        <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Win Rate</span><span class="fw-600" style="color:var(--gray-700);">31%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AWARD DETAILS ============ -->
+<div id="scr-award-details" class="screen hidden">
+  <div class="breadcrumb"><a onclick="nav('scr-c-awards')">Awards</a> / <span>RFQ-2026-0139</span></div>
+  <div class="page-header">
+    <div><h2 class="text-2xl">Award Details</h2><p class="desc">RFQ-2026-0139 · Injection Molded Housing – Infusion Pump</p></div>
+    <div class="page-actions"><button class="btn btn-secondary" onclick="nav('scr-c-rfq-details-awarded')">View RFQ</button></div>
+  </div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; align-items:start;">
+    <div class="card card-pad">
+      <h3 style="margin-bottom:16px;">Award Summary</h3>
+      <div class="summary-row"><span class="k">Selected Manufacturer</span><span class="v">Precision Tools India</span></div>
+      <div class="summary-row"><span class="k">Award Amount</span><span class="v">₹6,85,000</span></div>
+      <div class="summary-row"><span class="k">Awarded By</span><span class="v">Rahul Sharma</span></div>
+      <div class="summary-row"><span class="k">Award Date</span><span class="v">10 Aug 2026, 11:15 AM</span></div>
+      <div class="summary-row" style="border-bottom:none;"><span class="k">Award Notes</span><span class="v" style="text-align:right; max-width:60%;">Best overall value with acceptable delivery timeline. Proceed with PO issuance and material traceability docs.</span></div>
+    </div>
+    <div class="card card-pad" style="background:var(--success-light); border-color:var(--success-100);">
+      <div class="flex items-center gap-2" style="color:var(--success);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg><span class="text-sm fw-600">PO Issued</span></div>
+      <p class="text-xs" style="color:#065F46; margin-top:8px;">Purchase order PO-2026-8842 issued 11 Aug 2026. Manufacturer has confirmed acceptance.</p>
+    </div>
+  </div>
+</div>
+<!-- ============ EMPTY STATE — CLIENT: NO RFQs YET ============ -->
+<div id="scr-empty-rfqs" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">RFQs</h2><p class="desc">All requests for quotation raised by ABC Automation Pvt Ltd.</p></div></div>
+  <div class="card">
+    <div class="empty-state">
+      <div class="es-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></div>
+      <h4>No RFQs yet</h4>
+      <p>You haven't created any requests for quotation. Publish your first RFQ to start receiving competitive quotes from verified manufacturers.</p>
+      <button class="btn btn-primary" onclick="nav('scr-c-rfq-create')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Create your first RFQ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EMPTY STATE — MANUFACTURER: NO QUOTES YET ============ -->
+<div id="scr-empty-quotes" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">My Quotations</h2><p class="desc">All quotes submitted by XYZ Precision Ltd.</p></div></div>
+  <div class="card">
+    <div class="empty-state">
+      <div class="es-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h4>No quotes submitted yet</h4>
+      <p>Browse the marketplace for open RFQs that match your manufacturing capabilities and submit your first quote.</p>
+      <button class="btn btn-primary" onclick="nav('scr-m-marketplace')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Browse Marketplace RFQs</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EMPTY STATE — MARKETPLACE NO SEARCH RESULTS ============ -->
+<div id="scr-empty-marketplace-search" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Marketplace RFQs</h2><p class="desc">Browse open RFQs matching your manufacturing capabilities.</p></div></div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="table-toolbar">
+      <div class="filter-bar">
+        <div class="search-input"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input value="titanium forging"></div>
+        <div class="select-filter" style="border-color:var(--primary); color:var(--primary);">Material: Titanium ✕</div>
+        <div class="select-filter" style="border-color:var(--primary); color:var(--primary);">City: Surat ✕</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="empty-state">
+      <div class="es-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+      <h4>No matching RFQs found</h4>
+      <p>No open RFQs match "titanium forging" with the filters applied. Try removing a filter or broadening your search terms.</p>
+      <button class="btn btn-secondary" onclick="nav('scr-m-marketplace')">Clear all filters</button>
+    </div>
+  </div>
+</div>
+<!-- ============ ERROR — 404 NOT FOUND ============ -->
+<div id="scr-error-404" class="screen hidden">
+  <div class="card" style="max-width:520px; margin:64px auto 0;">
+    <div class="empty-state">
+      <div class="es-icon" style="background:var(--primary-light); color:var(--primary); width:76px; height:76px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6"/></svg>
+      </div>
+      <div class="text-3xl fw-700" style="color:var(--gray-300); margin-bottom:4px;">404</div>
+      <h4>Page not found</h4>
+      <p>The RFQ, quote, or page you're looking for doesn't exist or may have been removed.</p>
+      <div class="flex gap-3" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="history.back ? nav('scr-c-dashboard') : null">Go Back</button>
+        <button class="btn btn-primary" onclick="nav('scr-c-dashboard')">Back to Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ERROR — GENERIC / SERVER ERROR ============ -->
+<div id="scr-error-generic" class="screen hidden">
+  <div class="card" style="max-width:520px; margin:64px auto 0;">
+    <div class="empty-state">
+      <div class="es-icon" style="background:var(--danger-light); color:var(--danger); width:76px; height:76px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+      </div>
+      <h4>Something went wrong</h4>
+      <p>We couldn't complete that action because of a temporary system error. Your data hasn't been lost — please try again in a moment.</p>
+      <div class="flex gap-3" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="nav('scr-c-dashboard')">Back to Dashboard</button>
+        <button class="btn btn-primary" onclick="toast('info','Retrying…')">Try Again</button>
+      </div>
+      <p class="text-xs text-subtle" style="margin-top:16px;">Error reference: ERR-2026-0820-4471 · If this keeps happening, contact support@rfqmarketplace.in</p>
+    </div>
+  </div>
+</div>
+<!-- ============ COMPONENT STATES GALLERY ============ -->
+<div id="scr-states-gallery" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Component States Reference</h2><p class="desc">Success / error / warning / info patterns used across the product, for dev reference.</p></div></div>
+
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:16px;">Inline Banners</h3>
+    <div class="banner-success" style="margin-bottom:12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+      <div><b>Success:</b> RFQ published to the marketplace.</div>
+    </div>
+    <div class="banner-success" style="background:var(--danger-light); border-color:var(--danger-100); color:#991B1B; margin-bottom:12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--danger);"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+      <div><b>Error:</b> Quote submission failed — grand total must be greater than ₹0.</div>
+    </div>
+    <div class="banner-success" style="background:var(--warning-light); border-color:var(--warning-100); color:#92400E; margin-bottom:12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--warning);"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <div><b>Warning:</b> Response deadline is in 2 days — 3 invited manufacturers haven't quoted yet.</div>
+    </div>
+    <div class="banner-success" style="background:var(--info-light); border-color:#A5F3FC; color:#155E75;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--info);"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div><b>Info:</b> Quotes are only visible to the client organization until an award is made.</div>
+    </div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:16px;">Toast Notifications <span class="tag" style="margin-left:6px;">Click to preview</span></h3>
+    <div class="flex gap-3">
+      <button class="btn btn-secondary" onclick="toast('success','Quote submitted successfully.')">Trigger Success Toast</button>
+      <button class="btn btn-secondary" onclick="toast('error','Could not save changes. Check your connection.')">Trigger Error Toast</button>
+      <button class="btn btn-secondary" onclick="toast('warning','Deadline for RFQ-2026-0141 is tomorrow.')">Trigger Warning Toast</button>
+      <button class="btn btn-secondary" onclick="toast('info','5 manufacturers were notified.')">Trigger Info Toast</button>
+    </div>
+  </div>
+
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:16px;">Form Validation — Error State</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">RFQ Title <span class="req">*</span></label>
+        <input class="form-control error" value="">
+        <span class="field-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>RFQ title is required.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Response Deadline <span class="req">*</span></label>
+        <input type="date" class="form-control error" value="2026-07-01">
+        <span class="field-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Deadline cannot be in the past.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Material <span class="req">*</span></label>
+        <input class="form-control" value="Aluminum 6061">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location <span class="req">*</span></label>
+        <input class="form-control" value="Pune, Maharashtra">
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-pad">
+    <h3 style="margin-bottom:16px;">Status Chips</h3>
+    <div class="text-xs text-muted fw-600" style="margin-bottom:8px;">RFQ Status</div>
+    <div class="flex gap-3" style="margin-bottom:18px;"><span class="chip chip-draft">Draft</span><span class="chip chip-published">Published</span><span class="chip chip-closed">Closed</span><span class="chip chip-awarded">Awarded</span><span class="chip chip-cancelled">Cancelled</span></div>
+    <div class="text-xs text-muted fw-600" style="margin-bottom:8px;">Quote Status</div>
+    <div class="flex gap-3"><span class="chip chip-draft">Draft</span><span class="chip chip-submitted">Submitted</span><span class="chip chip-rejected">Rejected</span><span class="chip chip-awarded">Awarded</span><span class="chip chip-withdrawn">Withdrawn</span></div>
+  </div>
+</div>
+
+<!-- ============ INFORMATION ARCHITECTURE / USER FLOW OVERVIEW ============ -->
+<div id="scr-overview" class="screen hidden">
+  <div class="page-header"><div><h2 class="text-2xl">Information Architecture & User Flow</h2><p class="desc">How the two workspaces are structured and how an RFQ moves from creation to award.</p></div></div>
+
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <h3 style="margin-bottom:18px;">Site Map</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div>
+        <div class="tag" style="background:var(--primary-light); color:var(--primary); margin-bottom:10px;">CLIENT WORKSPACE</div>
+        <div style="border:1px solid var(--gray-200); border-radius:var(--r-md); padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+          <div class="text-sm fw-600">Dashboard</div>
+          <div class="text-sm fw-600">RFQs <span class="text-xs text-muted fw-400">→ Listing → Details → Status variants</span></div>
+          <div class="text-sm fw-600">Create RFQ <span class="text-xs text-muted fw-400">→ 4-step wizard</span></div>
+          <div class="text-sm fw-600">Marketplace <span class="text-xs text-muted fw-400">→ browse all published RFQs</span></div>
+          <div class="text-sm fw-600">Compare Quotes <span class="text-xs text-muted fw-400">→ Quote Details → Award Dialog</span></div>
+          <div class="text-sm fw-600">Awards <span class="text-xs text-muted fw-400">→ Award Details</span></div>
+          <div class="text-sm fw-600">Organization / Users / Profile</div>
+        </div>
+      </div>
+      <div>
+        <div class="tag" style="background:var(--success-light); color:var(--success); margin-bottom:10px;">MANUFACTURER WORKSPACE</div>
+        <div style="border:1px solid var(--gray-200); border-radius:var(--r-md); padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+          <div class="text-sm fw-600">Dashboard</div>
+          <div class="text-sm fw-600">Marketplace RFQs <span class="text-xs text-muted fw-400">→ cards / table → Details</span></div>
+          <div class="text-sm fw-600">Create Quote <span class="text-xs text-muted fw-400">→ item pricing → submit</span></div>
+          <div class="text-sm fw-600">My Quotations <span class="text-xs text-muted fw-400">→ Quote Details</span></div>
+          <div class="text-sm fw-600">Organization / Users / Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-pad">
+    <h3 style="margin-bottom:22px;">Core Business Workflow</h3>
+    <div style="display:flex; align-items:stretch; gap:0; flex-wrap:wrap;">
+      <div style="flex:1; min-width:150px; text-align:center; padding:0 8px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="text-sm fw-600">Client creates RFQ</div><div class="text-xs text-muted">+ products + drawings</div>
+      </div>
+      <div style="align-self:center; color:var(--gray-300); font-size:20px; padding:0 4px;">→</div>
+      <div style="flex:1; min-width:150px; text-align:center; padding:0 8px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18l-1.5 9h-15z"/><path d="M6.5 12L5 21h14l-1.5-9"/></svg></div>
+        <div class="text-sm fw-600">Publish to Marketplace</div><div class="text-xs text-muted">visible to manufacturers</div>
+      </div>
+      <div style="align-self:center; color:var(--gray-300); font-size:20px; padding:0 4px;">→</div>
+      <div style="flex:1; min-width:150px; text-align:center; padding:0 8px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--success-light);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="text-sm fw-600">Manufacturers Quote</div><div class="text-xs text-muted">item-wise pricing</div>
+      </div>
+      <div style="align-self:center; color:var(--gray-300); font-size:20px; padding:0 4px;">→</div>
+      <div style="flex:1; min-width:150px; text-align:center; padding:0 8px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--success-light);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <div class="text-sm fw-600">Client Compares</div><div class="text-xs text-muted">side-by-side quotes</div>
+      </div>
+      <div style="align-self:center; color:var(--gray-300); font-size:20px; padding:0 4px;">→</div>
+      <div style="flex:1; min-width:150px; text-align:center; padding:0 8px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--warning-light);color:var(--warning);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg></div>
+        <div class="text-sm fw-600">Award</div><div class="text-xs text-muted">RFQ status = Awarded</div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DEMO NAV BAR ===================== -->
+<div class="demo-bar" id="demo-bar">
+  <span class="demo-label">PROTOTYPE NAV</span>
+  <select onchange="if(this.value) nav(this.value)">
+    <option value="">Jump to screen…</option>
+    <optgroup label="Auth">
+      <option value="scr-login">Login</option>
+      <option value="scr-forgot">Forgot Password</option>
+    </optgroup>
+    <optgroup label="Client">
+      <option value="scr-c-dashboard">Client Dashboard</option>
+      <option value="scr-c-rfq-list">RFQ Listing</option>
+      <option value="scr-c-rfq-create">Create RFQ Wizard</option>
+      <option value="scr-c-rfq-details">RFQ Details — Published</option>
+      <option value="scr-c-marketplace">Marketplace (Browse)</option>
+      <option value="scr-c-compare">Compare Quotes</option>
+      <option value="scr-c-awards">Awards</option>
+    </optgroup>
+    <optgroup label="RFQ Status Variants">
+      <option value="scr-c-rfq-details-draft">RFQ Details — Draft</option>
+      <option value="scr-c-rfq-details-closed">RFQ Details — Closed</option>
+      <option value="scr-c-rfq-details-awarded">RFQ Details — Awarded</option>
+      <option value="scr-c-rfq-details-cancelled">RFQ Details — Cancelled</option>
+    </optgroup>
+    <optgroup label="Manufacturer">
+      <option value="scr-m-dashboard">Manufacturer Dashboard</option>
+      <option value="scr-m-marketplace">Marketplace RFQs</option>
+      <option value="scr-m-rfq-details">RFQ Details</option>
+      <option value="scr-m-create-quote">Create Quote</option>
+      <option value="scr-m-my-quotes">My Quotations</option>
+    </optgroup>
+    <optgroup label="Detail Views">
+      <option value="scr-quote-details">Quote Details</option>
+      <option value="scr-award-details">Award Details</option>
+    </optgroup>
+    <optgroup label="Empty States">
+      <option value="scr-empty-rfqs">No RFQs Yet (Client)</option>
+      <option value="scr-empty-quotes">No Quotes Yet (Manufacturer)</option>
+      <option value="scr-empty-marketplace-search">No Search Results</option>
+      <option value="scr-empty-example">Generic Empty State</option>
+    </optgroup>
+    <optgroup label="Error States">
+      <option value="scr-error-404">404 Not Found</option>
+      <option value="scr-error-generic">Generic / Server Error</option>
+    </optgroup>
+    <optgroup label="Shared">
+      <option value="scr-org">Organization</option>
+      <option value="scr-users">Users</option>
+      <option value="scr-profile">Profile</option>
+    </optgroup>
+    <optgroup label="Reference">
+      <option value="scr-states-gallery">Component States Gallery</option>
+      <option value="scr-overview">IA & User Flow Overview</option>
+    </optgroup>
+  </select>
+  <button onclick="nav('scr-login')">⏻ Log out</button>
+  <button class="dprimary" onclick="document.getElementById('demo-bar').classList.add('hidden')">Hide</button>
+</div>
+
+<script>
+/* ==========================================================
+   SAMPLE DATA MODEL — mirrors rfq_portal_* schema
+   For reference only; screens above render static sample content.
+   ========================================================== */
+const SAMPLE_DATA = {
+  organizations: [
+    { organization_id:1, organization_type:'Client', company_name:'ABC Automation Pvt Ltd', gst_number:'27AAFCA1234B1Z5', city:'Pune', state:'Maharashtra' },
+    { organization_id:2, organization_type:'Client', company_name:'Mahindra AutoParts', gst_number:'33AACCM5678K1Z2', city:'Chennai', state:'Tamil Nadu' },
+    { organization_id:3, organization_type:'Client', company_name:'Tata Precision Systems', gst_number:'27AAACT2727Q1ZW', city:'Bengaluru', state:'Karnataka' },
+    { organization_id:4, organization_type:'Client', company_name:'Bharat Forge Components', gst_number:'27AAACB4563F1Z9', city:'Pune', state:'Maharashtra' },
+    { organization_id:5, organization_type:'Manufacturer', company_name:'XYZ Precision Ltd', gst_number:'33AAFCX9988P1ZQ', city:'Coimbatore', state:'Tamil Nadu' },
+    { organization_id:6, organization_type:'Manufacturer', company_name:'Suresh CNC Works', gst_number:'24AAKFS3321J1ZH', city:'Rajkot', state:'Gujarat' },
+    { organization_id:7, organization_type:'Manufacturer', company_name:'Precision Tools India', gst_number:'06AABCP1122L1Z4', city:'Faridabad', state:'Haryana' },
+    { organization_id:8, organization_type:'Manufacturer', company_name:'Om Sai Fabricators', gst_number:'27AAGFO7788M1Z1', city:'Pune', state:'Maharashtra' },
+  ],
+  users: [
+    { user_id:1, organization_id:1, first_name:'Rahul', last_name:'Sharma', email:'rahul.sharma@abcautomation.in', designation:'Purchase Manager', role:'Purchase' },
+    { user_id:2, organization_id:1, first_name:'Priya', last_name:'Iyer', email:'priya.iyer@abcautomation.in', designation:'Design Engineer', role:'Engineer' },
+    { user_id:3, organization_id:5, first_name:'Amit', last_name:'Verma', email:'amit.verma@xyzprecision.in', designation:'Sales Executive', role:'Sales' },
+    { user_id:4, organization_id:5, first_name:'Neha', last_name:'Kulkarni', email:'neha.kulkarni@xyzprecision.in', designation:'Quotation Manager', role:'Sales' },
+  ],
+  rfqs: [
+    { rfq_id:142, rfq_number:'RFQ-2026-0142', client_organization_id:1, title:'CNC Machined Motor Housing Brackets', industry:'Automotive', category:'CNC Machining', material:'Aluminum 6061', response_deadline:'2026-08-28', rfq_status:'Published' },
+    { rfq_id:141, rfq_number:'RFQ-2026-0141', client_organization_id:1, title:'Sheet Metal Enclosures for Control Panels', industry:'Industrial Machinery', category:'Sheet Metal', material:'Mild Steel', response_deadline:'2026-08-25', rfq_status:'Published' },
+    { rfq_id:140, rfq_number:'RFQ-2026-0140', client_organization_id:1, title:'Precision Turned Shafts – Landing Gear Assembly', industry:'Aerospace', category:'CNC Machining', material:'SS304', response_deadline:'2026-09-05', rfq_status:'Draft' },
+    { rfq_id:139, rfq_number:'RFQ-2026-0139', client_organization_id:4, title:'Injection Molded Housing – Infusion Pump', industry:'Medical Devices', category:'Injection Molding', material:'Polycarbonate', response_deadline:'2026-08-10', rfq_status:'Awarded' },
+  ],
+  rfq_items_142: [
+    { rfq_item_id:1, product_name:'Motor Mount Bracket', product_code:'MB-2201', material:'Aluminum 6061', quantity:500, unit:'Pcs', required_date:'2026-09-15' },
+    { rfq_item_id:2, product_name:'Housing Cover Plate', product_code:'HC-2202', material:'Aluminum 6061', quantity:500, unit:'Pcs', required_date:'2026-09-15' },
+    { rfq_item_id:3, product_name:'Support Bracket L-Type', product_code:'SB-2203', material:'Aluminum 6061', quantity:1000, unit:'Pcs', required_date:'2026-09-20' },
+  ],
+  quotes_for_142: [
+    { quote_number:'QT-2026-3402', manufacturer:'XYZ Precision Ltd', total_amount:842500, delivery_date:'2026-09-10', lead_time_days:18, payment_terms:'30% Advance / 70% on Delivery' },
+    { quote_number:'QT-2026-3381', manufacturer:'Suresh CNC Works', total_amount:795000, delivery_date:'2026-09-08', lead_time_days:15, payment_terms:'50% Advance' },
+    { quote_number:'QT-2026-3390', manufacturer:'Precision Tools India', total_amount:910200, delivery_date:'2026-09-14', lead_time_days:20, payment_terms:'100% Advance' },
+    { quote_number:'QT-2026-3395', manufacturer:'Om Sai Fabricators', total_amount:860000, delivery_date:'2026-09-12', lead_time_days:17, payment_terms:'40% Advance / 60% on Delivery' },
+  ]
+};
+</script>
+<script>
+/* ==========================================================
+   APP / ROUTER LOGIC
+   ========================================================== */
+let currentRole = 'client';
+
+const CRUMBS = {
+  'scr-c-dashboard':'Dashboard', 'scr-c-rfq-list':'RFQs', 'scr-c-rfq-create':'RFQs / Create RFQ',
+  'scr-c-rfq-details':'RFQs / RFQ-2026-0142', 'scr-c-marketplace':'Marketplace', 'scr-c-compare':'RFQs / Compare Quotes',
+  'scr-c-awards':'Awards', 'scr-m-dashboard':'Dashboard', 'scr-m-marketplace':'Marketplace RFQs',
+  'scr-m-rfq-details':'Marketplace RFQs / RFQ-2026-0142', 'scr-m-create-quote':'Marketplace RFQs / Create Quote',
+  'scr-m-my-quotes':'My Quotations', 'scr-org':'Organization', 'scr-users':'Users', 'scr-profile':'Profile',
+  'scr-empty-example':'RFQs',
+  'scr-c-rfq-details-draft':'RFQs / RFQ-2026-0140', 'scr-c-rfq-details-closed':'RFQs / RFQ-2026-0138',
+  'scr-c-rfq-details-awarded':'RFQs / RFQ-2026-0139', 'scr-c-rfq-details-cancelled':'RFQs / RFQ-2026-0137',
+  'scr-quote-details':'Compare Quotes / QT-2026-3381', 'scr-award-details':'Awards / RFQ-2026-0139',
+  'scr-empty-rfqs':'RFQs', 'scr-empty-quotes':'My Quotations', 'scr-empty-marketplace-search':'Marketplace RFQs',
+  'scr-error-404':'Error', 'scr-error-generic':'Error', 'scr-states-gallery':'Component States',
+  'scr-overview':'Overview'
+};
+
+function nav(screenId){
+  // auth screens are outside the app shell
+  if(screenId === 'scr-login' || screenId === 'scr-forgot'){
+    document.getElementById('app-shell').classList.add('hidden');
+    document.getElementById('scr-login').classList.add('hidden');
+    document.getElementById('scr-forgot').classList.add('hidden');
+    document.getElementById(screenId).classList.remove('hidden');
+    window.scrollTo(0,0);
+    return;
+  }
+  document.getElementById('scr-login').classList.add('hidden');
+  document.getElementById('scr-forgot').classList.add('hidden');
+  document.getElementById('app-shell').classList.remove('hidden');
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+  const target = document.getElementById(screenId);
+  if(target) target.classList.remove('hidden');
+
+  // auto role-detect from screen prefix so sidebar / nav matches
+  const MFG_CONTEXT = ['scr-empty-quotes','scr-empty-marketplace-search'];
+  const CLIENT_CONTEXT = ['scr-c-awards','scr-award-details','scr-empty-rfqs'];
+  if(screenId.startsWith('scr-m-') || MFG_CONTEXT.includes(screenId)) setRole('mfg', false);
+  else if(screenId.startsWith('scr-c-') || CLIENT_CONTEXT.includes(screenId)) setRole('client', false);
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.nav === screenId));
+  const crumb = document.getElementById('topbar-crumb');
+  if(crumb) crumb.textContent = CRUMBS[screenId] || '';
+
+  closeNotif();
+  window.scrollTo(0,0);
+}
+
+function setRole(role, doNav){
+  currentRole = role;
+  const isClient = role === 'client';
+  document.getElementById('nav-client').classList.toggle('hidden', !isClient);
+  document.getElementById('nav-mfg').classList.toggle('hidden', isClient);
+  document.getElementById('org-pill-client').classList.toggle('hidden', !isClient);
+  document.getElementById('org-pill-mfg').classList.toggle('hidden', isClient);
+  document.getElementById('sidebar-user-client').classList.toggle('hidden', !isClient);
+  document.getElementById('sidebar-user-mfg').classList.toggle('hidden', isClient);
+  document.getElementById('sidebar-role-label').textContent = isClient ? 'Client Workspace' : 'Manufacturer Workspace';
+  document.getElementById('rs-client').classList.toggle('active', isClient);
+  document.getElementById('rs-mfg').classList.toggle('active', !isClient);
+  document.getElementById('topbar-avatar').textContent = isClient ? 'RS' : 'AV';
+  document.getElementById('profile-avatar').textContent = isClient ? 'RS' : 'AV';
+  document.getElementById('profile-name').textContent = isClient ? 'Rahul Sharma' : 'Amit Verma';
+  document.getElementById('profile-role').textContent = isClient ? 'Purchase Manager · ABC Automation Pvt Ltd' : 'Sales Executive · XYZ Precision Ltd';
+  document.getElementById('org-name-display').textContent = isClient ? 'ABC Automation Pvt Ltd' : 'XYZ Precision Ltd';
+  document.getElementById('org-logo-avatar').textContent = isClient ? 'ABC' : 'XYZ';
+  if(doNav !== false){
+    nav(isClient ? 'scr-c-dashboard' : 'scr-m-dashboard');
+  }
+}
+
+function doLogin(role){
+  nav(role === 'client' ? 'scr-c-dashboard' : 'scr-m-dashboard');
+}
+
+function showResetSent(){
+  document.getElementById('reset-sent').classList.remove('hidden');
+}
+
+/* ---------- Notifications ---------- */
+function toggleNotif(){
+  document.getElementById('notif-panel').classList.toggle('hidden');
+}
+function closeNotif(){
+  const p = document.getElementById('notif-panel');
+  if(p) p.classList.add('hidden');
+}
+
+/* ---------- Modals ---------- */
+function openModal(id){ document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id){ document.getElementById(id).classList.add('hidden'); }
+
+/* ---------- Create RFQ Wizard ---------- */
+function wizardGo(step){
+  for(let i=1;i<=4;i++){
+    document.getElementById('wpanel-'+i).classList.toggle('hidden', i !== step);
+    const s = document.getElementById('wstep-'+i);
+    s.classList.remove('active','done');
+    if(i < step) s.classList.add('done');
+    if(i === step) s.classList.add('active');
+  }
+  window.scrollTo(0,0);
+}
+
+let productRowCount = 3;
+function addProductRow(){
+  productRowCount++;
+  const tbody = document.getElementById('wizard-product-rows');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="text-muted">${productRowCount}</td>
+    <td><input placeholder="Product name"></td><td><input placeholder="Code"></td><td><input placeholder="Material"></td><td><input placeholder="Qty"></td>
+    <td><select><option>Pcs</option><option>Kg</option><option>Set</option><option>Meter</option></select></td>
+    <td><input type="date"></td><td><input placeholder="Specification"></td>
+    <td><button class="icon-del" onclick="delProductRow(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button></td>`;
+  tbody.appendChild(tr);
+}
+function delProductRow(btn){
+  const tbody = document.getElementById('wizard-product-rows');
+  if(tbody.children.length <= 1) return;
+  btn.closest('tr').remove();
+}
+
+/* ---------- Attachments dropzone ---------- */
+const FILE_COLORS = {pdf:'#DC2626', dwg:'#2563EB', dxf:'#2563EB', step:'#059669', stp:'#059669', jpg:'#D97706', jpeg:'#D97706', png:'#D97706'};
+function addFileToList(name, sizeLabel){
+  const ext = (name.split('.').pop() || 'file').toLowerCase().slice(0,3).toUpperCase();
+  const color = FILE_COLORS[name.split('.').pop().toLowerCase()] || '#6B7280';
+  const wrap = document.getElementById('file-list');
+  const div = document.createElement('div');
+  div.className = 'file-item';
+  div.innerHTML = `<div class="file-ico" style="background:${color};">${ext}</div>
+    <div class="file-meta"><div class="file-name">${name}</div><div class="file-size">${sizeLabel}</div></div>
+    <button class="icon-btn" onclick="this.closest('.file-item').remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
+  wrap.appendChild(div);
+}
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('dropzone').classList.remove('drag');
+  const files = e.dataTransfer.files;
+  if(files && files.length){
+    Array.from(files).forEach(f => addFileToList(f.name, (f.size/1024/1024).toFixed(1)+' MB'));
+  } else {
+    addFileToList('Dropped_Drawing_File.dwg', '3.2 MB');
+  }
+}
+function handleFileInput(e){
+  Array.from(e.target.files).forEach(f => addFileToList(f.name, (f.size/1024/1024).toFixed(1)+' MB'));
+  e.target.value = '';
+}
+
+/* ---------- Toast notifications ---------- */
+const TOAST_ICONS = {
+  success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>',
+  error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+  warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>'
+};
+function toast(type, message){
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = 'toast toast-' + type;
+  el.innerHTML = TOAST_ICONS[type] + `<div class="t-msg">${message}</div><button class="t-close" onclick="this.closest('.toast').remove()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
+  container.appendChild(el);
+  setTimeout(() => { if(el.parentNode) el.remove(); }, 4200);
+}
+
+function publishToast(mode){
+  toast('success', mode === 'draft' ? 'RFQ saved as draft.' : 'RFQ published to the marketplace! Manufacturers can now view and quote.');
+  nav('scr-c-rfq-details');
+}
+
+/* ---------- Compare Quotes / Award ---------- */
+function openAward(name, amount, delivery){
+  document.getElementById('award-mfg-name').value = name;
+  document.getElementById('award-amount').value = amount;
+  openModal('modal-award');
+}
+function confirmAward(){
+  closeModal('modal-award');
+  document.getElementById('award-success-banner').classList.remove('hidden');
+  document.querySelectorAll('#compare-table tbody tr:last-child td:not(:first-child) button').forEach(b => { b.disabled = true; b.textContent = 'Awarded'; });
+  toast('success', 'RFQ-2026-0142 awarded to Suresh CNC Works. All bidders have been notified.');
+  window.scrollTo(0,0);
+}
+
+/* ---------- Create Quote live calc ---------- */
+const QUOTE_QTY = [500, 500, 1000];
+function calcQuoteTotal(){
+  const priceInputs = document.querySelectorAll('.qi-price');
+  const totalCells = document.querySelectorAll('.qi-total');
+  let grand = 0;
+  priceInputs.forEach((inp,i) => {
+    const price = parseFloat(inp.value) || 0;
+    const total = price * QUOTE_QTY[i];
+    grand += total;
+    totalCells[i].textContent = '₹' + total.toLocaleString('en-IN');
+  });
+  document.getElementById('grand-total').textContent = '₹' + grand.toLocaleString('en-IN');
+}
+function quoteToast(mode){
+  toast('success', mode === 'draft' ? 'Quote saved as draft.' : 'Quote submitted successfully! The client will be notified.');
+  nav('scr-m-my-quotes');
+}
+
+/* ---------- Marketplace view toggle (manufacturer) ---------- */
+function setMktView(view){
+  document.getElementById('mkt-cards').classList.toggle('hidden', view !== 'card');
+  document.getElementById('mkt-table').classList.toggle('hidden', view !== 'table');
+  document.getElementById('mview-card').classList.toggle('active', view === 'card');
+  document.getElementById('mview-table').classList.toggle('active', view === 'table');
+}
+
+// close notif panel when clicking outside
+document.addEventListener('click', function(e){
+  const panel = document.getElementById('notif-panel');
+  if(!panel || panel.classList.contains('hidden')) return;
+  if(!panel.contains(e.target) && !e.target.closest('.icon-btn')) closeNotif();
+});
+</script>
+</body>
+</html>
