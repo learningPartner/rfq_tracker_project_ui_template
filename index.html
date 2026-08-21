@@ -181,6 +181,19 @@ table.dtable{width:100%; border-collapse:collapse; font-size:13px;}
 /* ---------- Filters ---------- */
 .filter-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
 .search-input{display:flex; align-items:center; gap:8px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--r-md); padding:8px 12px; min-width:240px; color:var(--gray-400);}
+
+/* ---------- Form toggle (segmented control) ---------- */
+.form-toggle{display:flex; gap:4px; background:var(--gray-100); border-radius:var(--r-md); padding:4px;}
+.form-toggle button{flex:1; display:flex; align-items:center; justify-content:center; gap:7px; border:none; background:transparent; padding:10px 14px; border-radius:calc(var(--r-md) - 2px); font-size:13.5px; font-weight:600; color:var(--gray-500); cursor:pointer; transition:background .15s,color .15s;}
+.form-toggle button svg{width:15px; height:15px;}
+.form-toggle button.active{background:#fff; color:var(--primary); box-shadow:var(--shadow-sm);}
+.form-toggle button:not(.active):hover{color:var(--gray-700);}
+
+/* ---------- Input with inline action (e.g. show/hide password) ---------- */
+.input-with-action{position:relative;}
+.input-with-action .form-control{padding-right:60px;}
+.input-action-btn{position:absolute; top:50%; right:6px; transform:translateY(-50%); border:none; background:none; color:var(--primary); font-size:12.5px; font-weight:700; padding:6px 9px; cursor:pointer; border-radius:var(--r-sm); letter-spacing:.2px;}
+.input-action-btn:hover{background:var(--primary-light);}
 .search-input input{border:none; background:transparent; outline:none; font-size:13px; width:100%; color:var(--gray-800);}
 .select-filter{display:flex; align-items:center; gap:6px; padding:8px 12px; border:1px solid var(--gray-200); border-radius:var(--r-md); background:#fff; font-size:13px; color:var(--gray-600); font-weight:500;}
 .select-filter:hover{border-color:var(--gray-300);}
@@ -288,6 +301,7 @@ table.compare{width:100%; border-collapse:collapse; background:#fff;}
 .auth-side::after{content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(96,165,250,.25), transparent 70%); top:-120px; right:-160px;}
 .auth-form-col{display:flex; align-items:center; justify-content:center; padding:40px; background:#fff;}
 .auth-box{width:100%; max-width:380px;}
+.auth-box-wide{max-width:460px;}
 .auth-stat{display:flex; gap:28px; margin-top:32px; position:relative; z-index:1;}
 .auth-stat .n{font-size:22px; font-weight:800;}
 .auth-stat .l{font-size:11.5px; color:#AEC0F5;}
@@ -359,22 +373,36 @@ table.compare{width:100%; border-collapse:collapse; background:#fff;}
       <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Sign in to your organization workspace</p>
       <div style="margin-top:28px; display:flex; flex-direction:column; gap:16px;">
         <div class="form-group">
+          <label class="form-label">Organization Type</label>
+          <div class="form-toggle" id="login-org-toggle">
+            <button type="button" class="active" onclick="setLoginOrgType('client', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>Client
+            </button>
+            <button type="button" onclick="setLoginOrgType('mfg', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l5 3V10l5 3V8l5 3v9M4 10l4-4 4 4M4 20v-4h16v4"/></svg>Manufacturer
+            </button>
+          </div>
+          <span class="text-xs text-subtle" style="margin-top:6px; display:block;">Determines which workspace this login opens.</span>
+        </div>
+        <div class="form-group">
           <label class="form-label">Work email</label>
-          <input type="text" class="form-control" value="rahul.sharma@abcautomation.in">
+          <input type="text" class="form-control" id="login-email" value="rahul.sharma@abcautomation.in">
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input type="password" class="form-control" value="••••••••••">
+          <div class="input-with-action">
+            <input type="password" class="form-control" id="login-password" value="Passw0rd@2026">
+            <button type="button" class="input-action-btn" id="login-pw-toggle" onclick="togglePasswordVisibility()">Show</button>
+          </div>
         </div>
         <div class="flex items-center justify-between">
           <label class="flex items-center gap-2 text-sm text-muted"><input type="checkbox" checked> Remember me</label>
           <a class="text-sm" style="color:var(--primary); font-weight:600;" onclick="nav('scr-forgot')">Forgot password?</a>
         </div>
-        <button class="btn btn-primary btn-block btn-lg" onclick="doLogin('client')">Sign in as Client</button>
-        <button class="btn btn-secondary btn-block" onclick="doLogin('mfg')">Sign in as Manufacturer (demo)</button>
+        <button class="btn btn-primary btn-block btn-lg" onclick="doLogin(loginOrgType)">Sign In</button>
       </div>
       <div class="divider"></div>
-      <p class="text-sm text-muted" style="text-align:center;">Don't have an organization account? <a style="color:var(--primary); font-weight:600;">Request access</a></p>
+      <p class="text-sm text-muted" style="text-align:center;">Don't have an organization account? <a style="color:var(--primary); font-weight:600;" onclick="nav('scr-register')">Request access</a></p>
     </div>
   </div>
 </div>
@@ -408,6 +436,131 @@ table.compare{width:100%; border-collapse:collapse; background:#fff;}
       <div id="reset-sent" class="banner-success hidden" style="margin-top:20px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
         <div><b>Reset link sent.</b><br>Check rahul.sharma@abcautomation.in for further instructions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REGISTER / REQUEST ACCESS ============ -->
+<div id="scr-register" class="screen auth-screen hidden">
+  <div class="auth-side">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3B82F6,#93C5FD);display:flex;align-items:center;justify-content:center;font-weight:800;">RM</div>
+        <div style="font-size:17px; font-weight:700;">RFQ Marketplace</div>
+      </div>
+      <h1 style="color:#fff; font-size:34px; margin-top:56px; max-width:460px; line-height:1.25;">Bring your organization onto the marketplace.</h1>
+      <p class="auth-quote" style="margin-top:18px;">Register once as a Client or Manufacturer organization — every teammate you invite afterward shares the same verified workspace.</p>
+      <div class="auth-stat">
+        <div><div class="n">4,200+</div><div class="l">Verified Manufacturers</div></div>
+        <div><div class="n">18,500+</div><div class="l">RFQs Published</div></div>
+        <div><div class="n">₹840 Cr+</div><div class="l">Quotes Exchanged</div></div>
+      </div>
+    </div>
+    <p style="color:#8393C2; font-size:12px; position:relative; z-index:1;">© 2026 RFQ Marketplace. Enterprise Procurement Platform.</p>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box auth-box-wide" id="register-form-box">
+      <div id="register-header">
+      <a class="text-sm flex items-center gap-2" style="color:var(--gray-500); font-weight:600; margin-bottom:18px;" onclick="nav('scr-login')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M5 12h14"/></svg> Back to sign in
+      </a>
+      <h2 class="text-2xl">Create your organization account</h2>
+      <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Register your company to publish RFQs or start quoting.</p>
+      </div>
+      <div id="register-fields" style="margin-top:24px; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Organization Type <span class="req">*</span></label>
+          <div class="form-toggle" id="register-org-toggle">
+            <button type="button" class="active" onclick="setRegisterOrgType('Client', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>Client
+            </button>
+            <button type="button" onclick="setRegisterOrgType('Manufacturer', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l5 3V10l5 3V8l5 3v9M4 10l4-4 4 4M4 20v-4h16v4"/></svg>Manufacturer
+            </button>
+          </div>
+          <span class="text-xs text-subtle" style="margin-top:6px; display:block;" id="register-org-hint">Client organizations publish RFQs and award quotes.</span>
+        </div>
+
+        <div class="form-grid" style="gap:16px;">
+          <div class="form-group full">
+            <label class="form-label">Company Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="register-company-name" placeholder="e.g. ABC Automation Pvt Ltd">
+          </div>
+          <div class="form-group">
+            <label class="form-label">GST Number <span class="opt">(optional)</span></label>
+            <input type="text" class="form-control" placeholder="27AAAAA0000A1Z5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company Website <span class="opt">(optional)</span></label>
+            <input type="text" class="form-control" placeholder="www.company.in">
+          </div>
+          <div class="form-group">
+            <label class="form-label">City <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="e.g. Pune">
+          </div>
+          <div class="form-group">
+            <label class="form-label">State <span class="req">*</span></label>
+            <select class="form-control">
+              <option value="">Select state</option>
+              <option>Maharashtra</option><option>Karnataka</option><option>Gujarat</option><option>Tamil Nadu</option><option>Haryana</option><option>Telangana</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="divider" style="margin:4px 0;"></div>
+        <div class="text-xs text-muted fw-600" style="letter-spacing:.3px;">YOUR ACCOUNT (ADMIN USER)</div>
+
+        <div class="form-grid" style="gap:16px;">
+          <div class="form-group">
+            <label class="form-label">First Name <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="Rahul">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="Sharma">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Designation <span class="opt">(optional)</span></label>
+            <input type="text" class="form-control" placeholder="e.g. Purchase Manager">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="+91 98xxxxxxx0">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Work Email <span class="req">*</span></label>
+            <input type="text" class="form-control" id="register-email" placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password <span class="req">*</span></label>
+            <div class="input-with-action">
+              <input type="password" class="form-control" id="register-password" placeholder="Min. 8 characters">
+              <button type="button" class="input-action-btn" id="register-pw-toggle" onclick="togglePasswordVisibility('register-password','register-pw-toggle')">Show</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span class="req">*</span></label>
+            <div class="input-with-action">
+              <input type="password" class="form-control" id="register-password-confirm" placeholder="Re-enter password">
+              <button type="button" class="input-action-btn" id="register-pw-confirm-toggle" onclick="togglePasswordVisibility('register-password-confirm','register-pw-confirm-toggle')">Show</button>
+            </div>
+          </div>
+        </div>
+
+        <label class="flex items-center gap-2 text-sm text-muted" style="align-items:flex-start;"><input type="checkbox" style="margin-top:3px;"> I agree to the <a style="color:var(--primary); font-weight:600;">Terms of Service</a> and <a style="color:var(--primary); font-weight:600;">Privacy Policy</a></label>
+
+        <button class="btn btn-primary btn-block btn-lg" onclick="submitRegistration()">Create Account</button>
+      </div>
+      <div id="register-success" class="hidden" style="text-align:center; padding:12px 4px 4px;">
+        <div class="es-icon" style="background:var(--success-light); color:var(--success); margin:0 auto 16px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg></div>
+        <h2 class="text-2xl">Registration submitted</h2>
+        <p class="text-muted" style="margin-top:8px; font-size:13.5px; line-height:1.6;">We're verifying <b id="register-success-company">your company</b>'s details. You'll get an email at <b id="register-success-email">your work email</b> once your workspace is approved — usually within 1 business day.</p>
+        <button class="btn btn-secondary btn-block" style="margin-top:22px;" onclick="nav('scr-login')">Back to Sign In</button>
+      </div>
+      <div id="register-footer">
+        <div class="divider"></div>
+        <p class="text-sm text-muted" style="text-align:center;">Already have an account? <a style="color:var(--primary); font-weight:600;" onclick="nav('scr-login')">Sign in</a></p>
       </div>
     </div>
   </div>
@@ -1844,6 +1997,7 @@ table.compare{width:100%; border-collapse:collapse; background:#fff;}
     <optgroup label="Auth">
       <option value="scr-login">Login</option>
       <option value="scr-forgot">Forgot Password</option>
+      <option value="scr-register">Register / Request Access</option>
     </optgroup>
     <optgroup label="Client">
       <option value="scr-c-dashboard">Client Dashboard</option>
@@ -1957,18 +2111,17 @@ const CRUMBS = {
   'scr-overview':'Overview'
 };
 
+const AUTH_SCREENS = ['scr-login', 'scr-forgot', 'scr-register'];
 function nav(screenId){
   // auth screens are outside the app shell
-  if(screenId === 'scr-login' || screenId === 'scr-forgot'){
+  if(AUTH_SCREENS.includes(screenId)){
     document.getElementById('app-shell').classList.add('hidden');
-    document.getElementById('scr-login').classList.add('hidden');
-    document.getElementById('scr-forgot').classList.add('hidden');
+    AUTH_SCREENS.forEach(id => document.getElementById(id).classList.add('hidden'));
     document.getElementById(screenId).classList.remove('hidden');
     window.scrollTo(0,0);
     return;
   }
-  document.getElementById('scr-login').classList.add('hidden');
-  document.getElementById('scr-forgot').classList.add('hidden');
+  AUTH_SCREENS.forEach(id => document.getElementById(id).classList.add('hidden'));
   document.getElementById('app-shell').classList.remove('hidden');
 
   document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
@@ -2012,8 +2165,45 @@ function setRole(role, doNav){
   }
 }
 
+let loginOrgType = 'client';
+function setLoginOrgType(type, btn){
+  loginOrgType = type;
+  document.querySelectorAll('#login-org-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function togglePasswordVisibility(inputId, btnId){
+  const input = document.getElementById(inputId || 'login-password');
+  const btn = document.getElementById(btnId || 'login-pw-toggle');
+  const showing = input.type === 'text';
+  input.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? 'Show' : 'Hide';
+}
+
 function doLogin(role){
   nav(role === 'client' ? 'scr-c-dashboard' : 'scr-m-dashboard');
+}
+
+/* ---------- Register ---------- */
+let registerOrgType = 'Client';
+function setRegisterOrgType(type, btn){
+  registerOrgType = type;
+  document.querySelectorAll('#register-org-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('register-org-hint').textContent = type === 'Client'
+    ? 'Client organizations publish RFQs and award quotes.'
+    : 'Manufacturer organizations browse RFQs and submit quotes.';
+}
+
+function submitRegistration(){
+  const companyName = document.getElementById('register-company-name').value.trim() || 'your company';
+  const workEmail = document.getElementById('register-email').value.trim() || 'your work email';
+  document.getElementById('register-success-company').textContent = companyName;
+  document.getElementById('register-success-email').textContent = workEmail;
+  document.getElementById('register-header').classList.add('hidden');
+  document.getElementById('register-fields').classList.add('hidden');
+  document.getElementById('register-footer').classList.add('hidden');
+  document.getElementById('register-success').classList.remove('hidden');
 }
 
 function showResetSent(){
