@@ -1,0 +1,58 @@
+<div class="auth-screen">
+  <div class="auth-side">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3B82F6,#93C5FD);display:flex;align-items:center;justify-content:center;font-weight:800;">RM</div>
+        <div style="font-size:17px; font-weight:700; color: #fff;">RFQ Marketplace</div>
+      </div>
+      <h1 style="color:#fff; font-size:34px; margin-top:56px; max-width:460px; line-height:1.25;">The B2B sourcing engine for India's manufacturing supply chain.</h1>
+      <p class="auth-quote" style="margin-top:18px;">Publish RFQs, receive competitive quotes from verified manufacturers, and award with confidence — all in one procurement workspace.</p>
+      <div class="auth-stat">
+        <div><div class="n">4,200+</div><div class="l">Verified Manufacturers</div></div>
+        <div><div class="n">18,500+</div><div class="l">RFQs Published</div></div>
+        <div><div class="n">₹840 Cr+</div><div class="l">Quotes Exchanged</div></div>
+      </div>
+    </div>
+    <p style="color:#8393C2; font-size:12px; position:relative; z-index:1;">© 2026 RFQ Marketplace. Enterprise Procurement Platform.</p>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box">
+      <h2 class="text-2xl">Welcome back</h2>
+      <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Sign in to your organization workspace</p>
+      <div style="margin-top:28px; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Organization Type</label>
+          <div class="form-toggle">
+            <button type="button" [class.active]="loginOrgType === 'client'" (click)="loginOrgType = 'client'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>Client
+            </button>
+            <button type="button" [class.active]="loginOrgType === 'mfg'" (click)="loginOrgType = 'mfg'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l5 3V10l5 3V8l5 3v9M4 10l4-4 4 4M4 20v-4h16v4"/></svg>Manufacturer
+            </button>
+          </div>
+          <span class="text-xs text-subtle" style="margin-top:6px; display:block;">Determines which workspace this login opens.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input type="text" class="form-control" [value]="loginOrgType === 'client' ? 'rahul.sharma@abcautomation.in' : 'amit.verma@xyzprecision.in'">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-with-action">
+            <input [type]="showPassword ? 'text' : 'password'" class="form-control" value="Passw0rd@2026">
+            <button type="button" class="input-action-btn" (click)="showPassword = !showPassword">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2 text-sm text-muted"><input type="checkbox" checked> Remember me</label>
+          <a class="text-sm" style="color:var(--primary); font-weight:600; cursor: pointer;" routerLink="/forgot-password">Forgot password?</a>
+        </div>
+        <button class="btn btn-primary btn-block btn-lg" [routerLink]="loginOrgType === 'client' ? '/client/dashboard' : '/manufacturer/dashboard'">Sign In</button>
+      </div>
+      <div class="divider"></div>
+      <p class="text-sm text-muted" style="text-align:center;">Don't have an organization account? <a style="color:var(--primary); font-weight:600; cursor: pointer;" routerLink="/register">Request access</a></p>
+    </div>
+  </div>
+</div>

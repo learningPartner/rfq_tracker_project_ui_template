@@ -1,0 +1,170 @@
+<div class="page-header">
+  <div>
+    <h2 class="text-2xl">Good morning, Rahul 👋</h2>
+    <p class="desc">Here's what's happening with your RFQs today, Aug 20, 2026.</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-secondary" routerLink="/client/marketplace">Browse Marketplace</button>
+    <button class="btn btn-primary" routerLink="/client/rfqs/create">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>Create RFQ
+    </button>
+  </div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--primary-light); color:var(--primary);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      </div>
+      <span class="tag">All time</span>
+    </div>
+    <div class="kpi-val">48</div>
+    <div class="kpi-label">Total RFQs</div>
+    <div class="kpi-delta text-success">▲ 12% vs last month</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--success-light); color:var(--success);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+      </div>
+      <span class="tag">Live</span>
+    </div>
+    <div class="kpi-val">19</div>
+    <div class="kpi-label">Published RFQs</div>
+    <div class="kpi-delta text-success">▲ 3 this week</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--gray-100); color:var(--gray-500);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      </div>
+      <span class="tag">Pending</span>
+    </div>
+    <div class="kpi-val">7</div>
+    <div class="kpi-label">Draft RFQs</div>
+    <div class="kpi-delta text-muted">Unpublished</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--warning-light); color:var(--warning);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+      </div>
+      <span class="tag">Closed</span>
+    </div>
+    <div class="kpi-val">22</div>
+    <div class="kpi-label">Awarded RFQs</div>
+    <div class="kpi-delta text-success">₹4.2 Cr awarded value</div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1.6fr 1fr; gap:20px; align-items:start;">
+  <div class="card">
+    <div class="card-header">
+      <h3>Recent RFQs</h3>
+      <a class="btn-link text-sm" style="cursor: pointer;" routerLink="/client/rfqs">View all →</a>
+    </div>
+    <div class="table-wrap">
+      <table class="dtable">
+        <thead>
+          <tr>
+            <th>RFQ</th>
+            <th>Industry / Category</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Quotes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr routerLink="/client/rfqs/142" style="cursor:pointer;">
+            <td>
+              <div class="cell-strong">RFQ-2026-0142</div>
+              <div class="cell-sub">CNC Machined Motor Housing Brackets</div>
+            </td>
+            <td>Automotive · CNC Machining</td>
+            <td>28 Aug 2026</td>
+            <td><span class="chip chip-published">Published</span></td>
+            <td>5</td>
+          </tr>
+          <tr routerLink="/client/rfqs/141" style="cursor:pointer;">
+            <td>
+              <div class="cell-strong">RFQ-2026-0141</div>
+              <div class="cell-sub">Sheet Metal Enclosures for Control Panels</div>
+            </td>
+            <td>Industrial Machinery · Sheet Metal</td>
+            <td>25 Aug 2026</td>
+            <td><span class="chip chip-published">Published</span></td>
+            <td>3</td>
+          </tr>
+          <tr routerLink="/client/rfqs/140" style="cursor:pointer;">
+            <td>
+              <div class="cell-strong">RFQ-2026-0140</div>
+              <div class="cell-sub">Precision Turned Shafts – Landing Gear</div>
+            </td>
+            <td>Aerospace · CNC Machining</td>
+            <td>05 Sep 2026</td>
+            <td><span class="chip chip-draft">Draft</span></td>
+            <td>0</td>
+          </tr>
+          <tr routerLink="/client/rfqs/139" style="cursor:pointer;">
+            <td>
+              <div class="cell-strong">RFQ-2026-0139</div>
+              <div class="cell-sub">Injection Molded Housing – Infusion Pump</div>
+            </td>
+            <td>Medical Devices · Injection Molding</td>
+            <td>10 Aug 2026</td>
+            <td><span class="chip chip-awarded">Awarded</span></td>
+            <td>4</td>
+          </tr>
+          <tr routerLink="/client/rfqs/138" style="cursor:pointer;">
+            <td>
+              <div class="cell-strong">RFQ-2026-0138</div>
+              <div class="cell-sub">Structural Steel Fabrication – Conveyor Frame</div>
+            </td>
+            <td>Industrial Machinery · Fabrication</td>
+            <td>02 Aug 2026</td>
+            <td><span class="chip chip-closed">Closed</span></td>
+            <td>6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:20px;">
+    <div class="card card-pad">
+      <h3 style="margin-bottom:14px;">RFQ Status Breakdown</h3>
+      <svg viewBox="0 0 42 42" width="140" height="140" style="display:block; margin:0 auto;">
+        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#E5E7EB" stroke-width="6"></circle>
+        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#2563EB" stroke-width="6" stroke-dasharray="40 60" stroke-dashoffset="25" transform="rotate(-90 21 21)"></circle>
+        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#059669" stroke-width="6" stroke-dasharray="46 54" stroke-dashoffset="-15" transform="rotate(-90 21 21)"></circle>
+        <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#D97706" stroke-width="6" stroke-dasharray="14 86" stroke-dashoffset="-61" transform="rotate(-90 21 21)"></circle>
+        <text x="21" y="19" text-anchor="middle" font-size="6" font-weight="800" fill="#111827">48</text>
+        <text x="21" y="25" text-anchor="middle" font-size="3" fill="#9CA3AF">Total</text>
+      </svg>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px; font-size:12.5px;">
+        <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#2563EB;display:inline-block;"></span>Published</span><b>19</b></div>
+        <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#059669;display:inline-block;"></span>Awarded</span><b>22</b></div>
+        <div class="flex items-center justify-between"><span class="flex items-center gap-2"><span style="width:8px;height:8px;border-radius:50%;background:#D97706;display:inline-block;"></span>Closed</span><b>7</b></div>
+      </div>
+    </div>
+
+    <div class="card card-pad">
+      <h3 style="margin-bottom:14px;">Upcoming Deadlines</h3>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="flex items-center justify-between">
+          <div><div class="text-sm fw-600">RFQ-2026-0141</div><div class="text-xs text-muted">Sheet Metal Enclosures</div></div>
+          <span class="tag" style="background:var(--danger-light); color:var(--danger);">2 days</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div><div class="text-sm fw-600">RFQ-2026-0142</div><div class="text-xs text-muted">Motor Housing Brackets</div></div>
+          <span class="tag" style="background:var(--warning-light); color:var(--warning);">5 days</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div><div class="text-sm fw-600">RFQ-2026-0136</div><div class="text-xs text-muted">Aerospace Bracket Fabrication</div></div>
+          <span class="tag">9 days</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-page-not-found',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './page-not-found.html',
-  styleUrl: './page-not-found.css',
+  templateUrl: './login.html',
+  styleUrl: './login.css'
 })
-export class PageNotFound {}
+export class LoginComponent {
+  public loginOrgType: 'client' | 'mfg' = 'client';
+  public showPassword = false;
+}

@@ -1,0 +1,173 @@
+<div class="page-header">
+  <div>
+    <h2 class="text-2xl">RFQs</h2>
+    <p class="desc">All requests for quotation raised by ABC Automation Pvt Ltd.</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-secondary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Export
+    </button>
+    <button class="btn btn-primary" routerLink="/client/rfqs/create">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>Create RFQ
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="table-toolbar">
+    <div class="filter-bar">
+      <div class="search-input">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input placeholder="Search RFQ number, title…">
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Status: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Industry: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Category: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <button class="btn btn-ghost btn-sm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>More filters
+      </button>
+    </div>
+    <div class="text-sm text-muted">12 results</div>
+  </div>
+  
+  <div class="table-wrap">
+    <table class="dtable">
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="row-check"></th>
+          <th class="sortable">RFQ Number ↕</th>
+          <th>Title</th>
+          <th>Industry</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th class="sortable">Deadline ↕</th>
+          <th>Status</th>
+          <th>Quotes</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0142</td>
+          <td>CNC Machined Motor Housing Brackets</td>
+          <td>Automotive</td>
+          <td>CNC Machining</td>
+          <td>Aluminum 6061</td>
+          <td>28 Aug 2026</td>
+          <td><span class="chip chip-published">Published</span></td>
+          <td>5</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/142">View</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0141</td>
+          <td>Sheet Metal Enclosures for Control Panels</td>
+          <td>Industrial Machinery</td>
+          <td>Sheet Metal</td>
+          <td>Mild Steel</td>
+          <td>25 Aug 2026</td>
+          <td><span class="chip chip-published">Published</span></td>
+          <td>3</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/141">View</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0140</td>
+          <td>Precision Turned Shafts – Landing Gear Assembly</td>
+          <td>Aerospace</td>
+          <td>CNC Machining</td>
+          <td>SS304</td>
+          <td>05 Sep 2026</td>
+          <td><span class="chip chip-draft">Draft</span></td>
+          <td>0</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/create">Edit</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0139</td>
+          <td>Injection Molded Housing – Infusion Pump</td>
+          <td>Medical Devices</td>
+          <td>Injection Molding</td>
+          <td>Polycarbonate</td>
+          <td>10 Aug 2026</td>
+          <td><span class="chip chip-awarded">Awarded</span></td>
+          <td>4</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/139">View</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0138</td>
+          <td>Structural Steel Fabrication – Conveyor Frame</td>
+          <td>Industrial Machinery</td>
+          <td>Fabrication</td>
+          <td>Mild Steel</td>
+          <td>02 Aug 2026</td>
+          <td><span class="chip chip-closed">Closed</span></td>
+          <td>6</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/138">View</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0137</td>
+          <td>Brass Hydraulic Fittings</td>
+          <td>Automotive</td>
+          <td>CNC Machining</td>
+          <td>Brass</td>
+          <td>18 Jul 2026</td>
+          <td><span class="chip chip-cancelled">Cancelled</span></td>
+          <td>1</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/137">View</button>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="row-check"></td>
+          <td class="cell-strong">RFQ-2026-0136</td>
+          <td>Aerospace Bracket Fabrication</td>
+          <td>Aerospace</td>
+          <td>Fabrication</td>
+          <td>Aluminum 6061</td>
+          <td>29 Aug 2026</td>
+          <td><span class="chip chip-published">Published</span></td>
+          <td>2</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" routerLink="/client/rfqs/136">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-footer">
+    <div class="text-sm text-muted">Showing 1–7 of 12 RFQs</div>
+    <div class="pagination">
+      <button class="page-btn">‹</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span class="text-muted" style="padding:0 4px;">…</span>
+      <button class="page-btn">6</button>
+      <button class="page-btn">›</button>
+    </div>
+  </div>
+</div>

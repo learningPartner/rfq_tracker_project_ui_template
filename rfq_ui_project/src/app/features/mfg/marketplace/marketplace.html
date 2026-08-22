@@ -1,0 +1,168 @@
+<div class="page-header">
+  <div>
+    <h2 class="text-2xl">Marketplace RFQs</h2>
+    <p class="desc">Browse open RFQs matching your manufacturing capabilities.</p>
+  </div>
+  <div class="page-actions">
+    <div class="role-switch" style="margin:0;">
+      <button class="active">Cards</button>
+      <button>Table</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+  <div class="table-toolbar">
+    <div class="filter-bar">
+      <div class="search-input">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input placeholder="Search RFQs…">
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Industry: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Category: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Material: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        City: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        State: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Deadline 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="mkt-cards" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+  <!-- Card 1 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">3 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">CNC Machined Motor Housing Brackets</h4>
+    <p class="text-xs text-muted">RFQ-2026-0142 · ABC Automation Pvt Ltd · Pune, MH</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">CNC Machining</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--danger);">28 Aug 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/142">View RFQ</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">6 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Chassis – EV Battery Pack</h4>
+    <p class="text-xs text-muted">RFQ-2026-0135 · Mahindra AutoParts · Chennai, TN</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Sheet Metal</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">31 Aug 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/135">View RFQ</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">2 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Aerospace Bracket Fabrication</h4>
+    <p class="text-xs text-muted">RFQ-2026-0136 · Tata Precision Systems · Bengaluru, KA</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Fabrication</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">29 Aug 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/136">View RFQ</button>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">4 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Enclosures for Control Panels</h4>
+    <p class="text-xs text-muted">RFQ-2026-0141 · ABC Automation Pvt Ltd · Chennai, TN</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Sheet Metal</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Mild Steel</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--danger);">25 Aug 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/141">View RFQ</button>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">8 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Precision Turned Hydraulic Spindles</h4>
+    <p class="text-xs text-muted">RFQ-2026-0133 · Bharat Forge Components · Pune, MH</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">CNC Machining</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">SS304</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">04 Sep 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/133">View RFQ</button>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center"><span class="chip chip-published">Published</span><span class="text-xs text-muted">3 items</span></div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Injection Molded Enclosure – Sensor Unit</h4>
+    <p class="text-xs text-muted">RFQ-2026-0129 · Tata Precision Systems · Nashik, MH</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Category</span><span class="fw-600" style="color:var(--gray-700);">Injection Molding</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Polycarbonate</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">06 Sep 2026</span></div>
+    <button class="btn btn-primary btn-block btn-sm" style="margin-top:14px;" routerLink="/manufacturer/rfqs/129">View RFQ</button>
+  </div>
+</div>
+
+<div class="card hidden" style="margin-top:20px;">
+  <div class="table-wrap">
+    <table class="dtable">
+      <thead>
+        <tr>
+          <th>RFQ</th>
+          <th>Client</th>
+          <th>Category</th>
+          <th>Material</th>
+          <th>City / State</th>
+          <th>Deadline</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-strong">RFQ-2026-0142</td>
+          <td>ABC Automation Pvt Ltd</td>
+          <td>CNC Machining</td>
+          <td>Aluminum 6061</td>
+          <td>Pune, MH</td>
+          <td>28 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/142">View</button></td>
+        </tr>
+        <tr>
+          <td class="cell-strong">RFQ-2026-0135</td>
+          <td>Mahindra AutoParts</td>
+          <td>Sheet Metal</td>
+          <td>Aluminum 6061</td>
+          <td>Chennai, TN</td>
+          <td>31 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/135">View</button></td>
+        </tr>
+        <tr>
+          <td class="cell-strong">RFQ-2026-0136</td>
+          <td>Tata Precision Systems</td>
+          <td>Fabrication</td>
+          <td>Aluminum 6061</td>
+          <td>Bengaluru, KA</td>
+          <td>29 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/136">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="page-header">
+  <div>
+    <h2 class="text-2xl">Marketplace</h2>
+    <p class="desc">Browse all RFQs published across the platform for market visibility.</p>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+  <div class="table-toolbar">
+    <div class="filter-bar">
+      <div class="search-input">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input placeholder="Search marketplace…">
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Industry: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Category: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Material: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+      <div class="select-filter" style="cursor: pointer;">
+        Location: All 
+        <svg viewBox="0 0 12 8" fill="none" style="width:10px;height:10px;margin-left:4px;"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+  <!-- Card 1 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center">
+      <span class="chip chip-published">Published</span>
+      <span class="text-xs text-muted">5 quotes</span>
+    </div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">CNC Machined Motor Housing Brackets</h4>
+    <p class="text-xs text-muted">RFQ-2026-0142 · ABC Automation Pvt Ltd</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">3 items</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">28 Aug 2026</span></div>
+    <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;" routerLink="/client/rfqs/142">View RFQ</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center">
+      <span class="chip chip-published">Published</span>
+      <span class="text-xs text-muted">7 quotes</span>
+    </div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Sheet Metal Chassis – EV Battery Pack</h4>
+    <p class="text-xs text-muted">RFQ-2026-0135 · Mahindra AutoParts</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">6 items</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">31 Aug 2026</span></div>
+    <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;" routerLink="/client/rfqs/135" [queryParams]="{status: 'Published'}">View RFQ</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card card-pad">
+    <div class="flex justify-between items-center">
+      <span class="chip chip-published">Published</span>
+      <span class="text-xs text-muted">2 quotes</span>
+    </div>
+    <h4 style="margin:12px 0 4px; font-size:14.5px;">Aerospace Bracket Fabrication</h4>
+    <p class="text-xs text-muted">RFQ-2026-0136 · Tata Precision Systems</p>
+    <div class="divider"></div>
+    <div class="text-xs text-muted flex justify-between"><span>Material</span><span class="fw-600" style="color:var(--gray-700);">Aluminum 6061</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Products</span><span class="fw-600" style="color:var(--gray-700);">2 items</span></div>
+    <div class="text-xs text-muted flex justify-between" style="margin-top:6px;"><span>Deadline</span><span class="fw-600" style="color:var(--gray-700);">29 Aug 2026</span></div>
+    <button class="btn btn-secondary btn-block btn-sm" style="margin-top:14px;" routerLink="/client/rfqs/136" [queryParams]="{status: 'Published'}">View RFQ</button>
+  </div>
+</div>

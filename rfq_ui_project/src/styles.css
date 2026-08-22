@@ -174,6 +174,19 @@ table.dtable{width:100%; border-collapse:collapse; font-size:13px;}
 .select-filter:hover{border-color:var(--gray-300);}
 .select-filter svg{width:14px; height:14px; color:var(--gray-400);}
 
+/* ---------- Form toggle (segmented control) ---------- */
+.form-toggle{display:flex; gap:4px; background:var(--gray-100); border-radius:var(--r-md); padding:4px;}
+.form-toggle button{flex:1; display:flex; align-items:center; justify-content:center; gap:7px; border:none; background:transparent; padding:10px 14px; border-radius:calc(var(--r-md) - 2px); font-size:13.5px; font-weight:600; color:var(--gray-500); cursor:pointer; transition:background .15s,color .15s;}
+.form-toggle button svg{width:15px; height:15px;}
+.form-toggle button.active{background:#fff; color:var(--primary); box-shadow:var(--shadow-sm);}
+.form-toggle button:not(.active):hover{color:var(--gray-700);}
+
+/* ---------- Input with inline action (e.g. show/hide password) ---------- */
+.input-with-action{position:relative;}
+.input-with-action .form-control{padding-right:60px;}
+.input-action-btn{position:absolute; top:50%; right:6px; transform:translateY(-50%); border:none; background:none; color:var(--primary); font-size:12.5px; font-weight:700; padding:6px 9px; cursor:pointer; border-radius:var(--r-sm); letter-spacing:.2px;}
+.input-action-btn:hover{background:var(--primary-light);}
+
 /* ---------- Forms ---------- */
 .form-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-5);}
 .form-group{display:flex; flex-direction:column; gap:6px;}
