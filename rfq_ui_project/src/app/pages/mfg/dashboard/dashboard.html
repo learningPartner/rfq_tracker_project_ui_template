@@ -1,0 +1,110 @@
+<div class="page-header">
+  <div>
+    <h2 class="text-2xl">Good morning, Amit 👋</h2>
+    <p class="desc">Here's your quotation activity for XYZ Precision Ltd, Aug 20, 2026.</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-primary" routerLink="/manufacturer/marketplace">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Browse RFQs
+    </button>
+  </div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--primary-light); color:var(--primary);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M3 3h18l-1.5 9h-15z"/><path d="M6.5 12L5 21h14l-1.5-9"/></svg>
+      </div>
+      <span class="tag">Live</span>
+    </div>
+    <div class="kpi-val">36</div>
+    <div class="kpi-label">Available RFQs</div>
+    <div class="kpi-delta text-success">▲ 6 new today</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--success-light); color:var(--success);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      </div>
+      <span class="tag">All time</span>
+    </div>
+    <div class="kpi-val">64</div>
+    <div class="kpi-label">Submitted Quotes</div>
+    <div class="kpi-delta text-success">₹3.6 Cr quoted value</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--gray-100); color:var(--gray-500);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      </div>
+      <span class="tag">Pending</span>
+    </div>
+    <div class="kpi-val">5</div>
+    <div class="kpi-label">Draft Quotes</div>
+    <div class="kpi-delta text-muted">Not yet submitted</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <div class="kpi-icon" style="background:var(--warning-light); color:var(--warning);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:19px;height:19px;"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+      </div>
+      <span class="tag">Won</span>
+    </div>
+    <div class="kpi-val">14</div>
+    <div class="kpi-label">Won RFQs</div>
+    <div class="kpi-delta text-success">22% win rate</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Recently Available RFQs</h3>
+    <a class="btn-link text-sm" style="cursor: pointer;" routerLink="/manufacturer/marketplace">View all →</a>
+  </div>
+  <div class="table-wrap">
+    <table class="dtable">
+      <thead>
+        <tr>
+          <th>RFQ</th>
+          <th>Client</th>
+          <th>Material</th>
+          <th>Deadline</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="cell-strong">RFQ-2026-0142</div>
+            <div class="cell-sub">CNC Machined Motor Housing Brackets</div>
+          </td>
+          <td>ABC Automation Pvt Ltd</td>
+          <td>Aluminum 6061</td>
+          <td>28 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/142">View</button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="cell-strong">RFQ-2026-0135</div>
+            <div class="cell-sub">Sheet Metal Chassis – EV Battery Pack</div>
+          </td>
+          <td>Mahindra AutoParts</td>
+          <td>Aluminum 6061</td>
+          <td>31 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/135">View</button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="cell-strong">RFQ-2026-0136</div>
+            <div class="cell-sub">Aerospace Bracket Fabrication</div>
+          </td>
+          <td>Tata Precision Systems</td>
+          <td>Aluminum 6061</td>
+          <td>29 Aug 2026</td>
+          <td><button class="btn btn-secondary btn-sm" routerLink="/manufacturer/rfqs/136">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

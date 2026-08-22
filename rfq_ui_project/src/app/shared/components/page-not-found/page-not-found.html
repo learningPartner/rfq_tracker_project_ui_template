@@ -1,1 +1,14 @@
-<p>page-not-found works!</p>
+<div class="card" style="max-width:520px; margin:64px auto 0;">
+  <div class="empty-state">
+    <div class="es-icon" style="background:var(--primary-light); color:var(--primary); width:76px; height:76px; display:flex; align-items:center; justify-content:center; border-radius:50%; margin:0 auto 16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6"/></svg>
+    </div>
+    <div class="text-3xl fw-700" style="color:var(--gray-300); margin-bottom:4px;">404</div>
+    <h4>Page not found</h4>
+    <p>The RFQ, quote, or page you're looking for doesn't exist or may have been removed.</p>
+    <div class="flex gap-3" style="justify-content:center;">
+      <button class="btn btn-secondary" routerLink="/login">Back to Sign In</button>
+      <button class="btn btn-primary" routerLink="/client/dashboard">Back to Dashboard</button>
+    </div>
+  </div>
+</div>

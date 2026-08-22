@@ -1,0 +1,34 @@
+<div class="auth-screen">
+  <div class="auth-side">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="mark" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#3B82F6,#93C5FD);display:flex;align-items:center;justify-content:center;font-weight:800;">RM</div>
+        <div style="font-size:17px; font-weight:700; color:#fff;">RFQ Marketplace</div>
+      </div>
+      <h1 style="color:#fff; font-size:34px; margin-top:56px; max-width:460px; line-height:1.25;">Account recovery, secured for enterprise teams.</h1>
+      <p class="auth-quote" style="margin-top:18px;">We'll email a secure reset link to your registered work address. Links expire after 30 minutes for your organization's security.</p>
+    </div>
+    <p style="color:#8393C2; font-size:12px; position:relative; z-index:1;">© 2026 RFQ Marketplace. Enterprise Procurement Platform.</p>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box">
+      <a class="text-sm flex items-center gap-2" style="color:var(--gray-500); font-weight:600; margin-bottom:18px; cursor: pointer;" routerLink="/login">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M5 12h14"/></svg> Back to sign in
+      </a>
+      <h2 class="text-2xl">Forgot password?</h2>
+      <p class="text-muted" style="margin-top:6px; font-size:13.5px;">Enter your work email and we'll send you a reset link.</p>
+      <div style="margin-top:28px; display:flex; flex-direction:column; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input type="text" class="form-control" placeholder="you@company.com">
+        </div>
+        <button class="btn btn-primary btn-block btn-lg" routerLink="/login">Send reset link</button>
+      </div>
+      
+      <div class="banner-success hidden" style="margin-top:20px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;flex-shrink:0;color:var(--success);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+        <div><b>Reset link sent.</b><br>Check your email for further instructions.</div>
+      </div>
+    </div>
+  </div>
+</div>

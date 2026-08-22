@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-page-not-found',
+  selector: 'app-client-rfq-details',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './page-not-found.html',
-  styleUrl: './page-not-found.css',
+  templateUrl: './rfq-details.html',
+  styleUrl: './rfq-details.css'
 })
-export class PageNotFound {}
+export class ClientRfqDetailsComponent {}
