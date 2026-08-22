@@ -11,262 +11,270 @@
 
 <div class="card card-pad">
   <div class="stepper">
-    <div class="step active">
+    <div class="step" [class.active]="currentStep === 1" [class.done]="currentStep > 1">
       <div class="step-circle">1</div>
       <div class="step-text"><span class="step-num">Step 1</span><span class="step-title">Basic Information</span></div>
     </div>
     <div class="step-line"></div>
-    <div class="step">
+    <div class="step" [class.active]="currentStep === 2" [class.done]="currentStep > 2">
       <div class="step-circle">2</div>
       <div class="step-text"><span class="step-num">Step 2</span><span class="step-title">Products</span></div>
     </div>
     <div class="step-line"></div>
-    <div class="step">
+    <div class="step" [class.active]="currentStep === 3" [class.done]="currentStep > 3">
       <div class="step-circle">3</div>
       <div class="step-text"><span class="step-num">Step 3</span><span class="step-title">Attachments</span></div>
     </div>
     <div class="step-line"></div>
-    <div class="step">
+    <div class="step" [class.active]="currentStep === 4" [class.done]="currentStep > 4">
       <div class="step-circle">4</div>
       <div class="step-text"><span class="step-num">Step 4</span><span class="step-title">Review & Publish</span></div>
     </div>
   </div>
 
-  <!-- STEP 1 (Visible by default) -->
-  <div>
-    <div class="form-grid">
-      <div class="form-group full">
-        <label class="form-label">RFQ Title <span class="req">*</span></label>
-        <input class="form-control" value="CNC Machined Motor Housing Brackets">
-      </div>
-      <div class="form-group full">
-        <label class="form-label">Description <span class="req">*</span></label>
-        <textarea class="form-control" rows="3">Require precision CNC machined aluminum brackets for EV motor housing assembly. Tight tolerance ±0.05mm on mounting holes. Anodized finish required.</textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Industry <span class="req">*</span></label>
-        <select class="form-control">
-          <option value="Automotive" selected>Automotive</option>
-          <option value="Aerospace">Aerospace</option>
-          <option value="Industrial Machinery">Industrial Machinery</option>
-          <option value="Medical Devices">Medical Devices</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Category <span class="req">*</span></label>
-        <select class="form-control">
-          <option value="CNC Machining" selected>CNC Machining</option>
-          <option value="Sheet Metal">Sheet Metal</option>
-          <option value="Injection Molding">Injection Molding</option>
-          <option value="Fabrication">Fabrication</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Manufacturing Process</label>
-        <select class="form-control">
-          <option value="5-Axis CNC Milling" selected>5-Axis CNC Milling</option>
-          <option value="3-Axis CNC Milling">3-Axis CNC Milling</option>
-          <option value="CNC Turning">CNC Turning</option>
-          <option value="Laser Cutting">Laser Cutting</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Material <span class="req">*</span></label>
-        <select class="form-control">
-          <option value="Aluminum 6061" selected>Aluminum 6061</option>
-          <option value="SS304">SS304</option>
-          <option value="Mild Steel">Mild Steel</option>
-          <option value="Brass">Brass</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Location <span class="req">*</span></label>
-        <input class="form-control" value="Pune, Maharashtra">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Response Deadline <span class="req">*</span></label>
-        <input type="date" class="form-control" value="2026-08-28">
-      </div>
-    </div>
-    <div class="flex justify-between" style="margin-top:28px;">
-      <span></span>
-      <button class="btn btn-primary" routerLink="/client/rfqs">Next: Products →</button>
-    </div>
-  </div>
-
-  <!-- STEP 2 (Hidden statically) -->
-  <div class="hidden" style="margin-top:24px;">
-    <div class="table-wrap wizard-table">
-      <table class="dtable">
-        <thead>
-          <tr>
-            <th style="width:26px;"></th>
-            <th>Product</th>
-            <th>Code</th>
-            <th>Material</th>
-            <th>Qty</th>
-            <th>Unit</th>
-            <th>Required Date</th>
-            <th>Specification</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-muted">1</td>
-            <td><input value="Motor Mount Bracket" placeholder="Product name"></td>
-            <td><input value="MB-2201" placeholder="Code"></td>
-            <td><input value="Aluminum 6061" placeholder="Material"></td>
-            <td><input value="500" type="number" style="min-width: 60px;"></td>
-            <td>
-              <select>
-                <option value="Pcs" selected>Pcs</option>
-                <option value="Kg">Kg</option>
-                <option value="Set">Set</option>
-                <option value="Meter">Meter</option>
-              </select>
-            </td>
-            <td><input type="date" value="2026-09-15"></td>
-            <td><input value="±0.05mm tolerance, anodized" placeholder="Specification"></td>
-            <td>
-              <button class="icon-del">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-muted">2</td>
-            <td><input value="Housing Cover Plate" placeholder="Product name"></td>
-            <td><input value="HC-2202" placeholder="Code"></td>
-            <td><input value="Aluminum 6061" placeholder="Material"></td>
-            <td><input value="500" type="number" style="min-width: 60px;"></td>
-            <td>
-              <select>
-                <option value="Pcs" selected>Pcs</option>
-                <option value="Kg">Kg</option>
-                <option value="Set">Set</option>
-                <option value="Meter">Meter</option>
-              </select>
-            </td>
-            <td><input type="date" value="2026-09-15"></td>
-            <td><input value="Powder coated, RAL 9005" placeholder="Specification"></td>
-            <td>
-              <button class="icon-del">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <button class="btn btn-outline-primary btn-sm" style="margin-top:14px;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M12 5v14M5 12h14"/></svg>Add Row
-    </button>
-    <div class="flex justify-between" style="margin-top:28px;">
-      <button class="btn btn-secondary">← Back</button>
-      <button class="btn btn-primary">Next: Attachments →</button>
-    </div>
-  </div>
-
-  <!-- STEP 3 (Hidden statically) -->
-  <div class="hidden" style="margin-top:24px;">
-    <div class="dropzone" style="cursor: pointer;">
-      <div class="dz-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.98"/><path d="M12 12v9M9 15l3-3 3 3"/></svg>
-      </div>
-      <h4 style="font-size:14px; margin-bottom:4px;">Drag & drop files here, or <a style="color:var(--primary);">browse</a></h4>
-      <p class="text-xs text-muted">Supported formats: PDF, DWG, DXF, STEP, JPG, PNG · Max 25MB per file</p>
-      <input type="file" id="fileInput" class="hidden" multiple>
-    </div>
-    
-    <div class="file-list">
-      <div class="file-item">
-        <div class="file-ico" style="background:#DC2626">PDF</div>
-        <div class="file-meta">
-          <div class="file-name">RFQ-0142_Technical_Drawing.pdf</div>
-          <div class="file-size">2.4 MB</div>
+  <!-- STEP 1 -->
+  @if (currentStep === 1) {
+    <div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">RFQ Title <span class="req">*</span></label>
+          <input class="form-control" value="CNC Machined Motor Housing Brackets">
         </div>
-        <button class="icon-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="file-item">
-        <div class="file-ico" style="background:#2563EB">DWG</div>
-        <div class="file-meta">
-          <div class="file-name">MotorMount_Bracket_AssemblyRev3.dwg</div>
-          <div class="file-size">5.1 MB</div>
+        <div class="form-group full">
+          <label class="form-label">Description <span class="req">*</span></label>
+          <textarea class="form-control" rows="3">Require precision CNC machined aluminum brackets for EV motor housing assembly. Tight tolerance ±0.05mm on mounting holes. Anodized finish required.</textarea>
         </div>
-        <button class="icon-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
+        <div class="form-group">
+          <label class="form-label">Industry <span class="req">*</span></label>
+          <select class="form-control">
+            <option value="Automotive" selected>Automotive</option>
+            <option value="Aerospace">Aerospace</option>
+            <option value="Industrial Machinery">Industrial Machinery</option>
+            <option value="Medical Devices">Medical Devices</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category <span class="req">*</span></label>
+          <select class="form-control">
+            <option value="CNC Machining" selected>CNC Machining</option>
+            <option value="Sheet Metal">Sheet Metal</option>
+            <option value="Injection Molding">Injection Molding</option>
+            <option value="Fabrication">Fabrication</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Manufacturing Process</label>
+          <select class="form-control">
+            <option value="5-Axis CNC Milling" selected>5-Axis CNC Milling</option>
+            <option value="3-Axis CNC Milling">3-Axis CNC Milling</option>
+            <option value="CNC Turning">CNC Turning</option>
+            <option value="Laser Cutting">Laser Cutting</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Material <span class="req">*</span></label>
+          <select class="form-control">
+            <option value="Aluminum 6061" selected>Aluminum 6061</option>
+            <option value="SS304">SS304</option>
+            <option value="Mild Steel">Mild Steel</option>
+            <option value="Brass">Brass</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Location <span class="req">*</span></label>
+          <input class="form-control" value="Pune, Maharashtra">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Response Deadline <span class="req">*</span></label>
+          <input type="date" class="form-control" value="2026-08-28">
+        </div>
+      </div>
+      <div class="flex justify-between" style="margin-top:28px;">
+        <span></span>
+        <button class="btn btn-primary" (click)="currentStep = 2">Next: Products →</button>
       </div>
     </div>
-    <div class="flex justify-between" style="margin-top:28px;">
-      <button class="btn btn-secondary">← Back</button>
-      <button class="btn btn-primary">Next: Review →</button>
-    </div>
-  </div>
+  }
 
-  <!-- STEP 4 (Hidden statically) -->
-  <div class="hidden" style="margin-top:24px;">
-    <h3 style="margin-bottom:14px;">Basic Information</h3>
-    <div class="summary-row"><span class="k">RFQ Title</span><span class="v">CNC Machined Motor Housing Brackets</span></div>
-    <div class="summary-row"><span class="k">Industry / Category</span><span class="v">Automotive · CNC Machining</span></div>
-    <div class="summary-row"><span class="k">Material</span><span class="v">Aluminum 6061</span></div>
-    <div class="summary-row"><span class="k">Location</span><span class="v">Pune, Maharashtra</span></div>
-    <div class="summary-row"><span class="k">Response Deadline</span><span class="v">2026-08-28</span></div>
-
-    <h3 style="margin:22px 0 14px;">Products (3)</h3>
-    <div class="table-wrap">
-      <table class="dtable">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Code</th>
-            <th>Material</th>
-            <th>Qty</th>
-            <th>Required Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="cell-strong">Motor Mount Bracket</td>
-            <td>MB-2201</td>
-            <td>Aluminum 6061</td>
-            <td>500 Pcs</td>
-            <td>2026-09-15</td>
-          </tr>
-          <tr>
-            <td class="cell-strong">Housing Cover Plate</td>
-            <td>HC-2202</td>
-            <td>Aluminum 6061</td>
-            <td>500 Pcs</td>
-            <td>2026-09-15</td>
-          </tr>
-          <tr>
-            <td class="cell-strong">Support Bracket L-Type</td>
-            <td>SB-2203</td>
-            <td>Aluminum 6061</td>
-            <td>1000 Pcs</td>
-            <td>2026-09-20</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 style="margin:22px 0 14px;">Attachments (3)</h3>
-    <div class="flex gap-3" style="flex-wrap:wrap;">
-      <span class="tag" style="padding:6px 12px;">📄 RFQ-0142_Technical_Drawing.pdf</span>
-      <span class="tag" style="padding:6px 12px;">📄 MotorMount_Bracket_AssemblyRev3.dwg</span>
-      <span class="tag" style="padding:6px 12px;">📄 HousingCoverPlate.step</span>
-    </div>
-
-    <div class="flex justify-between" style="margin-top:32px;">
-      <button class="btn btn-secondary">← Back</button>
-      <div class="flex gap-3">
-        <button class="btn btn-secondary" routerLink="/client/rfqs">Save Draft</button>
-        <button class="btn btn-primary" routerLink="/client/rfqs">Publish RFQ</button>
+  <!-- STEP 2 -->
+  @if (currentStep === 2) {
+    <div style="margin-top:24px;">
+      <div class="table-wrap wizard-table">
+        <table class="dtable">
+          <thead>
+            <tr>
+              <th style="width:26px;"></th>
+              <th>Product</th>
+              <th>Code</th>
+              <th>Material</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Required Date</th>
+              <th>Specification</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-muted">1</td>
+              <td><input value="Motor Mount Bracket" placeholder="Product name"></td>
+              <td><input value="MB-2201" placeholder="Code"></td>
+              <td><input value="Aluminum 6061" placeholder="Material"></td>
+              <td><input value="500" type="number" style="min-width: 60px;"></td>
+              <td>
+                <select>
+                  <option value="Pcs" selected>Pcs</option>
+                  <option value="Kg">Kg</option>
+                  <option value="Set">Set</option>
+                  <option value="Meter">Meter</option>
+                </select>
+              </td>
+              <td><input type="date" value="2026-09-15"></td>
+              <td><input value="±0.05mm tolerance, anodized" placeholder="Specification"></td>
+              <td>
+                <button class="icon-del">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-muted">2</td>
+              <td><input value="Housing Cover Plate" placeholder="Product name"></td>
+              <td><input value="HC-2202" placeholder="Code"></td>
+              <td><input value="Aluminum 6061" placeholder="Material"></td>
+              <td><input value="500" type="number" style="min-width: 60px;"></td>
+              <td>
+                <select>
+                  <option value="Pcs" selected>Pcs</option>
+                  <option value="Kg">Kg</option>
+                  <option value="Set">Set</option>
+                  <option value="Meter">Meter</option>
+                </select>
+              </td>
+              <td><input type="date" value="2026-09-15"></td>
+              <td><input value="Powder coated, RAL 9005" placeholder="Specification"></td>
+              <td>
+                <button class="icon-del">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-outline-primary btn-sm" style="margin-top:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M12 5v14M5 12h14"/></svg>Add Row
+      </button>
+      <div class="flex justify-between" style="margin-top:28px;">
+        <button class="btn btn-secondary" (click)="currentStep = 1">← Back</button>
+        <button class="btn btn-primary" (click)="currentStep = 3">Next: Attachments →</button>
       </div>
     </div>
-  </div>
+  }
+
+  <!-- STEP 3 -->
+  @if (currentStep === 3) {
+    <div style="margin-top:24px;">
+      <div class="dropzone" style="cursor: pointer;">
+        <div class="dz-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.98"/><path d="M12 12v9M9 15l3-3 3 3"/></svg>
+        </div>
+        <h4 style="font-size:14px; margin-bottom:4px;">Drag & drop files here, or <a style="color:var(--primary);">browse</a></h4>
+        <p class="text-xs text-muted">Supported formats: PDF, DWG, DXF, STEP, JPG, PNG · Max 25MB per file</p>
+        <input type="file" id="fileInput" class="hidden" multiple>
+      </div>
+      
+      <div class="file-list">
+        <div class="file-item">
+          <div class="file-ico" style="background:#DC2626">PDF</div>
+          <div class="file-meta">
+            <div class="file-name">RFQ-0142_Technical_Drawing.pdf</div>
+            <div class="file-size">2.4 MB</div>
+          </div>
+          <button class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="file-item">
+          <div class="file-ico" style="background:#2563EB">DWG</div>
+          <div class="file-meta">
+            <div class="file-name">MotorMount_Bracket_AssemblyRev3.dwg</div>
+            <div class="file-size">5.1 MB</div>
+          </div>
+          <button class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-between" style="margin-top:28px;">
+        <button class="btn btn-secondary" (click)="currentStep = 2">← Back</button>
+        <button class="btn btn-primary" (click)="currentStep = 4">Next: Review →</button>
+      </div>
+    </div>
+  }
+
+  <!-- STEP 4 -->
+  @if (currentStep === 4) {
+    <div style="margin-top:24px;">
+      <h3 style="margin-bottom:14px;">Basic Information</h3>
+      <div class="summary-row"><span class="k">RFQ Title</span><span class="v">CNC Machined Motor Housing Brackets</span></div>
+      <div class="summary-row"><span class="k">Industry / Category</span><span class="v">Automotive · CNC Machining</span></div>
+      <div class="summary-row"><span class="k">Material</span><span class="v">Aluminum 6061</span></div>
+      <div class="summary-row"><span class="k">Location</span><span class="v">Pune, Maharashtra</span></div>
+      <div class="summary-row"><span class="k">Response Deadline</span><span class="v">2026-08-28</span></div>
+
+      <h3 style="margin:22px 0 14px;">Products (3)</h3>
+      <div class="table-wrap">
+        <table class="dtable">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Code</th>
+              <th>Material</th>
+              <th>Qty</th>
+              <th>Required Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-strong">Motor Mount Bracket</td>
+              <td>MB-2201</td>
+              <td>Aluminum 6061</td>
+              <td>500 Pcs</td>
+              <td>2026-09-15</td>
+            </tr>
+            <tr>
+              <td class="cell-strong">Housing Cover Plate</td>
+              <td>HC-2202</td>
+              <td>Aluminum 6061</td>
+              <td>500 Pcs</td>
+              <td>2026-09-15</td>
+            </tr>
+            <tr>
+              <td class="cell-strong">Support Bracket L-Type</td>
+              <td>SB-2203</td>
+              <td>Aluminum 6061</td>
+              <td>1000 Pcs</td>
+              <td>2026-09-20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin:22px 0 14px;">Attachments (3)</h3>
+      <div class="flex gap-3" style="flex-wrap:wrap;">
+        <span class="tag" style="padding:6px 12px;">📄 RFQ-0142_Technical_Drawing.pdf</span>
+        <span class="tag" style="padding:6px 12px;">📄 MotorMount_Bracket_AssemblyRev3.dwg</span>
+        <span class="tag" style="padding:6px 12px;">📄 HousingCoverPlate.step</span>
+      </div>
+
+      <div class="flex justify-between" style="margin-top:32px;">
+        <button class="btn btn-secondary" (click)="currentStep = 3">← Back</button>
+        <div class="flex gap-3">
+          <button class="btn btn-secondary" routerLink="/client/rfqs">Save Draft</button>
+          <button class="btn btn-primary" routerLink="/client/rfqs">Publish RFQ</button>
+        </div>
+      </div>
+    </div>
+  }
 </div>

@@ -9,4 +9,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
-export class RegisterComponent {}
+export class RegisterComponent {
+  public orgType: 'Client' | 'Manufacturer' = 'Client';
+  public showPassword = false;
+  public showConfirmPassword = false;
+}

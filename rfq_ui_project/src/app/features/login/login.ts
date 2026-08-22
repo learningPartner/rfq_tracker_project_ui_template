@@ -9,4 +9,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class LoginComponent {}
+export class LoginComponent {
+  public loginOrgType: 'client' | 'mfg' = 'client';
+  public showPassword = false;
+}

@@ -29,15 +29,15 @@
         <div class="form-group">
           <label class="form-label">Organization Type <span class="req">*</span></label>
           <div class="form-toggle">
-            <button type="button" class="active">
+            <button type="button" [class.active]="orgType === 'Client'" (click)="orgType = 'Client'">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>Client
             </button>
-            <button type="button">
+            <button type="button" [class.active]="orgType === 'Manufacturer'" (click)="orgType = 'Manufacturer'">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l5 3V10l5 3V8l5 3v9M4 10l4-4 4 4M4 20v-4h16v4"/></svg>Manufacturer
             </button>
           </div>
           <span class="text-xs text-subtle" style="margin-top:6px; display:block;">
-            Client organizations publish RFQs and award quotes.
+            {{ orgType === 'Client' ? 'Client organizations publish RFQs and award quotes.' : 'Manufacturer organizations browse RFQs and submit quotes.' }}
           </span>
         </div>
 
@@ -99,15 +99,19 @@
           <div class="form-group">
             <label class="form-label">Password <span class="req">*</span></label>
             <div class="input-with-action">
-              <input type="password" class="form-control" placeholder="Min. 8 characters">
-              <button type="button" class="input-action-btn">Show</button>
+              <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Min. 8 characters">
+              <button type="button" class="input-action-btn" (click)="showPassword = !showPassword">
+                {{ showPassword ? 'Hide' : 'Show' }}
+              </button>
             </div>
           </div>
           <div class="form-group">
             <label class="form-label">Confirm Password <span class="req">*</span></label>
             <div class="input-with-action">
-              <input type="password" class="form-control" placeholder="Re-enter password">
-              <button type="button" class="input-action-btn">Show</button>
+              <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" placeholder="Re-enter password">
+              <button type="button" class="input-action-btn" (click)="showConfirmPassword = !showConfirmPassword">
+                {{ showConfirmPassword ? 'Hide' : 'Show' }}
+              </button>
             </div>
           </div>
         </div>

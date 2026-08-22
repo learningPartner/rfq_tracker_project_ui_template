@@ -23,10 +23,10 @@
         <div class="form-group">
           <label class="form-label">Organization Type</label>
           <div class="form-toggle">
-            <button type="button" class="active">
+            <button type="button" [class.active]="loginOrgType === 'client'" (click)="loginOrgType = 'client'">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>Client
             </button>
-            <button type="button">
+            <button type="button" [class.active]="loginOrgType === 'mfg'" (click)="loginOrgType = 'mfg'">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l5 3V10l5 3V8l5 3v9M4 10l4-4 4 4M4 20v-4h16v4"/></svg>Manufacturer
             </button>
           </div>
@@ -34,20 +34,22 @@
         </div>
         <div class="form-group">
           <label class="form-label">Work email</label>
-          <input type="text" class="form-control" value="rahul.sharma@abcautomation.in">
+          <input type="text" class="form-control" [value]="loginOrgType === 'client' ? 'rahul.sharma@abcautomation.in' : 'amit.verma@xyzprecision.in'">
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
           <div class="input-with-action">
-            <input type="password" class="form-control" value="Passw0rd@2026">
-            <button type="button" class="input-action-btn">Show</button>
+            <input [type]="showPassword ? 'text' : 'password'" class="form-control" value="Passw0rd@2026">
+            <button type="button" class="input-action-btn" (click)="showPassword = !showPassword">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
           </div>
         </div>
         <div class="flex items-center justify-between">
           <label class="flex items-center gap-2 text-sm text-muted"><input type="checkbox" checked> Remember me</label>
           <a class="text-sm" style="color:var(--primary); font-weight:600; cursor: pointer;" routerLink="/forgot-password">Forgot password?</a>
         </div>
-        <button class="btn btn-primary btn-block btn-lg" routerLink="/client/dashboard">Sign In</button>
+        <button class="btn btn-primary btn-block btn-lg" [routerLink]="loginOrgType === 'client' ? '/client/dashboard' : '/manufacturer/dashboard'">Sign In</button>
       </div>
       <div class="divider"></div>
       <p class="text-sm text-muted" style="text-align:center;">Don't have an organization account? <a style="color:var(--primary); font-weight:600; cursor: pointer;" routerLink="/register">Request access</a></p>

@@ -9,4 +9,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './rfq-create.html',
   styleUrl: './rfq-create.css'
 })
-export class ClientRfqCreateComponent {}
+export class ClientRfqCreateComponent {
+  public currentStep = 1;
+}
