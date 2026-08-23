@@ -14,6 +14,7 @@ public class RfqPortalRfqRepository : IRfqPortalRfqRepository
         _context = context;
     }
 
+
     public async Task<RfqPortalRfq?> GetByIdAsync(int rfqId)
     {
         return await _context.RfqPortalRfqs.FindAsync(rfqId);
@@ -87,4 +88,7 @@ public class RfqPortalRfqRepository : IRfqPortalRfqRepository
         }
         return await _context.RfqPortalRfqs.AnyAsync(r => r.RfqNumber == rfqNumber);
     }
+
+    
+    
 }
