@@ -10,7 +10,7 @@ public static class MessageConstants
     public const string RFQRetrievedSuccessfully = "RFQ retrieved successfully.";
     public const string RFQsRetrievedSuccessfully = "RFQs retrieved successfully.";
 
-   
+
     // RFQ Item Messages
     public const string RFQItemCreatedSuccessfully = "RFQ item created successfully.";
     public const string RFQItemUpdatedSuccessfully = "RFQ item updated successfully.";
@@ -25,4 +25,8 @@ public static class MessageConstants
     public const string ValidationFailed = "Validation failed.";
     public const string UnauthorizedAccess = "Unauthorized access.";
     public const string RecordNotFound = "Record not found.";
+
+    // Master Data Messages
+    public const string MasterDataRetrievedSuccessfully = "Master data retrieved successfully.";
+    public const string MasterDataNotFound = "Master data not found.";
 }

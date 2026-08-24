@@ -20,9 +20,39 @@ public class RfqPortalRfqRepository : IRfqPortalRfqRepository
         return await _context.RfqPortalRfqs.FindAsync(rfqId);
     }
 
-    public async Task<IEnumerable<RfqPortalRfq>> GetAllAsync()
+    public async Task<IEnumerable<RfqPortalRfq>> GetAllAsync(
+      string? search,
+      string? status,
+      string? industry,
+      string? category)
     {
-        return await _context.RfqPortalRfqs.ToListAsync();
+        var query = _context.RfqPortalRfqs.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            search = search.Trim();
+
+            query = query.Where(r =>
+                r.RfqNumber.Contains(search) ||
+                r.Title.Contains(search));
+        }
+
+        if (!string.IsNullOrWhiteSpace(status))
+        {
+            query = query.Where(r => r.RfqStatus == status);
+        }
+
+        if (!string.IsNullOrWhiteSpace(industry))
+        {
+            query = query.Where(r => r.Industry == industry);
+        }
+
+        if (!string.IsNullOrWhiteSpace(category))
+        {
+            query = query.Where(r => r.Category == category);
+        }
+
+        return await query.ToListAsync();
     }
 
     public async Task<RfqPortalRfq?> GetByRfqNumberAsync(string rfqNumber)

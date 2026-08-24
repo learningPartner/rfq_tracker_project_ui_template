@@ -27,11 +27,23 @@ public class RfqPortalRfqService : IRfqPortalRfqService
         return ApiResponse<RfqPortalRfqDto>.SuccessResponse(rfqDto, MessageConstants.RFQRetrievedSuccessfully);
     }
 
-    public async Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetAllAsync()
+    public async Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetAllAsync(
+    string? search,
+    string? status,
+    string? industry,
+    string? category)
     {
-        var rfqs = await _repository.GetAllAsync();
+        var rfqs = await _repository.GetAllAsync(
+            search,
+            status,
+            industry,
+            category);
+
         var rfqDtos = rfqs.Select(MapToDto);
-        return ApiResponse<IEnumerable<RfqPortalRfqDto>>.SuccessResponse(rfqDtos, MessageConstants.RFQsRetrievedSuccessfully);
+
+        return ApiResponse<IEnumerable<RfqPortalRfqDto>>.SuccessResponse(
+            rfqDtos,
+            MessageConstants.RFQsRetrievedSuccessfully);
     }
 
     public async Task<ApiResponse<RfqPortalRfqDto>> GetByRfqNumberAsync(string rfqNumber)

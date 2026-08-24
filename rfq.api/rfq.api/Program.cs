@@ -17,10 +17,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Register Repositories
 builder.Services.AddScoped<IRfqPortalRfqRepository, RfqPortalRfqRepository>();
 builder.Services.AddScoped<IRfqPortalRfqItemRepository, RfqPortalRfqItemRepository>();
+builder.Services.AddScoped<IRfqPortalMasterDataRepository, RfqPortalMasterDataRepository>();
 
 // Register Services
 builder.Services.AddScoped<IRfqPortalRfqService, RfqPortalRfqService>();
 builder.Services.AddScoped<IRfqPortalRfqItemService, RfqPortalRfqItemService>();
+builder.Services.AddScoped<IRfqPortalMasterDataService, RfqPortalMasterDataService>();
 
 builder.Services.AddControllers();
 

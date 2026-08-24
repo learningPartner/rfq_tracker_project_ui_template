@@ -16,9 +16,18 @@ public class RFQController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalRfqDto>>>> GetAll()
+    public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalRfqDto>>>> GetAll(
+    [FromQuery] string? search,
+    [FromQuery] string? status,
+    [FromQuery] string? industry,
+    [FromQuery] string? category)
     {
-        var response = await _rfqService.GetAllAsync();
+        var response = await _rfqService.GetAllAsync(
+            search,
+            status,
+            industry,
+            category);
+
         return Ok(response);
     }
 

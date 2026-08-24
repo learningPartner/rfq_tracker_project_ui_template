@@ -5,7 +5,11 @@ namespace rfq.api.Repositories.Interfaces;
 public interface IRfqPortalRfqRepository
 {
     Task<RfqPortalRfq?> GetByIdAsync(int rfqId);
-    Task<IEnumerable<RfqPortalRfq>> GetAllAsync();
+    Task<IEnumerable<RfqPortalRfq>> GetAllAsync(
+    string? search,
+    string? status,
+    string? industry,
+    string? category);
     Task<RfqPortalRfq?> GetByRfqNumberAsync(string rfqNumber);
     Task<IEnumerable<RfqPortalRfq>> GetByClientOrganizationIdAsync(int clientOrganizationId);
     Task<IEnumerable<RfqPortalRfq>> GetByStatusAsync(string status);
