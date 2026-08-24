@@ -5,7 +5,8 @@ namespace rfq.api.Services.Interfaces;
 public interface IRfqPortalRfqService
 {
     Task<ApiResponse<RfqPortalRfqDto>> GetByIdAsync(int rfqId);
-    Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetAllAsync();
+    // New: filtered and paginated get method. All filters optional; page/pageSize control pagination.
+    Task<ApiResponse<PaginatedResult<RfqPortalRfqDto>>> GetAllAsync(string? status = null, string? industry = null, string? category = null, int page = 1, int pageSize = 10);
     Task<ApiResponse<RfqPortalRfqDto>> GetByRfqNumberAsync(string rfqNumber);
     Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetByClientOrganizationIdAsync(int clientOrganizationId);
     Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetByStatusAsync(string status);
