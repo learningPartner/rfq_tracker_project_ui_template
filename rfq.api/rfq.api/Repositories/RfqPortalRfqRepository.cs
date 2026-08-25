@@ -65,6 +65,36 @@ public class RfqPortalRfqRepository : IRfqPortalRfqRepository
         return rfq;
     }
 
+    public async Task<(IEnumerable<RfqPortalRfq> Items, int TotalCount)> GetFilteredAsync(string? status, string? industry, string? category, int page, int pageSize)
+    {
+        var query = _context.RfqPortalRfqs.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(status))
+        {
+            query = query.Where(r => r.RfqStatus == status);
+        }
+
+        if (!string.IsNullOrWhiteSpace(industry))
+        {
+            query = query.Where(r => r.Industry == industry);
+        }
+
+        if (!string.IsNullOrWhiteSpace(category))
+        {
+            query = query.Where(r => r.Category == category);
+        }
+
+        var totalCount = await query.CountAsync();
+
+        var items = await query
+            .OrderByDescending(r => r.CreatedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (items, totalCount);
+    }
+
     public async Task UpdateAsync(RfqPortalRfq rfq)
     {
         rfq.UpdatedAt = DateTime.UtcNow;

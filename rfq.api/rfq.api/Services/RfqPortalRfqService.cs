@@ -27,11 +27,25 @@ public class RfqPortalRfqService : IRfqPortalRfqService
         return ApiResponse<RfqPortalRfqDto>.SuccessResponse(rfqDto, MessageConstants.RFQRetrievedSuccessfully);
     }
 
-    public async Task<ApiResponse<IEnumerable<RfqPortalRfqDto>>> GetAllAsync()
+    public async Task<ApiResponse<PaginatedResult<RfqPortalRfqDto>>> GetAllAsync(string? status = null, string? industry = null, string? category = null, int page = 1, int pageSize = 10)
     {
-        var rfqs = await _repository.GetAllAsync();
-        var rfqDtos = rfqs.Select(MapToDto);
-        return ApiResponse<IEnumerable<RfqPortalRfqDto>>.SuccessResponse(rfqDtos, MessageConstants.RFQsRetrievedSuccessfully);
+        if (page <= 0) page = 1;
+        if (pageSize <= 0) pageSize = 10;
+
+        var (items, totalCount) = await _repository.GetFilteredAsync(status, industry, category, page, pageSize);
+
+        var rfqDtos = items.Select(MapToDto).ToList();
+
+        var result = new PaginatedResult<RfqPortalRfqDto>
+        {
+            Items = rfqDtos,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize)
+        };
+
+        return ApiResponse<PaginatedResult<RfqPortalRfqDto>>.SuccessResponse(result, MessageConstants.RFQsRetrievedSuccessfully);
     }
 
     public async Task<ApiResponse<RfqPortalRfqDto>> GetByRfqNumberAsync(string rfqNumber)

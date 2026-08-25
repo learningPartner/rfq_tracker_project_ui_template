@@ -16,9 +16,18 @@ public class RFQController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalRfqDto>>>> GetAll()
+    public async Task<ActionResult<ApiResponse<PaginatedResult<RfqPortalRfqDto>>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
-        var response = await _rfqService.GetAllAsync();
+        // Read optional filters from headers (frontend will send filters via headers)
+        Request.Headers.TryGetValue("X-Filter-Status", out var statusHeader);
+        Request.Headers.TryGetValue("X-Filter-Industry", out var industryHeader);
+        Request.Headers.TryGetValue("X-Filter-Category", out var categoryHeader);
+
+        string? status = string.IsNullOrWhiteSpace(statusHeader) ? null : statusHeader.ToString();
+        string? industry = string.IsNullOrWhiteSpace(industryHeader) ? null : industryHeader.ToString();
+        string? category = string.IsNullOrWhiteSpace(categoryHeader) ? null : categoryHeader.ToString();
+
+        var response = await _rfqService.GetAllAsync(status, industry, category, page, pageSize);
         return Ok(response);
     }
 
@@ -113,4 +122,6 @@ public class RFQController : ControllerBase
         }
         return Ok(response);
     }
+
+
 }

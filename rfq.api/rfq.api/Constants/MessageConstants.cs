@@ -10,6 +10,9 @@ public static class MessageConstants
     public const string RFQRetrievedSuccessfully = "RFQ retrieved successfully.";
     public const string RFQsRetrievedSuccessfully = "RFQs retrieved successfully.";
 
+    // Organization Messages
+    public const string OrganizationCreatedSuccessfully = "Organization created successfully.";
+
    
     // RFQ Item Messages
     public const string RFQItemCreatedSuccessfully = "RFQ item created successfully.";

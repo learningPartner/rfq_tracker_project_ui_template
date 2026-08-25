@@ -1,0 +1,36 @@
+<div class="toast-container">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div class="toast-card" [ngClass]="toast.type">
+      <!-- Colored circular icon -->
+      <div class="toast-icon">
+        @if (toast.icon) {
+          <img [src]="toast.icon" class="custom-icon" style="width:16px;height:16px;object-fit:contain;" />
+        } @else {
+          @if (toast.type === 'success') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          }
+          @if (toast.type === 'error') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          }
+          @if (toast.type === 'delete') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          }
+          @if (toast.type === 'info') {
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          }
+        }
+      </div>
+      
+      <!-- Content texts -->
+      <div class="toast-body">
+        <div class="toast-title">{{ toast.title }}</div>
+        <div class="toast-message">{{ toast.message }}</div>
+      </div>
+      
+      <!-- Cross close button -->
+      <button type="button" class="toast-close" (click)="toastService.remove(toast.id)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  }
+</div>
