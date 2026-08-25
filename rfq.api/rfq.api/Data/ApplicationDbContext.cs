@@ -11,6 +11,8 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<RfqPortalRfq> RfqPortalRfqs { get; set; }
+    public DbSet<RfqPortalOrganization> RfqPortalOrganizations { get; set; }
+    public DbSet<RfqPortalUser> RfqPortalUsers { get; set; }
 
     public override int SaveChanges()
     {
@@ -29,6 +31,15 @@ public class ApplicationDbContext : DbContext
         var entries = ChangeTracker.Entries<RfqPortalRfq>();
 
         foreach (var entry in entries)
+        {
+            if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
+            }
+        }
+
+        var orgEntries = ChangeTracker.Entries<RfqPortalOrganization>();
+        foreach (var entry in orgEntries)
         {
             if (entry.State == EntityState.Modified)
             {
