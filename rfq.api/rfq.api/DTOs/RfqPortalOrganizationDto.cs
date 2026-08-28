@@ -18,6 +18,23 @@ public class CreateRfqPortalOrganizationDto
     public string? PostalCode { get; set; }
 }
 
+public class UpdateRfqPortalOrganizationDto
+{
+     public int OrganizationId { get; set; }
+    public string OrganizationType { get; set; } = null!;
+    public string CompanyName { get; set; } = null!;
+    public string? CompanyCode { get; set; }
+    public string? GstNumber { get; set; }
+    public string? ContactPerson { get; set; }
+    public string? ContactEmail { get; set; }
+    public string? ContactPhone { get; set; }
+    public string? Address { get; set; }
+    public string? City { get; set; }
+    public string? State { get; set; }
+    public string? Country { get; set; }
+    public string? PostalCode { get; set; }
+}
+
 public class RfqPortalOrganizationDto
 {
     public int OrganizationId { get; set; }

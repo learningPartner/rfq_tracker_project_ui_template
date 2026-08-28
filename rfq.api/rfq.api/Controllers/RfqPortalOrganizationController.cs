@@ -16,6 +16,13 @@ namespace rfq.api.Controllers
             _organizationService = organizationService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalOrganizationDto>>>> GetAll()
+        {
+            var response = await _organizationService.GetAllAsync();
+            return Ok(response);
+        }
+
         [HttpPost("register")]
         public async Task<ActionResult<ApiResponse<RegisterOrganizationResponseDto>>> Register([FromBody] CreateRfqPortalOrganizationDto createDto)
         {
@@ -23,6 +30,44 @@ namespace rfq.api.Controllers
             if (!response.Success)
             {
                 return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("{organizationId}")]
+        public async Task<ActionResult<ApiResponse<RfqPortalOrganizationDto>>> GetById(int organizationId)
+        {
+            var response = await _organizationService.GetByIdAsync(organizationId);
+            if (!response.Success)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpPut("{organizationId}")]
+        public async Task<ActionResult<ApiResponse<RfqPortalOrganizationDto>>> Update(int organizationId, [FromBody] UpdateRfqPortalOrganizationDto updateDto)
+        {
+            if (organizationId != updateDto.OrganizationId)
+            {
+                return BadRequest(ApiResponse<RfqPortalOrganizationDto>.FailureResponse("Organization ID mismatch."));
+            }
+
+            var response = await _organizationService.UpdateAsync(updateDto);
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("{organizationId}")]
+        public async Task<ActionResult<ApiResponse<bool>>> Delete(int organizationId)
+        {
+            var response = await _organizationService.DeleteAsync(organizationId);
+            if (!response.Success)
+            {
+                return NotFound(response);
             }
             return Ok(response);
         }

@@ -12,8 +12,12 @@ public static class MessageConstants
 
     // Organization Messages
     public const string OrganizationCreatedSuccessfully = "Organization created successfully.";
+    public const string OrganizationNotFound = "Organization not found.";
+    public const string OrganizationRetrievedSuccessfully = "Organization retrieved successfully.";
+    public const string OrganizationUpdatedSuccessfully = "Organization updated successfully.";
+    public const string OrganizationUpdateFailed = "Organization update failed.";
+    public const string OrganizationDeletedSuccessfully = "Organization deleted successfully.";
 
-   
     // RFQ Item Messages
     public const string RFQItemCreatedSuccessfully = "RFQ item created successfully.";
     public const string RFQItemUpdatedSuccessfully = "RFQ item updated successfully.";
