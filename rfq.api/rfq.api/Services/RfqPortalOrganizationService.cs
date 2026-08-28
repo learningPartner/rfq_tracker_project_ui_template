@@ -193,8 +193,7 @@ public class RfqPortalOrganizationService : IRfqPortalOrganizationService
             return ApiResponse<bool>.FailureResponse(MessageConstants.OrganizationNotFound);
         }
 
-        organization.IsActive = false;
-        await _organizationRepository.UpdateAsync(organization);
+        await _organizationRepository.DeleteAsync(organizationId);
 
         return ApiResponse<bool>.SuccessResponse(true, MessageConstants.OrganizationDeletedSuccessfully);
     }

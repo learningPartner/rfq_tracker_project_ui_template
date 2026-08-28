@@ -55,8 +55,7 @@ public class RfqPortalOrganizationRepository: IRfqPortalOrganizationRepository
         var organization = await _context.RfqPortalOrganizations.FindAsync(organizationId);
         if (organization != null)
         {
-            organization.IsActive = false;
-            _context.RfqPortalOrganizations.Update(organization);
+            _context.RfqPortalOrganizations.Remove(organization);
             await _context.SaveChangesAsync();
         }
     }
