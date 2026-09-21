@@ -14,6 +14,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<RfqPortalOrganization> RfqPortalOrganizations { get; set; }
     public DbSet<RfqPortalUser> RfqPortalUsers { get; set; }
     public DbSet<RfqPortalMasterData> RfqPortalMasterDatas { get; set; }
+    public DbSet<RfqPortalRfqItem> RfqPortalRfqItems { get; set; }
 
     public override int SaveChanges()
     {
