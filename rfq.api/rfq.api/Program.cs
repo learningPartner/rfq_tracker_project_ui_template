@@ -19,12 +19,14 @@ builder.Services.AddScoped<IRfqPortalRfqRepository, RfqPortalRfqRepository>();
 builder.Services.AddScoped<IRfqPortalOrganizationRepository, RfqPortalOrganizationRepository>();
 builder.Services.AddScoped<IRfqPortalMasterDataRepository, RfqPortalMasterDataRepository>();
 builder.Services.AddScoped<IRfqPortalRfqItemRepository, RfqPortalRfqItemRepository>();
+builder.Services.AddScoped<IRfqPortalQuoteRepository, RfqPortalQuoteRepository>();    
 
 // Register Services
 builder.Services.AddScoped<IRfqPortalRfqService, RfqPortalRfqService>();
 builder.Services.AddScoped<IRfqPortalOrganizationService, RfqPortalOrganizationService>();
 builder.Services.AddScoped<IRfqPortalMasterDataService, RfqPortalMasterDataService>();
 builder.Services.AddScoped<IRfqPortalRfqItemRepositoryService, RfqPortalRfqItemService>();
+builder.Services.AddScoped<IRfqPortalQuoteService, RfqPortalQuoteService>();
 
 
 
