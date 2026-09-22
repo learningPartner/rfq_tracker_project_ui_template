@@ -19,7 +19,10 @@ builder.Services.AddScoped<IRfqPortalRfqRepository, RfqPortalRfqRepository>();
 builder.Services.AddScoped<IRfqPortalOrganizationRepository, RfqPortalOrganizationRepository>();
 builder.Services.AddScoped<IRfqPortalMasterDataRepository, RfqPortalMasterDataRepository>();
 builder.Services.AddScoped<IRfqPortalRfqItemRepository, RfqPortalRfqItemRepository>();
-builder.Services.AddScoped<IRfqPortalQuoteRepository, RfqPortalQuoteRepository>();    
+builder.Services.AddScoped<IRfqPortalQuoteRepository, RfqPortalQuoteRepository>();
+builder.Services.AddScoped<IRfqPortalRfqAttachmentRepository, RfqPortalRfqAttachmentRepository>();
+
+
 
 // Register Services
 builder.Services.AddScoped<IRfqPortalRfqService, RfqPortalRfqService>();
@@ -28,6 +31,7 @@ builder.Services.AddScoped<IRfqPortalMasterDataService, RfqPortalMasterDataServi
 builder.Services.AddScoped<IRfqPortalRfqItemRepositoryService, RfqPortalRfqItemService>();
 builder.Services.AddScoped<IRfqPortalQuoteService, RfqPortalQuoteService>();
 
+builder.Services.AddScoped<IRfqPortalRfqAttachmentService, RfqPortalRfqAttachmentService>();
 
 
 builder.Services.AddControllers();
