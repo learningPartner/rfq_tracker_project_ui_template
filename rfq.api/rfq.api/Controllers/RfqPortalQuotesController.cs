@@ -15,6 +15,7 @@ namespace rfq.api.Controllers
             _quoteService = quoteService;
         }
         [HttpGet("rfq/{rfqId}")]
+        [EndpointSummary("Get quotes by RFQ ID")]
         public async Task<ActionResult<IEnumerable<QuoteDto>>> GetQuotesByRfqId(int rfqId)
         {
             var quotes = await _quoteService.GetQuotesByRfqIdAsync(rfqId);
@@ -22,6 +23,7 @@ namespace rfq.api.Controllers
         }
 
         [HttpGet("supplier/{supplierOrgId}")]
+        [EndpointSummary("Get quotes by Supplier Organization ID")]
         public async Task<ActionResult<IEnumerable<QuoteDto>>> GetQuotesBySupplierId(int supplierOrgId)
         {
             var quotes = await _quoteService.GetQuotesBySupplierIdAsync(supplierOrgId);
@@ -29,6 +31,7 @@ namespace rfq.api.Controllers
         }
 
         [HttpGet("{id}")]
+        [EndpointSummary("Get quote details by ID")]
         public async Task<ActionResult<QuoteDto>> GetQuoteById(int id)
         {
             var quote = await _quoteService.GetQuoteByIdAsync(id);
@@ -42,6 +45,7 @@ namespace rfq.api.Controllers
         }
 
         [HttpPost]
+        [EndpointSummary("Create a new quote")]
         public async Task<ActionResult<QuoteDto>> CreateQuote([FromBody] CreateQuoteDto dto)
         {
             var createdQuote = await _quoteService.CreateQuoteAsync(dto);
@@ -50,6 +54,7 @@ namespace rfq.api.Controllers
         }
 
         [HttpPut("{id}/status")]
+        [EndpointSummary("Update quote status")]
         public async Task<ActionResult<QuoteDto>> UpdateQuoteStatus(int id, [FromBody] UpdateQuoteStatusDto dto)
         {
             var updatedQuote = await _quoteService.UpdateQuoteStatusAsync(id, dto);
@@ -63,6 +68,7 @@ namespace rfq.api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [EndpointSummary("Delete a quote")]
         public async Task<IActionResult> DeleteQuote(int id)
         {
             var success = await _quoteService.DeleteQuoteAsync(id);

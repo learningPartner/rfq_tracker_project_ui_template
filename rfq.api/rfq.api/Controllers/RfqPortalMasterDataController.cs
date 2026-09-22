@@ -16,6 +16,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpGet]
+    [EndpointSummary("Get all master data items")]
     public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalMasterDataDto>>>> GetAll()
     {
         var response = await _masterDataService.GetAllAsync();
@@ -23,6 +24,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpGet("{masterDataId}")]
+    [EndpointSummary("Get master data by ID")]
     public async Task<ActionResult<ApiResponse<RfqPortalMasterDataDto>>> GetById(int masterDataId)
     {
         var response = await _masterDataService.GetByIdAsync(masterDataId);
@@ -34,6 +36,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpGet("by-type/{type}")]
+    [EndpointSummary("Get master data by type")]
     public async Task<ActionResult<ApiResponse<IEnumerable<RfqPortalMasterDataDto>>>> GetByType(string type)
     {
         var response = await _masterDataService.GetByTypeAsync(type);
@@ -45,6 +48,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpGet("types/all")]
+    [EndpointSummary("Get all master data types")]
     public async Task<ActionResult<ApiResponse<List<string>>>> GetAllTypes()
     {
         var response = await _masterDataService.GetAllTypesAsync();
@@ -52,6 +56,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpPost]
+    [EndpointSummary("Create new master data")]
     public async Task<ActionResult<ApiResponse<RfqPortalMasterDataDto>>> Create(
         [FromBody] CreateRfqPortalMasterDataDto createDto)
     {
@@ -68,6 +73,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpPut("{masterDataId}")]
+    [EndpointSummary("Update existing master data")]
     public async Task<ActionResult<ApiResponse<RfqPortalMasterDataDto>>> Update(
         int masterDataId,
         [FromBody] UpdateRfqPortalMasterDataDto updateDto)
@@ -88,6 +94,7 @@ public class RfqPortalMasterDataController : ControllerBase
     }
 
     [HttpDelete("{masterDataId}")]
+    [EndpointSummary("Delete master data by ID")]
     public async Task<ActionResult<ApiResponse<bool>>> Delete(int masterDataId)
     {
         var response = await _masterDataService.DeleteAsync(masterDataId);
